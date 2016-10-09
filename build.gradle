@@ -1,0 +1,57 @@
+import org.gradle.plugins.ide.eclipse.model.Facet
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+sourceCompatibility = 1.8
+group 'com.fh'
+version '1.0'
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile fileTree(dir: './lib', include: '*.jar')
+    // https://mvnrepository.com/artifact/com.alibaba/fastjson
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.17'
+}
+
+eclipse {
+    wtp {
+        facet {
+            facet name: 'jst.web', type: Facet.FacetType.fixed
+            facet name: 'wst.jsdt.web', type: Facet.FacetType.fixed
+            facet name: 'jst.java', type: Facet.FacetType.fixed
+            facet name: 'jst.web', version: '3.0'
+            facet name: 'jst.java', version: '1.7'
+            facet name: 'wst.jsdt.web', version: '1.0'
+        }
+    }
+}
+
+uploadArchives {
+    repositories {
+        flatDir {
+            dirs 'repo'
+        }
+    }
+}
+
+task deployToTomcat(type: Copy) {
+    from war
+    into "F:\\monitor"
+    rename { String fileName ->
+        fileName.replace('-1.0', '')
+    }
+}
