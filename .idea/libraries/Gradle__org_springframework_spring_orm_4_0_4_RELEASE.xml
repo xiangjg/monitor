@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.springframework:spring-orm:4.0.4.RELEASE">
+    <CLASSES>
+      <root url="jar://D:/.gradle/caches/modules-2/files-2.1/org.springframework/spring-orm/4.0.4.RELEASE/ac99f1f139d4123dd2fa0797e649aefe5b7e7d40/spring-orm-4.0.4.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/.gradle/caches/modules-2/files-2.1/org.springframework/spring-orm/4.0.4.RELEASE/8b42411b674dbd5cf4d8d973c58135808e873804/spring-orm-4.0.4.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

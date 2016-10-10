@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ContentMapper">
+	<resultMap type="Content" id="contentMap">
+		<id column="content_id" property="contentId"/>
+		<result column="content_name" property="contentName"/>
+		<result column="content_type" property="contentType"/>
+		<result column="doc_type" property="docType"/>
+		<result column="path" property="path"/>
+		<result column="ref_table" property="refTable"/>
+		<result column="ref_filed" property="refFiled"/>
+		<result column="ref_value" property="refValue"/>
+		<result column="file_size" property="fileSize"/>
+	</resultMap>
+
+	<select id="getContentInfo" parameterType="Content" resultMap="contentMap">
+		select * from content
+		where 1=1
+		<if test="contentId!=null">
+		and content_id = #{contentId}
+		</if>
+		<if test="contentType!=null">
+			and content_type = #{contentType}
+		</if>
+		<if test="docType!=null">
+			and doc_type = #{docType}
+		</if>
+		<if test="client!=null">
+			and ref_table = #{refTable}
+		</if>
+		<if test="client!=null">
+			and ref_filed = #{refFiled}
+		</if>
+		<if test="client!=null">
+			and ref_value = #{refValue}
+		</if>
+
+	</select>
+	<!-- 新增 -->
+	<insert id="save" parameterType="Content" flushCache="false">
+		insert into content (
+		content_id,
+		content_name,
+		content_type,
+		doc_type,
+		path,
+		ref_table,
+		ref_filed,
+		ref_value,
+		file_size
+		) values (
+		#{contentId},
+		#{contentName},
+		#{contentType},
+		#{docType},
+		#{path},
+		#{refTable},
+		#{refFiled},
+		#{refValue},
+		#{fileSize}
+		)
+	</insert>
+</mapper>

@@ -19,18 +19,6 @@
           <element id="library" level="module" name="Gradle: axis" module-name="monitor" />
           <element id="library" level="module" name="Gradle: cglib-nodep-3.1" module-name="monitor" />
           <element id="library" level="module" name="Gradle: com.springsource.org.aspectj.weaver-1.6.8.RELEASE" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: commons-beanutils-1.9.2" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: commons-codec-1.10" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: commons-collections-3.2.1" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: commons-discovery-0.5" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: commons-fileupload-1.3.1" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: commons-httpclient-3.1" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: commons-io-2.4" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: commons-lang-2.6" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: commons-logging-1.2" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: dom4j-1.6.1" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: druid-1.0.9" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: ehcache-core-2.6.10" module-name="monitor" />
           <element id="library" level="module" name="Gradle: ezmorph-1.0.6" module-name="monitor" />
           <element id="library" level="module" name="Gradle: fcexporter" module-name="monitor" />
           <element id="library" level="module" name="Gradle: fcexporthandler" module-name="monitor" />
@@ -42,55 +30,75 @@
           <element id="library" level="module" name="Gradle: httpcore-4.4" module-name="monitor" />
           <element id="library" level="module" name="Gradle: httpmime-4.3.6" module-name="monitor" />
           <element id="library" level="module" name="Gradle: jackson-all-1.7.6" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: jackson-core-2.4.4" module-name="monitor" />
           <element id="library" level="module" name="Gradle: jackson-mapper-asl-1.9.13" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: javaee-api-7.0" module-name="monitor" />
           <element id="library" level="module" name="Gradle: java_websocket" module-name="monitor" />
           <element id="library" level="module" name="Gradle: jaxrpc" module-name="monitor" />
           <element id="library" level="module" name="Gradle: jpush-java-libraryV2" module-name="monitor" />
           <element id="library" level="module" name="Gradle: json-lib-2.4-jdk15" module-name="monitor" />
           <element id="library" level="module" name="Gradle: jstl-1.2" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: log4j-1.2.17" module-name="monitor" />
           <element id="library" level="module" name="Gradle: mail" module-name="monitor" />
           <element id="library" level="module" name="Gradle: mybatis-3.2.1" module-name="monitor" />
           <element id="library" level="module" name="Gradle: mybatis-ehcache-1.0.3" module-name="monitor" />
           <element id="library" level="module" name="Gradle: mybatis-oscache-1.0.1" module-name="monitor" />
           <element id="library" level="module" name="Gradle: mybatis-spring-1.2.0" module-name="monitor" />
           <element id="library" level="module" name="Gradle: mysql-connector-java-5.1.34" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: ojdbc6" module-name="monitor" />
           <element id="library" level="module" name="Gradle: pinyin4j-2.5.0" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: poi-3.11-20141221" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: poi-examples-3.11-20141221" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: poi-excelant-3.11-20141221" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: poi-ooxml-3.11-20141221" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: poi-ooxml-schemas-3.11-20141221" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: poi-scratchpad-3.11-20141221" module-name="monitor" />
           <element id="library" level="module" name="Gradle: QRCode" module-name="monitor" />
           <element id="library" level="module" name="Gradle: saaj" module-name="monitor" />
           <element id="library" level="module" name="Gradle: shiro-all-1.2.3" module-name="monitor" />
           <element id="library" level="module" name="Gradle: slf4j-api-1.7.9" module-name="monitor" />
           <element id="library" level="module" name="Gradle: slf4j-log4j12-1.7.9" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: spring-aop-4.0.4.RELEASE" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: spring-aspects-4.0.4.RELEASE" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: spring-beans-4.0.4.RELEASE" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: spring-context-4.0.4.RELEASE" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: spring-context-support-4.0.4.RELEASE" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: spring-core-4.0.4.RELEASE" module-name="monitor" />
           <element id="library" level="module" name="Gradle: spring-dao-2.0.8" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: spring-expression-4.0.4.RELEASE" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: spring-jdbc-4.0.4.RELEASE" module-name="monitor" />
           <element id="library" level="module" name="Gradle: spring-mock-2.0.8" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: spring-orm-4.0.4.RELEASE" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: spring-test-4.0.4.RELEASE" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: spring-tx-4.0.4.RELEASE" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: spring-web-4.0.4.RELEASE" module-name="monitor" />
-          <element id="library" level="module" name="Gradle: spring-webmvc-4.0.4.RELEASE" module-name="monitor" />
           <element id="library" level="module" name="Gradle: standard-1.1.2" module-name="monitor" />
           <element id="library" level="module" name="Gradle: sun.misc.BASE64Decoder" module-name="monitor" />
           <element id="library" level="module" name="Gradle: ueditor" module-name="monitor" />
           <element id="library" level="module" name="Gradle: weixinapi" module-name="monitor" />
           <element id="library" level="module" name="Gradle: wsdl4j-1.6.3" module-name="monitor" />
-          <element id="file-copy" path="D:/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.17/be249d63279f79d827a6bb0328b7d7938730c694/fastjson-1.2.17.jar" />
+          <element id="library" level="project" name="Gradle: com.alibaba:fastjson:1.2.17" />
+          <element id="library" level="module" name="Gradle: jackson-core-2.4.4" module-name="monitor" />
+          <element id="library" level="project" name="Gradle: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Gradle: xml-apis:xml-apis:1.0.b2" />
+          <element id="library" level="project" name="Gradle: com.alibaba:druid:1.0.9" />
+          <element id="library" level="project" name="Gradle: commons-io:commons-io:2.4" />
+          <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
+          <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.10" />
+          <element id="library" level="project" name="Gradle: commons-beanutils:commons-beanutils:1.9.2" />
+          <element id="library" level="project" name="Gradle: commons-lang:commons-lang:2.6" />
+          <element id="library" level="project" name="Gradle: commons-fileupload:commons-fileupload:1.3.1" />
+          <element id="library" level="project" name="Gradle: commons-collections:commons-collections:3.2.1" />
+          <element id="library" level="project" name="Gradle: commons-httpclient:commons-httpclient:3.1" />
+          <element id="library" level="project" name="Gradle: commons-discovery:commons-discovery:0.5" />
+          <element id="library" level="project" name="Gradle: net.sf.ehcache:ehcache-core:2.6.10" />
+          <element id="library" level="project" name="Gradle: org.apache.poi:poi:3.11" />
+          <element id="library" level="project" name="Gradle: org.apache.poi:poi-ooxml:3.11" />
+          <element id="library" level="project" name="Gradle: org.apache.poi:poi-ooxml-schemas:3.11" />
+          <element id="library" level="project" name="Gradle: org.apache.poi:poi-excelant:3.11" />
+          <element id="library" level="project" name="Gradle: org.apache.poi:poi-examples:3.11" />
+          <element id="library" level="project" name="Gradle: org.apache.poi:poi-scratchpad:3.11" />
+          <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.6.1" />
+          <element id="library" level="project" name="Gradle: com.sun.mail:javax.mail:1.5.0" />
+          <element id="library" level="project" name="Gradle: org.apache.xmlbeans:xmlbeans:2.6.0" />
+          <element id="library" level="project" name="Gradle: org.apache.ant:ant:1.8.2" />
+          <element id="library" level="project" name="Gradle: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Gradle: stax:stax-api:1.0.1" />
+          <element id="library" level="project" name="Gradle: org.apache.ant:ant-launcher:1.8.2" />
+          <element id="library" level="project" name="Gradle: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-aspects:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-beans:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-context-support:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-orm:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-test:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Gradle: org.aspectj:aspectjweaver:1.7.4" />
         </element>
       </element>
       <element id="directory" name="META-INF">

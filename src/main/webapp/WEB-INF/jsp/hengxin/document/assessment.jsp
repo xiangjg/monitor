@@ -22,36 +22,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="static/css/bootstrap.min.css" rel="stylesheet" />
     <script type="text/javascript" src="static/js/jquery-1.7.2.js"></script>
-    <script type="text/javascript" src="static/js/ajaxfileupload.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/js/ajaxfileupload.js"></script>
+
 </head>
 <body>
 <div class="col-xs-12">
     <form id="form1" class="form-horizontal" role="form"  action="#"  method="POST" enctype="multipart/form-data">
         <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"
-                   for="form-field-1">地址</label>
+            <label class="col-sm-3 control-label no-padding-right">地址</label>
             <div class="col-sm-7" style="margin-left: 12px">
                 <input type="text" name="address" id="address" placeholder="地址"
-                       class="col-xs-10 col-sm-7"  readonly="readonly"/>
+                       class="col-xs-10 col-sm-7"/>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"
-                   for="form-field-1">银行</label>
+            <label class="col-sm-3 control-label no-padding-right">银行</label>
             <div class="col-sm-7" style="margin-left: 12px">
                 <input type="text" name="bank" id="bank" placeholder="银行"
-                       class="col-xs-10 col-sm-7"  readonly="readonly"/>
+                       class="col-xs-10 col-sm-7"/>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"
-                   for="form-field-1">委托方</label>
+            <label class="col-sm-3 control-label no-padding-right">委托方</label>
             <div class="col-sm-7" style="margin-left: 12px">
                 <input type="text" name="client" id="client" placeholder="委托方"
-                       class="col-xs-10 col-sm-7"  readonly="readonly"/>
+                       class="col-xs-10 col-sm-7"/>
             </div>
         </div>
 
@@ -76,10 +74,10 @@
 
     function fSubmit(){
         $.ajaxFileUpload({
-            url: '/monitor/webUpload/assessment',
+            url: '/monitor/document/webUpload',
             fileElementId: 'uploadFile',
             dataType: 'json',
-            data: {address:$("#address").val(),bank:$("#bank").val(),client:$("#client").val()},
+            data: {address:$("#address").val(),bank:$("#bank").val(),client:$("#client").val(),type:"1"},
             success: function(data, status) {
                 console.info(data);console.info(status);
                 if("success"==data.status)

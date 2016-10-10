@@ -16,6 +16,9 @@
 		<typeAlias type="com.fh.util.PageData" alias="pd"/>
 		<!-- 分页 -->
 		<typeAlias type="com.fh.entity.Page" alias="Page"/>
+
+		<typeAlias type="com.fh.entity.henxin.Report" alias="Report"/>
+		<typeAlias type="com.fh.entity.henxin.Content" alias="Content"/>
 	</typeAliases>
 	
 	<plugins>
