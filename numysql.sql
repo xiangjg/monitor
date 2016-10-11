@@ -10,13 +10,70 @@ Target Server Type    : MYSQL
 Target Server Version : 50546
 File Encoding         : 65001
 
-Date: 2016-08-26 16:43:27
+Date: 2016-10-11 18:12:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `sys_app_user`
+-- Table structure for content
+-- ----------------------------
+DROP TABLE IF EXISTS `content`;
+CREATE TABLE `content` (
+  `content_id` int(11) NOT NULL AUTO_INCREMENT,
+  `content_name` varchar(255) DEFAULT NULL,
+  `content_type` varchar(255) DEFAULT NULL,
+  `doc_type` varchar(255) DEFAULT NULL,
+  `path` varchar(255) DEFAULT NULL,
+  `ref_table` varchar(255) DEFAULT NULL,
+  `ref_filed` varchar(255) DEFAULT NULL,
+  `ref_value` varchar(255) DEFAULT NULL,
+  `file_size` varchar(255) DEFAULT NULL,
+  `create_date` varchar(255) DEFAULT NULL,
+  `USER_ID` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`content_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of content
+-- ----------------------------
+INSERT INTO `content` VALUES ('1', '子菜单.doc', 'application/msword', '1', 'd:\\content\\子菜单.doc', 'hx_report', 'id', '1', '72192', null, null);
+INSERT INTO `content` VALUES ('2', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011170201', 'hx_report', 'id', '2', '1218376', null, null);
+INSERT INTO `content` VALUES ('3', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011172110', 'hx_report', 'id', '4', '1218376', '2016-10-11 17:21:10', '0b28c0ef033647668635d10e87f3142f');
+INSERT INTO `content` VALUES ('4', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011172510', 'hx_report', 'id', '5', '1218376', '2016-10-11 17:25:10', '0b28c0ef033647668635d10e87f3142f');
+INSERT INTO `content` VALUES ('5', '推荐！手把手教你使用Git.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011172752', 'hx_report', 'id', '6', '3712944', '2016-10-11 17:27:52', '0b28c0ef033647668635d10e87f3142f');
+INSERT INTO `content` VALUES ('6', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011173215', 'hx_report', 'id', '7', '1218376', '2016-10-11 17:32:15', '0b28c0ef033647668635d10e87f3142f');
+INSERT INTO `content` VALUES ('7', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011173753', 'hx_report', 'id', '8', '1218376', '2016-10-11 17:37:53', '0b28c0ef033647668635d10e87f3142f');
+
+-- ----------------------------
+-- Table structure for hx_report
+-- ----------------------------
+DROP TABLE IF EXISTS `hx_report`;
+CREATE TABLE `hx_report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` int(11) DEFAULT NULL COMMENT '类型：1评估报告2预评估函',
+  `address` varchar(255) DEFAULT NULL COMMENT '地址',
+  `bank` varchar(255) DEFAULT NULL COMMENT '银行',
+  `client` varchar(255) DEFAULT NULL COMMENT '委托方',
+  `create_date` varchar(255) DEFAULT NULL,
+  `USER_ID` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hx_report
+-- ----------------------------
+INSERT INTO `hx_report` VALUES ('1', '1', '1', '2', '3', null, null);
+INSERT INTO `hx_report` VALUES ('2', '1', '测试地址', '测试银行', '测试委托方', null, null);
+INSERT INTO `hx_report` VALUES ('3', '1', '测试地址', '测试银行', '测试委托方', '2016-10-11 17:11:21', null);
+INSERT INTO `hx_report` VALUES ('4', '1', '测试地址2', '测试银行2', '测试委托方2', '2016-10-11 17:21:10', '0b28c0ef033647668635d10e87f3142f');
+INSERT INTO `hx_report` VALUES ('5', '1', '测试地址3', '测试银行3', '测试委托方3', '2016-10-11 17:25:10', '0b28c0ef033647668635d10e87f3142f');
+INSERT INTO `hx_report` VALUES ('6', '1', '测试地址4', '测试银行4', '测试委托方4', '2016-10-11 17:27:52', '0b28c0ef033647668635d10e87f3142f');
+INSERT INTO `hx_report` VALUES ('7', '1', '测试地址5', '测试银行5', '测试委托方5', '2016-10-11 17:32:15', '0b28c0ef033647668635d10e87f3142f');
+INSERT INTO `hx_report` VALUES ('8', '1', '测试地址9', '测试银行', '测试委托方', '2016-10-11 17:37:53', '0b28c0ef033647668635d10e87f3142f');
+
+-- ----------------------------
+-- Table structure for sys_app_user
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_app_user`;
 CREATE TABLE `sys_app_user` (
@@ -47,7 +104,7 @@ INSERT INTO `sys_app_user` VALUES ('04762c0b28b643939455c7800c2e2412', 'dsfsd', 
 INSERT INTO `sys_app_user` VALUES ('3faac8fe5c0241e593e0f9ea6f2d5870', 'dsfsdf', 'f1290186a5d0b1ceab27f4e77c0c5d68', 'wewe', '', '68f23fc0caee475bae8d52244dea8444', '', '', '1', '', '18767676767', '', '', '', '0', 'wqwe', 'qweqwe@qq.com');
 
 -- ----------------------------
--- Table structure for `sys_dictionaries`
+-- Table structure for sys_dictionaries
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dictionaries`;
 CREATE TABLE `sys_dictionaries` (
@@ -76,7 +133,7 @@ INSERT INTO `sys_dictionaries` VALUES ('f184bff5081d452489271a1bd57599ed', '上�
 INSERT INTO `sys_dictionaries` VALUES ('f30bf95e216d4ebb8169ff0c86330b8f', '客服部', '006', '6', 'c067fdaf51a141aeaa56ed26b70de863', '2', 'BM_006');
 
 -- ----------------------------
--- Table structure for `sys_gl_qx`
+-- Table structure for sys_gl_qx
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_gl_qx`;
 CREATE TABLE `sys_gl_qx` (
@@ -105,7 +162,7 @@ INSERT INTO `sys_gl_qx` VALUES ('e74f713314154c35bd7fc98897859fe3', '6', '1', '1
 INSERT INTO `sys_gl_qx` VALUES ('f944a9df72634249bbcb8cb73b0c9b86', '7', '1', '1', '1', '1', '0', '0');
 
 -- ----------------------------
--- Table structure for `sys_menu`
+-- Table structure for sys_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu` (
@@ -147,7 +204,7 @@ INSERT INTO `sys_menu` VALUES ('30', '三部', 'department/two.do', '27', '1', n
 INSERT INTO `sys_menu` VALUES ('31', '数据库', 'database.do', '26', '1', null, '2');
 
 -- ----------------------------
--- Table structure for `sys_role`
+-- Table structure for sys_role
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
@@ -180,7 +237,7 @@ INSERT INTO `sys_role` VALUES ('e74f713314154c35bd7fc98897859fe3', '黄金客户
 INSERT INTO `sys_role` VALUES ('f944a9df72634249bbcb8cb73b0c9b86', '初级会员', '498', '7', '1', '1', '1', '1', 'f944a9df72634249bbcb8cb73b0c9b86');
 
 -- ----------------------------
--- Table structure for `sys_user`
+-- Table structure for sys_user
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
@@ -205,7 +262,7 @@ CREATE TABLE `sys_user` (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('089d664844f8441499955b3701696fc0', 'fushide', '10ac2ab1233d8248969f7a66c0ce14e50148863c', '富师德', '', '2', '', '', '0', '18629359', 'default', 'asdadf@qq.com', '1231', '18766666666');
-INSERT INTO `sys_user` VALUES ('0b28c0ef033647668635d10e87f3142f', 'xiangjg', '66de523df6272e5a56fd0d80c71ba65c6faf4902', '向敬光', '', '2', '2016-08-25 21:54:04', '10.10.0.221', '0', '', 'default', '1991887681@qq.com', '9', '18984898929');
+INSERT INTO `sys_user` VALUES ('0b28c0ef033647668635d10e87f3142f', 'xiangjg', '66de523df6272e5a56fd0d80c71ba65c6faf4902', '向敬光', '', '2', '2016-10-11 17:50:54', '0:0:0:0:0:0:0:1', '0', '', 'default', '1991887681@qq.com', '9', '18984898929');
 INSERT INTO `sys_user` VALUES ('0b3f2ab1896b47c097a81d322697446a', 'zhangsan', '5ee5d458d02fde6170b9c3ebfe06af85dacd131d', '张三', '', '2', '2015-06-03 22:09:13', '127.0.0.1', '0', '小张', 'default', 'wwwwq@qq.com', '1101', '18788888888');
 INSERT INTO `sys_user` VALUES ('0e2da7c372e147a0b67afdf4cdd444a3', 'dfsdf', '1753c230d6664da99f9b9350023424dfcaf94c9d', 'wqeqw', '', 'e74f713314154c35bd7fc98897859fe3', '', '', '0', 'ff', 'default', 'q324@qq.com', 'dsfsdddd', '18767676767');
 INSERT INTO `sys_user` VALUES ('1', 'admin', 'de41b7fb99201d8334c23c014db35ecd92df81bc', '系统管理员', '1133671055321055258374707980945218933803269864762743594642571294', '1', '2016-08-25 22:30:54', '0:0:0:0:0:0:0:1', '0', '最高统治者', 'default', 'admin@main.com', '001', '18788888888');
@@ -215,7 +272,7 @@ INSERT INTO `sys_user` VALUES ('b825f152368549069be79e1d34184afa', 'san', '47c4a
 INSERT INTO `sys_user` VALUES ('be025a79502e433e820fac37ddb1cfc2', 'zhangsan570256', '42f7554cb9c00e11ef16543a2c86ade815b79faa', '张三', '', '2', '', '', '0', '小张', 'default', 'zhangsan@www.com', '21101', '2147483647');
 
 -- ----------------------------
--- Table structure for `sys_user_qx`
+-- Table structure for sys_user_qx
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_qx`;
 CREATE TABLE `sys_user_qx` (
@@ -245,7 +302,7 @@ INSERT INTO `sys_user_qx` VALUES ('e74f713314154c35bd7fc98897859fe3', '0', '0', 
 INSERT INTO `sys_user_qx` VALUES ('f944a9df72634249bbcb8cb73b0c9b86', '0', '0', '0', '0', '0', '0', '0', '0');
 
 -- ----------------------------
--- Table structure for `tb_pictures`
+-- Table structure for tb_pictures
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_pictures`;
 CREATE TABLE `tb_pictures` (
@@ -264,7 +321,7 @@ CREATE TABLE `tb_pictures` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `weixin_command`
+-- Table structure for weixin_command
 -- ----------------------------
 DROP TABLE IF EXISTS `weixin_command`;
 CREATE TABLE `weixin_command` (
@@ -287,7 +344,7 @@ INSERT INTO `weixin_command` VALUES ('854a157c6d99499493f4cc303674c01f', '关闭
 INSERT INTO `weixin_command` VALUES ('ab3a8c6310ca4dc8b803ecc547e55ae7', '打开QQ', 'D:/SOFT/QQ/QQ/Bin/qq.exe', '2015-05-10 21:25:25', '1', '打开QQ');
 
 -- ----------------------------
--- Table structure for `weixin_imgmsg`
+-- Table structure for weixin_imgmsg
 -- ----------------------------
 DROP TABLE IF EXISTS `weixin_imgmsg`;
 CREATE TABLE `weixin_imgmsg` (
@@ -337,7 +394,7 @@ CREATE TABLE `weixin_imgmsg` (
 INSERT INTO `weixin_imgmsg` VALUES ('380b2cb1f4954315b0e20618f7b5bd8f', '首页', '2015-05-10 20:51:09', '1', '图文回复', '图文回复标题', '图文回复描述', 'http://a.hiphotos.baidu.com/image/h%3D360/sign=c6c7e73ebc389b5027ffe654b535e5f1/a686c9177f3e6709392bb8df3ec79f3df8dc55e3.jpg', 'www.baidu.com', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- ----------------------------
--- Table structure for `weixin_textmsg`
+-- Table structure for weixin_textmsg
 -- ----------------------------
 DROP TABLE IF EXISTS `weixin_textmsg`;
 CREATE TABLE `weixin_textmsg` (
