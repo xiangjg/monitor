@@ -3,7 +3,7 @@ import org.gradle.plugins.ide.eclipse.model.Facet
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
-sourceCompatibility = 1.8
+sourceCompatibility = 1.7
 group 'com.fh'
 version '1.0'
 
@@ -53,8 +53,6 @@ dependencies {
     compile group: 'net.sf.ehcache', name: 'ehcache-core', version: '2.6.10'
     // https://mvnrepository.com/artifact/javax/javaee-api
     compile group: 'javax', name: 'javaee-api', version: '7.0'
-    // https://mvnrepository.com/artifact/ojdbc/ojdbc
-    compile group: 'ojdbc', name: 'ojdbc', version: '14'
     // https://mvnrepository.com/artifact/org.apache.poi/poi
     compile group: 'org.apache.poi', name: 'poi', version: '3.11'
     // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
@@ -82,7 +80,6 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-web', version: '4.0.4.RELEASE'
     // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
     compile group: 'org.springframework', name: 'spring-webmvc', version: '4.0.4.RELEASE'
-
 }
 
 eclipse {

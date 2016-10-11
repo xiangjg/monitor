@@ -70,6 +70,7 @@
           <element id="library" level="project" name="Gradle: commons-httpclient:commons-httpclient:3.1" />
           <element id="library" level="project" name="Gradle: commons-discovery:commons-discovery:0.5" />
           <element id="library" level="project" name="Gradle: net.sf.ehcache:ehcache-core:2.6.10" />
+          <element id="library" level="project" name="Gradle: javax:javaee-api:7.0" />
           <element id="library" level="project" name="Gradle: org.apache.poi:poi:3.11" />
           <element id="library" level="project" name="Gradle: org.apache.poi:poi-ooxml:3.11" />
           <element id="library" level="project" name="Gradle: org.apache.poi:poi-ooxml-schemas:3.11" />

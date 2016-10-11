@@ -27,4 +27,19 @@ public class ReportService {
     public void save(Report pd) throws Exception {
         dao.save("ReportMapper.save", pd);
     }
+
+    public void deleteByPrimaryKey(Integer id) throws Exception {
+        dao.delete("ReportMapper.deleteByPrimaryKey", id);
+    }
+
+    public void insertSelective(Report pd) throws Exception {
+        dao.save("ReportMapper.insertSelective", pd);
+    }
+
+    public void updateByPrimaryKeySelective(Report pd) throws Exception {
+        dao.save("ReportMapper.updateByPrimaryKeySelective", pd);
+    }
+    public void updateByPrimaryKey(Report pd) throws Exception {
+        dao.save("ReportMapper.updateByPrimaryKey", pd);
+    }
 }

@@ -12,6 +12,8 @@ import com.fh.service.system.user.UserService;
 import com.fh.util.Const;
 import com.fh.util.PageData;
 import org.apache.commons.io.FileUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +44,8 @@ public class Document extends BaseController {
     private ReportService reportService;
     @Resource(name = "contentService")
     private ContentService contentService;
+    @Resource(name = "userService")
+    private UserService userService;
 
     @RequestMapping(value = "/assessment")
     public ModelAndView assessment(Page page) throws Exception {
@@ -63,11 +68,21 @@ public class Document extends BaseController {
                                       HttpServletResponse response) {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", "fail");
-        Integer docType = Integer.valueOf(request.getParameter("type"));// 文档类型
+        String docType = request.getParameter("type");// 文档类型
         String address = request.getParameter("address");
         String bank = request.getParameter("bank");
         String client = request.getParameter("client");
+
+        SimpleDateFormat mysdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
+            Subject currentUser = SecurityUtils.getSubject(); // shiro管理的session
+            String userName = (String)currentUser.getPrincipal();
+            PageData pd = new PageData();
+            pd.put("USERNAME",userName);
+            pd = userService.findByUId(pd);
+            String userId = pd.getString("USER_ID");
+
             List<MultipartFile> files = ((MultipartHttpServletRequest) request)
                     .getFiles("file");
             if (files.size() < 1 || files.get(0).getSize() <= 0) {
@@ -81,28 +96,35 @@ public class Document extends BaseController {
             if (bytes.length <= 0) {
                 result.put("message", "上传文件内容不能为空!");
             }
-            String filePath = "d:\\content\\"+name;
+            String filePath = "d:\\content\\"+docType+ File.separator+ mysdf.format(new Date());
             FileUtils.writeByteArrayToFile(new File(filePath),bytes);
+
+
+
             Report report = new Report();
             report.setType(1);
             report.setAddress(address);
             report.setBank(bank);
             report.setClient(client);
+            report.setCreateDate(sdf.format(new Date()));
+            report.setUserId(userId);
             reportService.save(report);
+            report = reportService.getReportInfo(report);
 
             Content content = new Content();
             content.setContentName(name);
             content.setContentType(contentType);
-            content.setDocType("1");
+            content.setDocType(docType);
             content.setFileSize(size);
             content.setPath(filePath);
             content.setRefTable("hx_report");
             content.setRefFiled("id");
-            content.setRefValue("1");
+            content.setRefValue(report.getId().toString());
+            content.setCreateDate(sdf.format(new Date()));
+            content.setUserId(userId);
             contentService.save(content);
             result.put("status", "success");
             result.put("message", "上传成功!");
-            // logger.debug("contentId:{}",contentId);
         } catch (Exception e) {
             logger.error("");
             result.put("status", "fail");

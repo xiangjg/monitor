@@ -1,30 +1,33 @@
 package com.fh.entity.henxin;
 
-import java.io.Serializable;
+public class Report {
+    private Integer id;
 
-/**
- * Created by 向敬光 on 2016/10/10.
- */
-public class Report implements Serializable{
-    private int id;
-    private int type;
+    private Integer type;
+
     private String address;
+
     private String bank;
+
     private String client;
 
-    public int getId() {
+    private String createDate;
+
+    private String userId;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
@@ -33,7 +36,7 @@ public class Report implements Serializable{
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address == null ? null : address.trim();
     }
 
     public String getBank() {
@@ -41,7 +44,7 @@ public class Report implements Serializable{
     }
 
     public void setBank(String bank) {
-        this.bank = bank;
+        this.bank = bank == null ? null : bank.trim();
     }
 
     public String getClient() {
@@ -49,7 +52,23 @@ public class Report implements Serializable{
     }
 
     public void setClient(String client) {
-        this.client = client;
+        this.client = client == null ? null : client.trim();
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate == null ? null : createDate.trim();
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
     @Override
@@ -60,6 +79,8 @@ public class Report implements Serializable{
                 ", address='" + address + '\'' +
                 ", bank='" + bank + '\'' +
                 ", client='" + client + '\'' +
+                ", createDate='" + createDate + '\'' +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 }
