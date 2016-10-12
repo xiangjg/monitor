@@ -108,9 +108,8 @@
             url: '/monitor/document/webUpload',
             fileElementId: 'id-input-file-1',
             dataType: 'json',
-            data: {address:$("#address").val(),bank:$("#bank").val(),client:$("#client").val(),type:"1"},
+            data: {address:$("#address").val(),bank:$("#bank").val(),client:$("#client").val(),type:"1001"},
             success: function(data, status) {
-                console.info(data);console.info(status);
                 if("success"==data.status)
                     alert('上传成功!');
                 else{

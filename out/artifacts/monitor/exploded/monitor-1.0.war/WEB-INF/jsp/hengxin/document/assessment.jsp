@@ -45,7 +45,7 @@
 
 </head>
 <body>
-<h3 class="header smaller lighter green">文档上传</h3>
+<h3 class="header smaller lighter green">评估报告文档上传</h3>
 <div class="row-fluid">
     <div class="span5">
         <div class="widget-box">
@@ -55,42 +55,19 @@
             <div class="widget-body">
                 <div class="widget-main no-padding">
                     <form id="form1" class="form-horizontal" role="form"  action="#"  method="POST" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">地址</label>
-                            <div class="col-sm-7" style="margin-left: 12px">
-                                <input type="text" name="address" id="address" placeholder="地址"
-                                       class="col-xs-10 col-sm-7"/>
+                        <fieldset>
+                            <label>地址</label>
+                            <input type="text" name="address" id="address" placeholder="地址">
+                            <label>银行</label>
+                            <input type="text" name="bank" id="bank" placeholder="银行">
+                            <label>委托方</label>
+                            <input type="text" name="client" id="client" placeholder="委托方">
+                            <div class="widget-main">
+                                <input type="file" name="file" id="id-input-file-1" accept=".xls,.xlsx,.doc,.docx"/>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">银行</label>
-                            <div class="col-sm-7" style="margin-left: 12px">
-                                <input type="text" name="bank" id="bank" placeholder="银行"
-                                       class="col-xs-10 col-sm-7"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">委托方</label>
-                            <div class="col-sm-7" style="margin-left: 12px">
-                                <input type="text" name="client" id="client" placeholder="委托方"
-                                       class="col-xs-10 col-sm-7"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">选择文件</label>
-                            <div class="col-sm-9">
-                                <div class="col-sm-6" id="file_div">
-                                    <input type="file" name="file" id="uploadFile"  accept=".xls,.xlsx,.doc,.docx"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clearfix form-actions">
-                            <div class="col-sm-offset-3 col-sm-2">
-                                <input id="submit" type="button" value="上传" class="btn btn-info btn-block" onclick="fSubmit();"/>
-                            </div>
+                        </fieldset>
+                        <div class="form-actions center">
+                            <input id="submit" type="button" value="上传" class="btn btn-small btn-success" onclick="fSubmit();"/>
                         </div>
                     </form>
                 </div>
@@ -110,14 +87,28 @@
 <script src="static/UI_new/js/ace.min.js"></script>
 <script type="text/javascript" src="static/js/ajaxfileupload.js"></script>
 <script type="text/javascript">
+    $(function(){
+        $('#id-input-file-1 , #id-input-file-2').ace_file_input({
+            no_file:'未选择任何文件 ...',
+            btn_choose:'选择',
+            btn_change:'已选',
+            droppable:false,
+            onchange:null,
+            thumbnail:false //| true | large
+            //whitelist:'doc|xdoc|xls|xlsx'
+            //blacklist:'exe|php'
+            //onchange:''
+            //
+        });
+    })
     <!-- 关闭进度 -->
     $(top.hangge());
     function fSubmit(){
         $.ajaxFileUpload({
             url: '/monitor/document/webUpload',
-            fileElementId: 'uploadFile',
+            fileElementId: 'id-input-file-1',
             dataType: 'json',
-            data: {address:$("#address").val(),bank:$("#bank").val(),client:$("#client").val(),type:"1"},
+            data: {address:$("#address").val(),bank:$("#bank").val(),client:$("#client").val(),type:"1001"},
             success: function(data, status) {
                 console.info(data);console.info(status);
                 if("success"==data.status)

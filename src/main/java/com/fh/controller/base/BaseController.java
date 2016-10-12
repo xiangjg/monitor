@@ -13,11 +13,14 @@ import com.fh.util.PageData;
 import com.fh.util.Tools;
 import com.fh.util.UuidUtil;
 
+import java.text.SimpleDateFormat;
+
 public class BaseController {
 
 	protected Logger logger = Logger.getLogger(this.getClass());
 
 	private static final long serialVersionUID = 6357869213649815390L;
+	public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	/**
 	 * 得到PageData

@@ -5,11 +5,9 @@ import com.fh.controller.base.BaseController;
 import com.fh.entity.Page;
 import com.fh.entity.henxin.Content;
 import com.fh.entity.henxin.Report;
-import com.fh.entity.system.Role;
-import com.fh.service.henxin.ContentService;
-import com.fh.service.henxin.ReportService;
+import com.fh.service.hengxin.ContentService;
+import com.fh.service.hengxin.ReportService;
 import com.fh.service.system.user.UserService;
-import com.fh.util.Const;
 import com.fh.util.PageData;
 import org.apache.commons.io.FileUtils;
 import org.apache.shiro.SecurityUtils;
@@ -74,7 +72,6 @@ public class Document extends BaseController {
         String client = request.getParameter("client");
 
         SimpleDateFormat mysdf = new SimpleDateFormat("yyyyMMddHHmmss");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             Subject currentUser = SecurityUtils.getSubject(); // shiro管理的session
             String userName = (String)currentUser.getPrincipal();
@@ -106,7 +103,7 @@ public class Document extends BaseController {
             report.setAddress(address);
             report.setBank(bank);
             report.setClient(client);
-            report.setCreateDate(sdf.format(new Date()));
+            report.setCreateDate(dateFormat.format(new Date()));
             report.setUserId(userId);
             reportService.save(report);
             report = reportService.getReportInfo(report);
@@ -120,7 +117,7 @@ public class Document extends BaseController {
             content.setRefTable("hx_report");
             content.setRefFiled("id");
             content.setRefValue(report.getId().toString());
-            content.setCreateDate(sdf.format(new Date()));
+            content.setCreateDate(dateFormat.format(new Date()));
             content.setUserId(userId);
             contentService.save(content);
             result.put("status", "success");

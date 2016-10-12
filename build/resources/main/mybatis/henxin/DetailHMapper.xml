@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="DetailHMapper" >
+  <resultMap id="BaseResultMap" type="com.fh.entity.henxin.DetailH" >
+    <id column="detail_id" property="detailId" jdbcType="INTEGER" />
+    <result column="query_date" property="queryDate" jdbcType="VARCHAR" />
+    <result column="ditch" property="ditch" jdbcType="VARCHAR" />
+    <result column="entrust" property="entrust" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    detail_id, query_date, ditch, entrust, phone, location, status, USER_ID, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hx_detail
+    where detail_id = #{detailId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hx_detail
+    where detail_id = #{detailId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fh.entity.henxin.DetailH" >
+    insert into hx_detail (query_date, ditch,
+      entrust, phone, location, 
+      status, USER_ID, create_time
+      )
+    values (#{queryDate,jdbcType=VARCHAR}, #{ditch,jdbcType=VARCHAR},
+      #{entrust,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fh.entity.henxin.DetailH" >
+    insert into hx_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        detail_id,
+      </if>
+      <if test="queryDate != null" >
+        query_date,
+      </if>
+      <if test="ditch != null" >
+        ditch,
+      </if>
+      <if test="entrust != null" >
+        entrust,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        #{detailId,jdbcType=INTEGER},
+      </if>
+      <if test="queryDate != null" >
+        #{queryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ditch != null" >
+        #{ditch,jdbcType=VARCHAR},
+      </if>
+      <if test="entrust != null" >
+        #{entrust,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fh.entity.henxin.DetailH" >
+    update hx_detail
+    <set >
+      <if test="queryDate != null" >
+        query_date = #{queryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ditch != null" >
+        ditch = #{ditch,jdbcType=VARCHAR},
+      </if>
+      <if test="entrust != null" >
+        entrust = #{entrust,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where detail_id = #{detailId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fh.entity.henxin.DetailH" >
+    update hx_detail
+    set query_date = #{queryDate,jdbcType=VARCHAR},
+      ditch = #{ditch,jdbcType=VARCHAR},
+      entrust = #{entrust,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=VARCHAR}
+    where detail_id = #{detailId,jdbcType=INTEGER}
+  </update>
+</mapper>

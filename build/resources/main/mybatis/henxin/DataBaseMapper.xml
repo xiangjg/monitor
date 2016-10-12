@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DataBaseMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into HX_DATABASE(
+			ADDRESS,	
+			PURPOSE,	
+			AREA,	
+			HOUSE_TYPE,	
+			FLOOR,	
+			BUILD_YEAR,	
+			USER_ID,	
+			CREATE_TIME,	
+			DATABASE_ID
+		) values (
+			#{ADDRESS},	
+			#{PURPOSE},	
+			#{AREA},	
+			#{HOUSE_TYPE},	
+			#{FLOOR},	
+			#{BUILD_YEAR},	
+			#{USER_ID},	
+			#{CREATE_TIME},	
+			#{DATABASE_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from HX_DATABASE
+		where 
+			DATABASE_ID = #{DATABASE_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  HX_DATABASE
+			set 
+				ADDRESS = #{ADDRESS},
+				PURPOSE = #{PURPOSE},
+				AREA = #{AREA},
+				HOUSE_TYPE = #{HOUSE_TYPE},
+				FLOOR = #{FLOOR},
+				BUILD_YEAR = #{BUILD_YEAR},
+			DATABASE_ID = DATABASE_ID
+			where 
+				DATABASE_ID = #{DATABASE_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			ADDRESS,	
+			PURPOSE,	
+			AREA,	
+			HOUSE_TYPE,	
+			FLOOR,	
+			BUILD_YEAR,	
+			USER_ID,	
+			CREATE_TIME,	
+			DATABASE_ID
+		from 
+			HX_DATABASE
+		where 
+			DATABASE_ID = #{DATABASE_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.ADDRESS,	
+				a.PURPOSE,	
+				a.AREA,	
+				a.HOUSE_TYPE,	
+				a.FLOOR,	
+				a.BUILD_YEAR,	
+				a.USER_ID,	
+				a.CREATE_TIME,	
+				a.DATABASE_ID
+		from 
+				HX_DATABASE a
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.ADDRESS,	
+				a.PURPOSE,	
+				a.AREA,	
+				a.HOUSE_TYPE,	
+				a.FLOOR,	
+				a.BUILD_YEAR,	
+				a.USER_ID,	
+				a.CREATE_TIME,	
+				a.DATABASE_ID
+		from 
+				HX_DATABASE a
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from HX_DATABASE
+		where 
+			DATABASE_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50546
 File Encoding         : 65001
 
-Date: 2016-10-11 18:12:39
+Date: 2016-10-12 15:07:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -44,6 +44,50 @@ INSERT INTO `content` VALUES ('4', '业主要求.docx', 'application/vnd.openxml
 INSERT INTO `content` VALUES ('5', '推荐！手把手教你使用Git.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011172752', 'hx_report', 'id', '6', '3712944', '2016-10-11 17:27:52', '0b28c0ef033647668635d10e87f3142f');
 INSERT INTO `content` VALUES ('6', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011173215', 'hx_report', 'id', '7', '1218376', '2016-10-11 17:32:15', '0b28c0ef033647668635d10e87f3142f');
 INSERT INTO `content` VALUES ('7', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011173753', 'hx_report', 'id', '8', '1218376', '2016-10-11 17:37:53', '0b28c0ef033647668635d10e87f3142f');
+
+-- ----------------------------
+-- Table structure for hx_database
+-- ----------------------------
+DROP TABLE IF EXISTS `hx_database`;
+CREATE TABLE `hx_database` (
+  `DATABASE_ID` varchar(100) NOT NULL,
+  `ADDRESS` varchar(255) DEFAULT NULL COMMENT '地址',
+  `PURPOSE` varchar(255) DEFAULT NULL COMMENT '用途',
+  `AREA` varchar(255) DEFAULT NULL COMMENT '面积',
+  `HOUSE_TYPE` varchar(255) DEFAULT NULL COMMENT '户型',
+  `FLOOR` varchar(255) DEFAULT NULL COMMENT '楼层',
+  `BUILD_YEAR` varchar(255) DEFAULT NULL COMMENT '建成年代',
+  `USER_ID` varchar(255) DEFAULT NULL COMMENT '用户ID',
+  `CREATE_TIME` varchar(255) DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`DATABASE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hx_database
+-- ----------------------------
+INSERT INTO `hx_database` VALUES ('33ef78ffa61d41e7b40f2372cdc27713', '花果园', '111', '135', '两室一厅', '35', '2016', '', '');
+
+-- ----------------------------
+-- Table structure for hx_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `hx_detail`;
+CREATE TABLE `hx_detail` (
+  `DETAIL_ID` varchar(100) NOT NULL,
+  `QUERY_DATE` varchar(255) DEFAULT NULL COMMENT '查勘日期',
+  `DITCH` varchar(255) DEFAULT NULL COMMENT '渠道',
+  `ENTRUST` varchar(255) DEFAULT NULL COMMENT '委托方',
+  `PHONE` varchar(255) DEFAULT NULL COMMENT '客户联系方式',
+  `LOCATION` varchar(255) DEFAULT NULL COMMENT '估价对象位置',
+  `STATUS` varchar(255) DEFAULT NULL COMMENT '状态(报价，预评估函，正式报告）',
+  `USER_ID` varchar(100) NOT NULL COMMENT '用户id',
+  `CREATE_TIME` varchar(255) DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`DETAIL_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hx_detail
+-- ----------------------------
+INSERT INTO `hx_detail` VALUES ('6f78df1e8f5242239379092329a91cb4', '11111', '11', '11', '11', '11', '111', '', '');
 
 -- ----------------------------
 -- Table structure for hx_report
@@ -198,10 +242,10 @@ INSERT INTO `sys_menu` VALUES ('24', '评估报告', 'document/assessment.do', '
 INSERT INTO `sys_menu` VALUES ('25', '预评估函', 'document/estimate.do', '23', '2', null, '2');
 INSERT INTO `sys_menu` VALUES ('26', '数据操作', '#', '0', '1', 'icon-list', '2');
 INSERT INTO `sys_menu` VALUES ('27', '抵押明细', '#', '0', '1', 'icon-th', '2');
-INSERT INTO `sys_menu` VALUES ('28', '一部', 'department/one.do', '27', '1', null, '2');
+INSERT INTO `sys_menu` VALUES ('28', '一部', 'detail/list.do', '27', '1', null, '2');
 INSERT INTO `sys_menu` VALUES ('29', '二部', 'department/three.do', '27', '2', null, '2');
 INSERT INTO `sys_menu` VALUES ('30', '三部', 'department/two.do', '27', '1', null, '2');
-INSERT INTO `sys_menu` VALUES ('31', '数据库', 'database.do', '26', '1', null, '2');
+INSERT INTO `sys_menu` VALUES ('31', '数据库', 'database/list.do', '26', '1', null, '2');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -261,15 +305,9 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('089d664844f8441499955b3701696fc0', 'fushide', '10ac2ab1233d8248969f7a66c0ce14e50148863c', '富师德', '', '2', '', '', '0', '18629359', 'default', 'asdadf@qq.com', '1231', '18766666666');
 INSERT INTO `sys_user` VALUES ('0b28c0ef033647668635d10e87f3142f', 'xiangjg', '66de523df6272e5a56fd0d80c71ba65c6faf4902', '向敬光', '', '2', '2016-10-11 17:50:54', '0:0:0:0:0:0:0:1', '0', '', 'default', '1991887681@qq.com', '9', '18984898929');
-INSERT INTO `sys_user` VALUES ('0b3f2ab1896b47c097a81d322697446a', 'zhangsan', '5ee5d458d02fde6170b9c3ebfe06af85dacd131d', '张三', '', '2', '2015-06-03 22:09:13', '127.0.0.1', '0', '小张', 'default', 'wwwwq@qq.com', '1101', '18788888888');
-INSERT INTO `sys_user` VALUES ('0e2da7c372e147a0b67afdf4cdd444a3', 'dfsdf', '1753c230d6664da99f9b9350023424dfcaf94c9d', 'wqeqw', '', 'e74f713314154c35bd7fc98897859fe3', '', '', '0', 'ff', 'default', 'q324@qq.com', 'dsfsdddd', '18767676767');
-INSERT INTO `sys_user` VALUES ('1', 'admin', 'de41b7fb99201d8334c23c014db35ecd92df81bc', '系统管理员', '1133671055321055258374707980945218933803269864762743594642571294', '1', '2016-08-25 22:30:54', '0:0:0:0:0:0:0:1', '0', '最高统治者', 'default', 'admin@main.com', '001', '18788888888');
+INSERT INTO `sys_user` VALUES ('1', 'admin', 'de41b7fb99201d8334c23c014db35ecd92df81bc', '系统管理员', '1133671055321055258374707980945218933803269864762743594642571294', '1', '2016-10-12 14:41:59', '0:0:0:0:0:0:0:1', '0', '最高统治者', 'default', 'admin@main.com', '001', '18788888888');
 INSERT INTO `sys_user` VALUES ('347b39bd1835435b9cbfdf08ba87060c', 'lxy', 'ed17fa39091630cd78635a0afacbc84ca01793ca', '李兴艳', '', '2', '2016-08-25 23:06:24', '0:0:0:0:0:0:0:1', '0', '', 'default', '524232045@qq.com', '001', '13765081624');
-INSERT INTO `sys_user` VALUES ('8009132b158748a5a84510f91a291119', 'asdasd', '26be4dd18f543d7002b4d8aa525f90a33c0faefb', 'sdsdf', '', '7dfd8d1f7b6245d283217b7e63eec9b2', '', '', '0', '', 'default', '12312312@qq.com', '2312', '18765810587');
-INSERT INTO `sys_user` VALUES ('b825f152368549069be79e1d34184afa', 'san', '47c4a8dc64ac2f0bb46bbd8813b037c9718f9349', '三', '', '2', '2015-06-03 22:02:12', '127.0.0.1', '0', 'sdfsdgf', 'default', 'sdfsdf@qq.com', 'sdsaw22', '18765656565');
-INSERT INTO `sys_user` VALUES ('be025a79502e433e820fac37ddb1cfc2', 'zhangsan570256', '42f7554cb9c00e11ef16543a2c86ade815b79faa', '张三', '', '2', '', '', '0', '小张', 'default', 'zhangsan@www.com', '21101', '2147483647');
 
 -- ----------------------------
 -- Table structure for sys_user_qx
