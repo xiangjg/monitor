@@ -8,38 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26826134-8d47-42dc-85be-cb6032fed0ba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fh/controller/hengxin/Constant.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fh/controller/hengxin/DetailController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fh/controller/hengxin/database/DataBaseController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fh/entity/henxin/DatabaseH.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fh/entity/henxin/DetailH.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fh/service/hengxin/database/DataBaseService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fh/service/hengxin/detail/DetailService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/henxin/DataBaseMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/henxin/DetailMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/database/database_edit.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/database/database_list.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/db_edit.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/detail/detail_edit.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/detail/detail_list.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/top.jsp" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/com/fh/service/henxin/ContentService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/com/fh/service/henxin/ReportService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/fh/controller/hengxin/DataBaseController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/fh/controller/hengxin/MortgageController.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/fh/controller/hengxin/Document.class" afterPath="$PROJECT_DIR$/build/classes/main/com/fh/controller/hengxin/Document.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/monitor/monitor-1.0.war" afterPath="$PROJECT_DIR$/out/artifacts/monitor/monitor-1.0.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/monitor/exploded/monitor-1.0.war/WEB-INF/jsp/hengxin/database.jsp" afterPath="$PROJECT_DIR$/out/artifacts/monitor/exploded/monitor-1.0.war/WEB-INF/jsp/hengxin/database.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/monitor/exploded/monitor-1.0.war/WEB-INF/jsp/hengxin/document/assessment.jsp" afterPath="$PROJECT_DIR$/out/artifacts/monitor/exploded/monitor-1.0.war/WEB-INF/jsp/hengxin/document/assessment.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/monitor/exploded/monitor-1.0.war/WEB-INF/jsp/hengxin/document/estimate.jsp" afterPath="$PROJECT_DIR$/out/artifacts/monitor/exploded/monitor-1.0.war/WEB-INF/jsp/hengxin/document/estimate.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/fh/controller/base/BaseController.java" afterPath="$PROJECT_DIR$/src/main/java/com/fh/controller/base/BaseController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/fh/controller/hengxin/Document.java" afterPath="$PROJECT_DIR$/src/main/java/com/fh/controller/hengxin/Document.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/database.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/database.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/document/assessment.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/document/assessment.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/document/estimate.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/document/estimate.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/fh/service/henxin/ContentService.java" afterPath="$PROJECT_DIR$/src/main/java/com/fh/service/hengxin/ContentService.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/fh/service/henxin/ReportService.java" afterPath="$PROJECT_DIR$/src/main/java/com/fh/service/hengxin/ReportService.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/database.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/db_edit.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/department.jsp" afterPath="" />
     </list>
     <ignored path="monitor.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -2480,7 +2451,7 @@
       <workItem from="1476085514740" duration="15147000" />
       <workItem from="1476147414459" duration="4132000" />
       <workItem from="1476151996019" duration="19492000" />
-      <workItem from="1476236667017" duration="13511000" />
+      <workItem from="1476236667017" duration="13983000" />
     </task>
     <servers />
   </component>
@@ -2514,11 +2485,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80985000" />
+    <option name="totallyTimeSpent" value="81457000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2532,7 +2503,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3448276" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973376" sideWeight="0.4941957" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973376" sideWeight="0.4941957" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2760,26 +2731,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/db_edit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.214286">
-          <caret line="94" column="17" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fh/util/PageData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.5399306">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hengxin/database.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.982143">
-          <caret line="107" column="86" selection-start-line="107" selection-start-column="76" selection-end-line="107" selection-end-column="86" />
           <folding />
         </state>
       </provider>
