@@ -34,13 +34,41 @@
 		<if test="docType!=null">
 			and doc_type = #{docType}
 		</if>
-		<if test="client!=null">
+		<if test="refTable!=null">
 			and ref_table = #{refTable}
 		</if>
-		<if test="client!=null">
+		<if test="refFiled!=null">
 			and ref_filed = #{refFiled}
 		</if>
-		<if test="client!=null">
+		<if test="refValue!=null">
+			and ref_value = #{refValue}
+		</if>
+		<if test="userId!=null">
+			and USER_ID = #{userId}
+		</if>
+
+	</select>
+	<select id="getContent" parameterType="Content" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from content
+		where 1=1
+		<if test="contentId!=null">
+			and content_id = #{contentId}
+		</if>
+		<if test="contentType!=null">
+			and content_type = #{contentType}
+		</if>
+		<if test="docType!=null">
+			and doc_type = #{docType}
+		</if>
+		<if test="refTable!=null">
+			and ref_table = #{refTable}
+		</if>
+		<if test="refFiled!=null">
+			and ref_filed = #{refFiled}
+		</if>
+		<if test="refValue!=null">
 			and ref_value = #{refValue}
 		</if>
 		<if test="userId!=null">

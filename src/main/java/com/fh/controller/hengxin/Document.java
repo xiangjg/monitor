@@ -4,11 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.fh.controller.base.BaseController;
 import com.fh.entity.Page;
 import com.fh.entity.henxin.Content;
-import com.fh.entity.henxin.Report;
 import com.fh.service.hengxin.ContentService;
-import com.fh.service.hengxin.ReportService;
 import com.fh.service.system.user.UserService;
 import com.fh.util.PageData;
+import com.fh.util.Tools;
 import org.apache.commons.io.FileUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -38,8 +37,8 @@ import java.util.Map;
 @RequestMapping(value = "/document")
 public class Document extends BaseController {
 
-    @Resource(name = "reportService")
-    private ReportService reportService;
+    @Resource(name="reportService")
+    private com.fh.service.hengxin.report.ReportService reportService;
     @Resource(name = "contentService")
     private ContentService contentService;
     @Resource(name = "userService")
@@ -49,6 +48,7 @@ public class Document extends BaseController {
     public ModelAndView assessment(Page page) throws Exception {
         ModelAndView mv = this.getModelAndView();
         mv.setViewName("hengxin/document/assessment");
+
         return mv;
     }
 
@@ -97,16 +97,17 @@ public class Document extends BaseController {
             FileUtils.writeByteArrayToFile(new File(filePath),bytes);
 
 
+            pd = new PageData();
+            String reportId = this.get32UUID();
+            pd.put("REPORT_ID", reportId);	//主键
+            pd.put("CREATE_DATE", Tools.date2Str(new Date()));	//创建时间
+            pd.put("USER_ID", userId);	//用户ID
+            pd.put("TYPE", docType);
+            pd.put("ADDRESS", address);
+            pd.put("BANK", bank);
+            pd.put("CLIENT", client);
+            reportService.save(pd);
 
-            Report report = new Report();
-            report.setType(1);
-            report.setAddress(address);
-            report.setBank(bank);
-            report.setClient(client);
-            report.setCreateDate(dateFormat.format(new Date()));
-            report.setUserId(userId);
-            reportService.save(report);
-            report = reportService.getReportInfo(report);
 
             Content content = new Content();
             content.setContentName(name);
@@ -114,10 +115,10 @@ public class Document extends BaseController {
             content.setDocType(docType);
             content.setFileSize(size);
             content.setPath(filePath);
-            content.setRefTable("hx_report");
-            content.setRefFiled("id");
-            content.setRefValue(report.getId().toString());
-            content.setCreateDate(dateFormat.format(new Date()));
+            content.setRefTable("HX_REPORT");
+            content.setRefFiled("REPORT_ID");
+            content.setRefValue(reportId);
+            content.setCreateDate(Tools.date2Str(new Date()));
             content.setUserId(userId);
             contentService.save(content);
             result.put("status", "success");

@@ -19,6 +19,8 @@ public class DetailH {
 
     private String createTime;
 
+    private Integer department;
+
     public Integer getDetailId() {
         return detailId;
     }
@@ -89,5 +91,13 @@ public class DetailH {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime == null ? null : createTime.trim();
+    }
+
+    public Integer getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Integer department) {
+        this.department = department;
     }
 }

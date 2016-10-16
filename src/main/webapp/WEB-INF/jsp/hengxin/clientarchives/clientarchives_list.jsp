@@ -23,18 +23,15 @@
 	<div class="row-fluid">
 	
 			<!-- 检索  -->
-			<form action="database/list.do" method="post" name="Form" id="Form">
+			<form action="clientarchives/list.do" method="post" name="Form" id="Form">
 			<table>
 				<tr>
 					<td>
 						<span class="input-icon">
-							<input autocomplete="off" id="nav-search-input" type="text" name="keyword" value="${pd.keyword}" placeholder="这里输入关键词" />
+							<input autocomplete="off" id="nav-search-input" type="text" name="keyword" value="${pd.keyword}"  placeholder="这里输入关键词" />
 							<i id="nav-search-icon" class="icon-search"></i>
 						</span>
 					</td>
-					<td><input name="minArea" id="minArea" value="${pd.minArea}" type="text"  style="width:55px;" placeholder="最小面积"/></td>
-					<td>-</td>
-					<td><input name="maxArea" id="maxArea" value="${pd.maxArea}" type="text" style="width:55px;" placeholder="最大面积"/></td>
 					<td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
 					<c:if test="${QX.cha == 1 }">
 					<td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="icon-download-alt"></i></a></td>
@@ -52,13 +49,10 @@
 						<label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
 						</th>
 						<th class="center">序号</th>
-						<th class="center">地址</th>
-						<th class="center">用途</th>
-						<th class="center">面积</th>
-						<th class="center">户型</th>
-						<th class="center">楼层</th>
-						<th class="center">建成年代</th>
-						<th class="center">创建时间</th>
+						<th class="center">客户名称</th>
+						<th class="center">联系电话</th>
+						<th class="center">估价对象地址</th>
+						<th class="center">委托方</th>
 						<th class="center">操作</th>
 					</tr>
 				</thead>
@@ -72,16 +66,13 @@
 						<c:forEach items="${varList}" var="var" varStatus="vs">
 							<tr>
 								<td class='center' style="width: 30px;">
-									<label><input type='checkbox' name='ids' value="${var.DATABASE_ID}" /><span class="lbl"></span></label>
+									<label><input type='checkbox' name='ids' value="${var.CLIENTARCHIVES_ID}" /><span class="lbl"></span></label>
 								</td>
 								<td class='center' style="width: 30px;">${vs.index+1}</td>
+										<td>${var.CLIENTNAME}</td>
+										<td>${var.PHONE}</td>
 										<td>${var.ADDRESS}</td>
-										<td>${var.PURPOSE}</td>
-										<td>${var.AREA}</td>
-										<td>${var.HOUSE_TYPE}</td>
-										<td>${var.FLOOR}</td>
-										<td>${var.BUILD_YEAR}</td>
-										<td>${var.CREATE_TIME}</td>
+										<td>${var.CLIENT}</td>
 								<td style="width: 30px;" class="center">
 									<div class='hidden-phone visible-desktop btn-group'>
 									
@@ -92,13 +83,10 @@
 										<button class="btn btn-mini btn-info" data-toggle="dropdown"><i class="icon-cog icon-only"></i></button>
 										<ul class="dropdown-menu dropdown-icon-only dropdown-light pull-right dropdown-caret dropdown-close">
 											<c:if test="${QX.edit == 1 }">
-												<li><a style="cursor:pointer;" title="上传图片" onclick="uploadImg('${var.DATABASE_ID}');" class="tooltip-success" data-rel="tooltip" title="" data-placement="left"><span class="green"><i class="icon-edit"></i></span></a></li>
-											</c:if>
-											<c:if test="${QX.edit == 1 }">
-											<li><a style="cursor:pointer;" title="编辑" onclick="edit('${var.DATABASE_ID}');" class="tooltip-success" data-rel="tooltip" title="" data-placement="left"><span class="green"><i class="icon-edit"></i></span></a></li>
+											<li><a style="cursor:pointer;" title="编辑" onclick="edit('${var.CLIENTARCHIVES_ID}');" class="tooltip-success" data-rel="tooltip" title="" data-placement="left"><span class="green"><i class="icon-edit"></i></span></a></li>
 											</c:if>
 											<c:if test="${QX.del == 1 }">
-											<li><a style="cursor:pointer;" title="删除" onclick="del('${var.DATABASE_ID}');" class="tooltip-error" data-rel="tooltip" title="" data-placement="left"><span class="red"><i class="icon-trash"></i></span> </a></li>
+											<li><a style="cursor:pointer;" title="删除" onclick="del('${var.CLIENTARCHIVES_ID}');" class="tooltip-error" data-rel="tooltip" title="" data-placement="left"><span class="red"><i class="icon-trash"></i></span> </a></li>
 											</c:if>
 										</ul>
 										</div>
@@ -184,7 +172,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>database/goAdd.do';
+			 diag.URL = '<%=basePath%>clientarchives/goAdd.do';
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.CancelEvent = function(){ //关闭事件
@@ -206,7 +194,7 @@
 			bootbox.confirm("确定要删除吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>database/delete.do?DATABASE_ID="+Id+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>clientarchives/delete.do?CLIENTARCHIVES_ID="+Id+"&tm="+new Date().getTime();
 					$.get(url,function(data){
 						nextPage(${page.currentPage});
 					});
@@ -220,7 +208,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>database/goEdit.do?DATABASE_ID='+Id;
+			 diag.URL = '<%=basePath%>clientarchives/goEdit.do?CLIENTARCHIVES_ID='+Id;
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.CancelEvent = function(){ //关闭事件
@@ -230,25 +218,6 @@
 				diag.close();
 			 };
 			 diag.show();
-		}
-		function uploadImg(id){
-			top.jzts();
-			var diag = new top.Dialog();
-			diag.Drag=true;
-			diag.Title ="上传图片";
-			diag.URL = '<%=basePath%>pictures/goAdd.do';
-			diag.Width = 800;
-			diag.Height = 490;
-			diag.CancelEvent = function(){ //关闭事件
-				if('${page.currentPage}' == '0'){
-					top.jzts();
-					setTimeout("self.location=self.location",100);
-				}else{
-					nextPage(${page.currentPage});
-				}
-				diag.close();
-			};
-			diag.show();
 		}
 		</script>
 		
@@ -315,7 +284,7 @@
 							top.jzts();
 							$.ajax({
 								type: "POST",
-								url: '<%=basePath%>database/deleteAll.do?tm='+new Date().getTime(),
+								url: '<%=basePath%>clientarchives/deleteAll.do?tm='+new Date().getTime(),
 						    	data: {DATA_IDS:str},
 								dataType:'json',
 								//beforeSend: validateData,
@@ -334,7 +303,7 @@
 		
 		//导出excel
 		function toExcel(){
-			window.location.href='<%=basePath%>database/excel.do';
+			window.location.href='<%=basePath%>clientarchives/excel.do';
 		}
 		</script>
 		

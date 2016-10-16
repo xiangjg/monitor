@@ -106,7 +106,7 @@
 		<table id="table_report" class="table table-striped table-bordered table-hover">
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">查勘日期:</td>
-				<td><input type="text" name="QUERY_DATE" id="QUERY_DATE" value="${pd.QUERY_DATE}" maxlength="32" placeholder="这里输入查勘日期" title="查勘日期"/></td>
+				<td><input class="span10 date-picker" name="QUERY_DATE" id="QUERY_DATE" value="${pd.QUERY_DATE}" type="text" data-date-format="yyyy-mm-dd" placeholder="这里输入查勘日期" title="查勘日期"/></td>
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">渠道:</td>
@@ -127,6 +127,10 @@
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">状态(报价，预评估函，正式报告）:</td>
 				<td><input type="text" name="STATUS" id="STATUS" value="${pd.STATUS}" maxlength="32" placeholder="这里输入状态(报价，预评估函，正式报告）" title="状态(报价，预评估函，正式报告）"/></td>
+			</tr>
+			<tr style="display: none">
+				<td style="width:70px;text-align: right;padding-top: 13px;">部门</td>
+				<td><input type="text" name="DEPARTMENT" id="DEPARTMENT" value="${pd.DEPARTMENT}" maxlength="32" placeholder="这里输入状态(报价，预评估函，正式报告）" title="状态(报价，预评估函，正式报告）"/></td>
 			</tr>
 			<tr>
 				<td style="text-align: center;" colspan="10">

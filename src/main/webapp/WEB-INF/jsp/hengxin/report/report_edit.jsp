@@ -28,26 +28,21 @@
 		<script type="text/javascript" src="static/js/jquery.tips.js"></script>
 		
 <script type="text/javascript">
-
-	function preview(file)
-	{
-		var prevDiv = document.getElementById('preview');
-		if (file.files && file.files[0])
-		{
-			var reader = new FileReader();
-			reader.onload = function(evt){
-				prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
-			}
-			reader.readAsDataURL(file.files[0]);
-		}
-		else
-		{
-			prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
-		}
-	}
+	
+	
 	//保存
 	function save(){
-			if($("#ADDRESS").val()==""){
+			if($("#TYPE").val()==""){
+			$("#TYPE").tips({
+				side:3,
+	            msg:'请输入类型：1评估报告2预评估函',
+	            bg:'#AE81FF',
+	            time:2
+	        });
+			$("#TYPE").focus();
+			return false;
+		}
+		if($("#ADDRESS").val()==""){
 			$("#ADDRESS").tips({
 				side:3,
 	            msg:'请输入地址',
@@ -57,54 +52,24 @@
 			$("#ADDRESS").focus();
 			return false;
 		}
-		if($("#PURPOSE").val()==""){
-			$("#PURPOSE").tips({
+		if($("#BANK").val()==""){
+			$("#BANK").tips({
 				side:3,
-	            msg:'请输入用途',
+	            msg:'请输入银行',
 	            bg:'#AE81FF',
 	            time:2
 	        });
-			$("#PURPOSE").focus();
+			$("#BANK").focus();
 			return false;
 		}
-		if($("#AREA").val()==""){
-			$("#AREA").tips({
+		if($("#CLIENT").val()==""){
+			$("#CLIENT").tips({
 				side:3,
-	            msg:'请输入面积',
+	            msg:'请输入委托方',
 	            bg:'#AE81FF',
 	            time:2
 	        });
-			$("#AREA").focus();
-			return false;
-		}
-		if($("#HOUSE_TYPE").val()==""){
-			$("#HOUSE_TYPE").tips({
-				side:3,
-	            msg:'请输入户型',
-	            bg:'#AE81FF',
-	            time:2
-	        });
-			$("#HOUSE_TYPE").focus();
-			return false;
-		}
-		if($("#FLOOR").val()==""){
-			$("#FLOOR").tips({
-				side:3,
-	            msg:'请输入楼层',
-	            bg:'#AE81FF',
-	            time:2
-	        });
-			$("#FLOOR").focus();
-			return false;
-		}
-		if($("#BUILD_YEAR").val()==""){
-			$("#BUILD_YEAR").tips({
-				side:3,
-	            msg:'请输入建成年代',
-	            bg:'#AE81FF',
-	            time:2
-	        });
-			$("#BUILD_YEAR").focus();
+			$("#CLIENT").focus();
 			return false;
 		}
 		$("#Form").submit();
@@ -115,33 +80,25 @@
 </script>
 	</head>
 <body>
-	<form action="database/${msg }.do" name="Form" id="Form" method="post">
-		<input type="hidden" name="DATABASE_ID" id="DATABASE_ID" value="${pd.DATABASE_ID}"/>
+	<form action="report/${msg }.do" name="Form" id="Form" method="post">
+		<input type="hidden" name="REPORT_ID" id="REPORT_ID" value="${pd.REPORT_ID}"/>
 		<div id="zhongxin">
 		<table id="table_report" class="table table-striped table-bordered table-hover">
+			<tr>
+				<td style="width:70px;text-align: right;padding-top: 13px;">类型：1评估报告2预评估函:</td>
+				<td><input type="number" name="TYPE" id="TYPE" value="${pd.TYPE}" maxlength="32" placeholder="这里输入类型：1评估报告2预评估函" title="类型：1评估报告2预评估函"/></td>
+			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">地址:</td>
 				<td><input type="text" name="ADDRESS" id="ADDRESS" value="${pd.ADDRESS}" maxlength="32" placeholder="这里输入地址" title="地址"/></td>
 			</tr>
 			<tr>
-				<td style="width:70px;text-align: right;padding-top: 13px;">用途:</td>
-				<td><input type="text" name="PURPOSE" id="PURPOSE" value="${pd.PURPOSE}" maxlength="32" placeholder="这里输入用途" title="用途"/></td>
+				<td style="width:70px;text-align: right;padding-top: 13px;">银行:</td>
+				<td><input type="text" name="BANK" id="BANK" value="${pd.BANK}" maxlength="32" placeholder="这里输入银行" title="银行"/></td>
 			</tr>
 			<tr>
-				<td style="width:70px;text-align: right;padding-top: 13px;">面积:</td>
-				<td><input type="text" name="AREA" id="AREA" value="${pd.AREA}" maxlength="32" placeholder="这里输入面积" title="面积"/></td>
-			</tr>
-			<tr>
-				<td style="width:70px;text-align: right;padding-top: 13px;">户型:</td>
-				<td><input type="text" name="HOUSE_TYPE" id="HOUSE_TYPE" value="${pd.HOUSE_TYPE}" maxlength="32" placeholder="这里输入户型" title="户型"/></td>
-			</tr>
-			<tr>
-				<td style="width:70px;text-align: right;padding-top: 13px;">楼层:</td>
-				<td><input type="text" name="FLOOR" id="FLOOR" value="${pd.FLOOR}" maxlength="32" placeholder="这里输入楼层" title="楼层"/></td>
-			</tr>
-			<tr>
-				<td style="width:70px;text-align: right;padding-top: 13px;">建成年代:</td>
-				<td><input type="text" name="BUILD_YEAR" id="BUILD_YEAR" value="${pd.BUILD_YEAR}" maxlength="32" placeholder="这里输入建成年代" title="建成年代"/></td>
+				<td style="width:70px;text-align: right;padding-top: 13px;">委托方:</td>
+				<td><input type="text" name="CLIENT" id="CLIENT" value="${pd.CLIENT}" maxlength="32" placeholder="这里输入委托方" title="委托方"/></td>
 			</tr>
 			<tr>
 				<td style="text-align: center;" colspan="10">

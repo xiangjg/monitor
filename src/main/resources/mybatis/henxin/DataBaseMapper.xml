@@ -86,6 +86,16 @@
 				a.DATABASE_ID
 		from 
 				HX_DATABASE a
+		where 1=1
+		<if test="pd.keyword!=null and pd.keyword!=''">
+			and (a.ADDRESS LIKE '%${pd.keyword}%' or a.PURPOSE LIKE '%${pd.keyword}%')
+		</if>
+		<if test="pd.minArea!=null and pd.minArea!=''">
+			and a.AREA &gt;= #{pd.minArea}
+		</if>
+		<if test="pd.maxArea!=null and pd.maxArea!=''">
+			and a.AREA &lt;= #{pd.maxArea}
+		</if>
 	</select>
 	
 	<!-- 列表(全部) -->

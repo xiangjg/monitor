@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ClientArchivesMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into HX_CLIENTARCHIVES(
+			CLIENTNAME,	
+			PHONE,	
+			ADDRESS,	
+			CLIENT,	
+			CLIENTARCHIVES_ID
+		) values (
+			#{CLIENTNAME},	
+			#{PHONE},	
+			#{ADDRESS},	
+			#{CLIENT},	
+			#{CLIENTARCHIVES_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from HX_CLIENTARCHIVES
+		where 
+			CLIENTARCHIVES_ID = #{CLIENTARCHIVES_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  HX_CLIENTARCHIVES
+			set 
+				CLIENTNAME = #{CLIENTNAME},
+				PHONE = #{PHONE},
+				ADDRESS = #{ADDRESS},
+				CLIENT = #{CLIENT},
+			CLIENTARCHIVES_ID = CLIENTARCHIVES_ID
+			where 
+				CLIENTARCHIVES_ID = #{CLIENTARCHIVES_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			CLIENTNAME,	
+			PHONE,	
+			ADDRESS,	
+			CLIENT,	
+			CLIENTARCHIVES_ID
+		from 
+			HX_CLIENTARCHIVES
+		where 
+			CLIENTARCHIVES_ID = #{CLIENTARCHIVES_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.CLIENTNAME,	
+				a.PHONE,	
+				a.ADDRESS,	
+				a.CLIENT,	
+				a.CLIENTARCHIVES_ID
+		from 
+				HX_CLIENTARCHIVES a
+		where 1=1
+		<if test="pd.keyword!=null and pd.keyword!=''">
+			and (a.CLIENT LIKE '%${pd.keyword}%' or a.ADDRESS LIKE '%${pd.keyword}%' or a.CLIENTNAME LIKE '%${pd.keyword}%')
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.CLIENTNAME,	
+				a.PHONE,	
+				a.ADDRESS,	
+				a.CLIENT,	
+				a.CLIENTARCHIVES_ID
+		from 
+				HX_CLIENTARCHIVES a
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from HX_CLIENTARCHIVES
+		where 
+			CLIENTARCHIVES_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

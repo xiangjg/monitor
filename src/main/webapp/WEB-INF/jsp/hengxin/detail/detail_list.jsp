@@ -24,23 +24,14 @@
 	
 			<!-- 检索  -->
 			<form action="detail/list.do" method="post" name="Form" id="Form">
+				<input type="text" value="${pd.DEPARTMENT}" id="DEPARTMENT" name="DEPARTMENT" style="display: none">
 			<table>
 				<tr>
 					<td>
 						<span class="input-icon">
-							<input autocomplete="off" id="nav-search-input" type="text" name="field1" value="" placeholder="这里输入关键词" />
+							<input autocomplete="off" id="nav-search-input" type="text" name="keyword" value="${pd.keyword}" placeholder="这里输入关键词" />
 							<i id="nav-search-icon" class="icon-search"></i>
 						</span>
-					</td>
-					<td><input class="span10 date-picker" name="lastLoginStart" id="lastLoginStart" value="${pd.lastLoginStart}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期"/></td>
-					<td><input class="span10 date-picker" name="lastLoginEnd" id="lastLoginEnd" value="${pd.lastLoginEnd}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期"/></td>
-					<td style="vertical-align:top;"> 
-					 	<select class="chzn-select" name="field2" id="field2" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
-							<option value=""></option>
-							<option value="">全部</option>
-							<option value="">1</option>
-							<option value="">2</option>
-					  	</select>
 					</td>
 					<td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
 					<c:if test="${QX.cha == 1 }">
@@ -65,7 +56,7 @@
 						<th class="center">客户联系方式</th>
 						<th class="center">估价对象位置</th>
 						<th class="center">状态(报价，预评估函，正式报告）</th>
-						<th class="center">用户id</th>
+						<th class="center">部门</th>
 						<th class="center">创建时间</th>
 						<th class="center">操作</th>
 					</tr>
@@ -89,7 +80,15 @@
 										<td>${var.PHONE}</td>
 										<td>${var.LOCATION}</td>
 										<td>${var.STATUS}</td>
-										<td>${var.USER_ID}</td>
+										<c:if test="${var.DEPARTMENT == 1 }">
+											<td>一部</td>
+										</c:if>
+										<c:if test="${var.DEPARTMENT == 2 }">
+											<td>二部</td>
+										</c:if>
+										<c:if test="${var.DEPARTMENT == 3 }">
+											<td>三部</td>
+										</c:if>
 										<td>${var.CREATE_TIME}</td>
 								<td style="width: 30px;" class="center">
 									<div class='hidden-phone visible-desktop btn-group'>
@@ -190,7 +189,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>detail/goAdd.do';
+			 diag.URL = '<%=basePath%>detail/goAdd.do?DEPARTMENT='+$("#DEPARTMENT").val();
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.CancelEvent = function(){ //关闭事件

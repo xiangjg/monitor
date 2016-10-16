@@ -14,7 +14,8 @@
 			STATUS,	
 			USER_ID,	
 			CREATE_TIME,	
-			DETAIL_ID
+			DETAIL_ID,
+			DEPARTMENT
 		) values (
 			#{QUERY_DATE},	
 			#{DITCH},	
@@ -24,7 +25,8 @@
 			#{STATUS},	
 			#{USER_ID},	
 			#{CREATE_TIME},	
-			#{DETAIL_ID}
+			#{DETAIL_ID},
+			#{DEPARTMENT}
 		)
 	</insert>
 	
@@ -47,6 +49,7 @@
 				PHONE = #{PHONE},
 				LOCATION = #{LOCATION},
 				STATUS = #{STATUS},
+				DEPARTMENT = #{DEPARTMENT},
 			DETAIL_ID = DETAIL_ID
 			where 
 				DETAIL_ID = #{DETAIL_ID}
@@ -64,7 +67,8 @@
 			STATUS,	
 			USER_ID,	
 			CREATE_TIME,	
-			DETAIL_ID
+			DETAIL_ID,
+			DEPARTMENT
 		from 
 			HX_DETAIL
 		where 
@@ -83,9 +87,15 @@
 				a.STATUS,	
 				a.USER_ID,	
 				a.CREATE_TIME,	
-				a.DETAIL_ID
+				a.DETAIL_ID,
+				a.DEPARTMENT
 		from 
 				HX_DETAIL a
+		where
+			a.DEPARTMENT = #{pd.DEPARTMENT}
+		<if test="pd.keyword!=null and pd.keyword!=''">
+			and (a.DITCH LIKE '%${pd.keyword}%' or a.ENTRUST LIKE '%${pd.keyword}%' or a.LOCATION LIKE '%${pd.keyword}%')
+		</if>
 	</select>
 	
 	<!-- 列表(全部) -->
@@ -99,9 +109,12 @@
 				a.STATUS,	
 				a.USER_ID,	
 				a.CREATE_TIME,	
-				a.DETAIL_ID
+				a.DETAIL_ID,
+				a.DEPARTMENT
 		from 
 				HX_DETAIL a
+				where
+			a.DEPARTMENT = #{DEPARTMENT}
 	</select>
 	
 	<!-- 批量删除 -->

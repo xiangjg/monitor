@@ -3,9 +3,11 @@ package com.fh.service.hengxin;
 import com.fh.dao.DaoSupport;
 import com.fh.entity.henxin.Content;
 import com.fh.entity.henxin.Report;
+import com.fh.util.PageData;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by 向敬光 on 2016/10/10.
@@ -18,8 +20,11 @@ public class ContentService {
     /*
 	 * 通过id获取数据
 	 */
-    public Report getReportInfo(Content pd) throws Exception {
-        return (Report) dao.findForObject("ContentMapper.getContentInfo", pd);
+    public Content getContentInfo(Content pd) throws Exception {
+        return (Content) dao.findForObject("ContentMapper.getContentInfo", pd);
+    }
+    public List<Content> getContent(Content pd) throws Exception {
+        return (List<Content>) dao.findForList("ContentMapper.getContent", pd);
     }
     /*
          * 保存
