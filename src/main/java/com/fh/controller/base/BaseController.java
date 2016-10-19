@@ -1,7 +1,11 @@
 package com.fh.controller.base;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.fh.service.system.user.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -73,4 +77,9 @@ public class BaseController {
 		logger.info("");
 	}
 
+	public static  String getCurrUseName(){
+		Subject currentUser = SecurityUtils.getSubject(); // shiro管理的session
+		return (String)currentUser.getPrincipal();
+
+	}
 }

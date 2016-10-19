@@ -77,7 +77,7 @@ public class PicturesController extends BaseController {
 			pd.put("MASTER_ID", "1"); // 附属与
 			pd.put("BZ", "图片管理处上传"); // 备注
 			// 加水印
-			Watermark.setWatemark(PathUtil.getClasspath() + Const.FILEPATHIMG + ffile + "/" + fileName);
+//			Watermark.setWatemark(PathUtil.getClasspath() + Const.FILEPATHIMG + ffile + "/" + fileName);
 			picturesService.save(pd);
 		}
 		map.put("result", "ok");

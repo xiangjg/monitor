@@ -1,5 +1,6 @@
 package com.fh.controller.hengxin;
 
+import com.fh.controller.base.BaseController;
 import com.fh.entity.henxin.Content;
 import com.fh.service.hengxin.ContentService;
 import org.apache.commons.io.FileUtils;
@@ -22,7 +23,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/download")
-public class DownLoadController {
+public class DownLoadController extends BaseController{
 
     @Resource(name = "contentService")
     private ContentService contentService;
@@ -50,6 +51,7 @@ public class DownLoadController {
                 out.flush();
             }
         }catch (Exception e){
+            logBefore(logger, e.getMessage());
             e.printStackTrace();
         }finally {
             if(out!=null)

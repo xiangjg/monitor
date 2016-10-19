@@ -4,9 +4,11 @@ import com.fh.dao.DaoSupport;
 import com.fh.entity.henxin.Content;
 import com.fh.entity.henxin.Report;
 import com.fh.util.PageData;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -30,6 +32,14 @@ public class ContentService {
          * 保存
          */
     public void save(Content pd) throws Exception {
+        dao.save("ContentMapper.save", pd);
+    }
+
+    /*
+        * 保存
+        */
+    public void saveFile(Content pd,byte[] file) throws Exception {
+        FileUtils.writeByteArrayToFile(new File(pd.getPath()), file);
         dao.save("ContentMapper.save", pd);
     }
 }
