@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50546
 File Encoding         : 65001
 
-Date: 2016-11-13 17:59:16
+Date: 2016-11-15 22:41:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,15 +32,8 @@ CREATE TABLE `content` (
   `create_date` varchar(255) DEFAULT NULL,
   `USER_ID` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`content_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of content
--- ----------------------------
-INSERT INTO `content` VALUES ('1', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1001', 'd:\\content\\1001\\20161112103115', 'HX_REPORT', 'REPORT_ID', '1e1de606d3da489fa5bf4c12e56b6b2c', '1218376', '2016-11-12 10:31:15', '347b39bd1835435b9cbfdf08ba87060c');
-INSERT INTO `content` VALUES ('2', '需要解决回复.doc', 'application/msword', '1002', 'd:\\content\\1002\\20161112103128', 'HX_REPORT', 'REPORT_ID', '1a13532e076249618fb1ebb1eb1cd0a4', '40960', '2016-11-12 10:31:28', '347b39bd1835435b9cbfdf08ba87060c');
-INSERT INTO `content` VALUES ('3', '子菜单.doc', 'application/msword', '1001', 'd:\\content\\1001\\20161113173518', 'HX_REPORT', 'REPORT_ID', 'e21088d41b134d18ab68895c6907fefb', '72192', '2016-11-13 17:35:18', '347b39bd1835435b9cbfdf08ba87060c');
-INSERT INTO `content` VALUES ('4', '子菜单.doc', 'application/msword', '1001', 'd:\\content\\1001\\20161113174052', 'HX_REPORT', 'REPORT_ID', '2a504aa2acdf4d0a84ca484c4ef8b58b', '72192', '2016-11-13 17:40:52', '347b39bd1835435b9cbfdf08ba87060c');
 
 -- ----------------------------
 -- Table structure for hx_clientarchives
@@ -83,10 +76,6 @@ CREATE TABLE `hx_database` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of hx_database
--- ----------------------------
-
--- ----------------------------
 -- Table structure for hx_detail
 -- ----------------------------
 DROP TABLE IF EXISTS `hx_detail`;
@@ -127,9 +116,6 @@ CREATE TABLE `hx_report` (
   PRIMARY KEY (`REPORT_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of hx_report
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_app_user
@@ -327,7 +313,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('0b28c0ef033647668635d10e87f3142f', 'xiangjg', '66de523df6272e5a56fd0d80c71ba65c6faf4902', '向敬光', '', '2', '2016-10-17 17:17:33', '127.0.0.1', '0', '', 'default', '1991887681@qq.com', '9', '18984898929');
 INSERT INTO `sys_user` VALUES ('1', 'admin', 'de41b7fb99201d8334c23c014db35ecd92df81bc', '系统管理员', '1133671055321055258374707980945218933803269864762743594642571294', '1', '2016-11-12 11:19:09', '127.0.0.1', '0', '最高统治者', 'default', 'admin@main.com', '001', '18788888888');
-INSERT INTO `sys_user` VALUES ('347b39bd1835435b9cbfdf08ba87060c', 'lxy', 'ed17fa39091630cd78635a0afacbc84ca01793ca', '李兴艳', '', 'df14e12c0fbf4f82835ac600a72b4394', '2016-11-13 17:57:11', '127.0.0.1', '0', '', 'default', '524232045@qq.com', '001', '13765081624');
+INSERT INTO `sys_user` VALUES ('347b39bd1835435b9cbfdf08ba87060c', 'lxy', 'ed17fa39091630cd78635a0afacbc84ca01793ca', '李兴艳', '', 'df14e12c0fbf4f82835ac600a72b4394', '2016-11-15 22:37:59', '127.0.0.1', '0', '', 'default', '524232045@qq.com', '001', '13765081624');
 
 -- ----------------------------
 -- Table structure for sys_user_qx
@@ -375,10 +361,6 @@ CREATE TABLE `tb_pictures` (
   PRIMARY KEY (`PICTURES_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of tb_pictures
--- ----------------------------
-INSERT INTO `tb_pictures` VALUES ('003009e8d65f44e4a497eaaffefbbf70', '图片', 'f6367a41ee2e410c9c7721c242593f60.png', '20161015/f6367a41ee2e410c9c7721c242593f60.png', '2016-10-15 17:53:00', '1', '图片管理处上传');
 
 -- ----------------------------
 -- Table structure for weixin_command
@@ -467,10 +449,3 @@ CREATE TABLE `weixin_textmsg` (
   PRIMARY KEY (`TEXTMSG_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of weixin_textmsg
--- ----------------------------
-INSERT INTO `weixin_textmsg` VALUES ('303c190498a045bdbba4c940c2f0d9f9', '1ss', '1ssddd', '2015-05-18 20:17:02', '1', '1ssdddsd');
-INSERT INTO `weixin_textmsg` VALUES ('63681adbe7144f10b66d6863e07f23c2', '你好', '你也好', '2015-05-09 02:39:23', '1', '文本回复');
-INSERT INTO `weixin_textmsg` VALUES ('695cd74779734231928a253107ab0eeb', '吃饭', '吃了噢噢噢噢', '2015-05-10 22:52:27', '1', '文本回复');
-INSERT INTO `weixin_textmsg` VALUES ('d4738af7aea74a6ca1a5fb25a98f9acb', '关注', '关注', '2015-05-11 02:12:36', '1', '关注回复');
