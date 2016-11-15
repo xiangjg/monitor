@@ -101,6 +101,10 @@
 				<td><input type="text" name="CLIENT" id="CLIENT" value="${pd.CLIENT}" maxlength="32" placeholder="这里输入委托方" title="委托方"/></td>
 			</tr>
 			<tr>
+				<td style="width:70px;text-align: right;padding-top: 13px;">备注:</td>
+				<td><input type="text" name="REMARK" id="REMARK" value="${pd.REMARK}" maxlength="32" placeholder="这里输入备注" title="备注"/></td>
+			</tr>
+			<tr>
 				<td style="text-align: center;" colspan="10">
 					<a class="btn btn-mini btn-primary" onclick="save();">保存</a>
 					<a class="btn btn-mini btn-danger" onclick="top.Dialog.close();">取消</a>

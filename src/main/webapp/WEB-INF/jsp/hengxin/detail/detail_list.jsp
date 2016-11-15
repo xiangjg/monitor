@@ -29,9 +29,39 @@
 				<tr>
 					<td>
 						<span class="input-icon">
-							<input autocomplete="off" id="nav-search-input" type="text" name="keyword" value="${pd.keyword}" placeholder="这里输入关键词" />
-							<i id="nav-search-icon" class="icon-search"></i>
+							<%--<input autocomplete="off" type="text" name="DITCH" value="${pd.DITCH}" placeholder="这里输入渠道" />--%>
+							<input autocomplete="off" type="text" name="ENTRUST" value="${pd.ENTRUST}" placeholder="这里输入委托方" />
+							<input autocomplete="off" type="text" name="LOCATION" value="${pd.LOCATION}" placeholder="这里输入估价对象位置" />
+							<i class="icon-search"></i>
 						</span>
+					</td>
+					<td style="vertical-align:top;">
+						<select class="chzn-select" name="DITCH" id="DITCH" data-values="${pd.DITCH}" data-placeholder="请选择渠道" style="vertical-align:top;width: 120px;">
+							<option value=""></option>
+							<option value="">全部</option>
+							<option value="工商银行">工商银行</option>
+							<option value="农业银行">农业银行</option>
+							<option value="建设银行">建设银行</option>
+							<option value="贵阳农商银行">贵阳农商银行</option>
+							<option value="贵阳银行">贵阳银行</option>
+							<option value="贵州银行">贵州银行</option>
+							<option value="南充银行">南充银行</option>
+							<option value="民生银行">民生银行</option>
+							<option value="兴业银行">兴业银行</option>
+							<option value="重庆银行">重庆银行</option>
+							<option value="浦发银行">浦发银行</option>
+							<option value="其他">其他</option>
+						</select>
+					</td>
+					<td style="vertical-align:top;">
+						<select class="chzn-select" name="STATUS" id="STATUS" data-values="${pd.STATUS}" data-placeholder="请选择状态" style="vertical-align:top;width: 120px;">
+							<option value=""></option>
+							<option value="">全部</option>
+							<option value="报价">报价</option>
+							<option value="预评估">预评估</option>
+							<option value="出电子档报告">出电子档报告</option>
+							<option value="已出正式报告">已出正式报告</option>
+						</select>
 					</td>
 					<td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
 					<c:if test="${QX.cha == 1 }">
@@ -55,9 +85,13 @@
 						<th class="center">委托方</th>
 						<th class="center">客户联系方式</th>
 						<th class="center">估价对象位置</th>
-						<th class="center">状态(报价，预评估函，正式报告）</th>
+						<th class="center">状态</th>
 						<th class="center">部门</th>
+						<th class="center">评估总价</th>
+						<th class="center">出报告时间</th>
+						<th class="center">备注</th>
 						<th class="center">创建时间</th>
+						<th class="center">创建人</th>
 						<th class="center">操作</th>
 					</tr>
 				</thead>
@@ -89,7 +123,11 @@
 										<c:if test="${var.DEPARTMENT == 3 }">
 											<td>三部</td>
 										</c:if>
+										<td>${var.SUMPRICE}</td>
+										<td>${var.EXP_TIME}</td>
+										<td>${var.REMARK}</td>
 										<td>${var.CREATE_TIME}</td>
+										<td>${var.USER_ID}</td>
 								<td style="width: 30px;" class="center">
 									<div class='hidden-phone visible-desktop btn-group'>
 									

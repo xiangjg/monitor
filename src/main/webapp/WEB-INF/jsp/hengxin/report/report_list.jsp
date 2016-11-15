@@ -9,7 +9,7 @@
 <html lang="en">
 	<head>
 	<base href="<%=basePath%>"><!-- jsp文件头和头部 -->
-	<%@ include file="../../system/admin/top.jsp"%> 
+	<%@ include file="../../system/admin/top.jsp"%>
 	</head>
 <body>
 		
@@ -24,21 +24,27 @@
 	
 			<!-- 检索  -->
 			<form action="report/list.do" method="post" name="Form" id="Form">
+				<input type="text" value="${pd.TYPE}" id="TYPE" name="TYPE" style="display: none">
 			<table>
 				<tr>
 					<td>
 						<span class="input-icon">
-							<input autocomplete="off" id="nav-search-input" type="text" name="keyword" value="${pd.keyword}" placeholder="这里输入关键词" />
-							<i id="nav-search-icon" class="icon-search"></i>
+							<input autocomplete="off"  type="text" name="ADDRESS" value="${pd.ADDRESS}" placeholder="这里输入地址" />
+							<input autocomplete="off"  type="text" name="CLIENT" value="${pd.CLIENT}" placeholder="这里输入委托方" />
+							<input autocomplete="off"  type="text" name="BANK" value="${pd.BANK}" placeholder="这里输入银行" />
+							<i class="icon-search"></i>
 						</span>
 					</td>
-					<td style="vertical-align:top;"> 
-					 	<select class="chzn-select" name="TYPE" id="TYPE" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
-							<option value=""></option>
-							<option value="">全部</option>
-							<option value="1001">评估报告</option>
-							<option value="1002">预评估函</option>
-					  	</select>
+					<%--<td style="vertical-align:top;"> --%>
+					 	<%--<select class="chzn-select" name="TYPE" id="TYPE" data-placeholder="请选择" style="vertical-align:top;width: 120px;">--%>
+							<%--<option value=""></option>--%>
+							<%--<option value="">全部</option>--%>
+							<%--<option value="1001">评估报告</option>--%>
+							<%--<option value="1002">预评估函</option>--%>
+					  	<%--</select>--%>
+					<%--</td>--%>
+					<td style="vertical-align:top;">
+						<input class="span10 date-picker" name="EXP_TIME" id="EXP_TIME" value="${pd.EXP_TIME}" type="text" data-date-format="yyyy-mm-dd" placeholder="这里输入出报告时间" title="出报告时间"/>
 					</td>
 					<td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
 <%--					<c:if test="${QX.cha == 1 }">
@@ -61,7 +67,14 @@
 						<th class="center">地址</th>
 						<th class="center">银行</th>
 						<th class="center">委托方</th>
+						<c:if test="${pd.TYPE == 1001 }">
+							<td>报告时间</td>
+						</c:if>
+						<c:if test="${pd.TYPE == 1002 }">
+							<td>预评估时间</td>
+						</c:if>
 						<th class="center">创建时间</th>
+						<th class="center">创建人</th>
 						<th class="center">文档附件</th>
 						<th class="center">操作</th>
 					</tr>
@@ -88,7 +101,9 @@
 										<td>${var.ADDRESS}</td>
 										<td>${var.BANK}</td>
 										<td>${var.CLIENT}</td>
+										<td>${var.EXP_TIME}</td>
 										<td>${var.CREATE_DATE}</td>
+										<td>${var.USER_ID}</td>
 										<c:choose>
 										<c:when test="${not empty var.files}">
 											<td>

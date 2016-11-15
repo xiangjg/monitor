@@ -28,9 +28,41 @@
 				<tr>
 					<td>
 						<span class="input-icon">
-							<input autocomplete="off" id="nav-search-input" type="text" name="keyword" value="${pd.keyword}" placeholder="这里输入关键词" />
-							<i id="nav-search-icon" class="icon-search"></i>
+							<input autocomplete="off" type="text" name="ADDRESS" value="${pd.ADDRESS}" placeholder="这里输入地址" />
+							<%--<input autocomplete="off" type="text" name="PURPOSE" value="${pd.PURPOSE}" placeholder="这里输入用途" />--%>
+							<i class="icon-search"></i>
 						</span>
+					</td>
+					<td style="vertical-align:top;">
+						<select class="chzn-select" name="PURPOSE" id="PURPOSE" data-values="${pd.PURPOSE}" data-placeholder="请选择用途" style="vertical-align:top;width: 120px;">
+							<option value=""></option>
+							<option value="">全部</option>
+							<option value="商业">商业</option>
+							<option value="办公">办公</option>
+							<option value="住宅">住宅</option>
+							<option value="工业用房">工业用房</option>
+							<option value="其他">其他</option>
+						</select>
+					</td>
+					<td style="vertical-align:top;">
+						<select class="chzn-select" name="ADCD" id="ADCD" data-values="${pd.ADCD}" data-placeholder="请选择区域" style="vertical-align:top;width: 120px;">
+							<option value=""></option>
+							<option value="">全部</option>
+							<option value="云岩区">云岩区</option>
+							<option value="南明区">南明区</option>
+							<option value="花溪区">花溪区</option>
+							<option value="乌当区">乌当区</option>
+							<option value="白云区">白云区</option>
+							<option value="贵安新区">贵安新区</option>
+							<option value="遵义市">遵义市</option>
+							<option value="安顺市">安顺市</option>
+							<option value="六盘水市">六盘水市</option>
+							<option value="铜仁市">铜仁市</option>
+							<option value="黔南州">黔南州</option>
+							<option value="黔东南州">黔东南州</option>
+							<option value="黔西南州">黔西南州</option>
+							<option value="外省">外省</option>
+						</select>
 					</td>
 					<td><input name="minArea" id="minArea" value="${pd.minArea}" type="text"  style="width:55px;" placeholder="最小面积"/></td>
 					<td>-</td>
@@ -58,7 +90,11 @@
 						<th class="center">户型</th>
 						<th class="center">楼层</th>
 						<th class="center">建成年代</th>
+						<th class="center">单价</th>
+						<th class="center">备注</th>
+						<th class="center">所属区</th>
 						<th class="center">创建时间</th>
+						<th class="center">创建人</th>
 						<th class="center">外观图</th>
 						<th class="center">位置图</th>
 						<th class="center">操作</th>
@@ -83,7 +119,11 @@
 										<td>${var.HOUSE_TYPE}</td>
 										<td>${var.FLOOR}</td>
 										<td>${var.BUILD_YEAR}</td>
+										<td>${var.REAMRK}</td>
+										<td>${var.PRICE}</td>
+										<td>${var.ADCD}</td>
 										<td>${var.CREATE_TIME}</td>
+										<td>${var.USER_ID}</td>
 										<c:choose>
 											<c:when test="${not empty var.faceImg}">
 												<td>

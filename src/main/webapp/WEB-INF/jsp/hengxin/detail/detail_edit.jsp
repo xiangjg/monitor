@@ -110,7 +110,23 @@
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">渠道:</td>
-				<td><input type="text" name="DITCH" id="DITCH" value="${pd.DITCH}" maxlength="32" placeholder="这里输入渠道" title="渠道"/></td>
+				<td>
+					<select name="DITCH" id="DITCH" value="${pd.DITCH}">
+						<option value=""></option>
+						<option value="工商银行">工商银行</option>
+						<option value="农业银行">农业银行</option>
+						<option value="建设银行">建设银行</option>
+						<option value="贵阳农商银行">贵阳农商银行</option>
+						<option value="贵阳银行">贵阳银行</option>
+						<option value="贵州银行">贵州银行</option>
+						<option value="南充银行">南充银行</option>
+						<option value="民生银行">民生银行</option>
+						<option value="兴业银行">兴业银行</option>
+						<option value="重庆银行">重庆银行</option>
+						<option value="浦发银行">浦发银行</option>
+						<option value="其他">其他</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">委托方:</td>
@@ -125,12 +141,34 @@
 				<td><input type="text" name="LOCATION" id="LOCATION" value="${pd.LOCATION}" maxlength="32" placeholder="这里输入估价对象位置" title="估价对象位置"/></td>
 			</tr>
 			<tr>
-				<td style="width:70px;text-align: right;padding-top: 13px;">状态(报价，预评估函，正式报告）:</td>
-				<td><input type="text" name="STATUS" id="STATUS" value="${pd.STATUS}" maxlength="32" placeholder="这里输入状态(报价，预评估函，正式报告）" title="状态(报价，预评估函，正式报告）"/></td>
+				<td style="width:70px;text-align: right;padding-top: 13px;">状态:</td>
+				<td>
+					<select name="STATUS" id="STATUS" value="${pd.STATUS}">
+						<option value=""></option>
+						<option value="报价">报价</option>
+						<option value="预评估">预评估</option>
+						<option value="出电子档报告">出电子档报告</option>
+						<option value="已出正式报告">已出正式报告</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:70px;text-align: right;padding-top: 13px;">评估总价:</td>
+				<td><input type="text" name="SUMPRICE" id="SUMPRICE" value="${pd.SUMPRICE}" maxlength="32" placeholder="这里输入评估总价" title="评估总价"/></td>
+			</tr>
+			<tr>
+				<td style="width:70px;text-align: right;padding-top: 13px;">出报告时间:</td>
+				<td>
+					<input class="span10 date-picker" name="EXP_TIME" id="EXP_TIME" value="${pd.EXP_TIME}" type="text" data-date-format="yyyy-mm-dd" placeholder="这里输入出报告时间" title="出报告时间"/>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:70px;text-align: right;padding-top: 13px;">备注:</td>
+				<td><input type="text" name="REMARK" id="REMARK" value="${pd.REMARK}" maxlength="32" placeholder="这里输入备注" title="备注"/></td>
 			</tr>
 			<tr style="display: none">
 				<td style="width:70px;text-align: right;padding-top: 13px;">部门</td>
-				<td><input type="text" name="DEPARTMENT" id="DEPARTMENT" value="${pd.DEPARTMENT}" maxlength="32" placeholder="这里输入状态(报价，预评估函，正式报告）" title="状态(报价，预评估函，正式报告）"/></td>
+				<td><input type="text" name="DEPARTMENT" id="DEPARTMENT" value="${pd.DEPARTMENT}" maxlength="32" placeholder="" title=""/></td>
 			</tr>
 			<tr>
 				<td style="text-align: center;" colspan="10">

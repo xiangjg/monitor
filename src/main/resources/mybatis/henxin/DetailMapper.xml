@@ -15,7 +15,10 @@
 			USER_ID,	
 			CREATE_TIME,	
 			DETAIL_ID,
-			DEPARTMENT
+			DEPARTMENT,
+			SUMPRICE,
+			EXP_TIME,
+			REMARK
 		) values (
 			#{QUERY_DATE},	
 			#{DITCH},	
@@ -26,7 +29,10 @@
 			#{USER_ID},	
 			#{CREATE_TIME},	
 			#{DETAIL_ID},
-			#{DEPARTMENT}
+			#{DEPARTMENT},
+			#{SUMPRICE},
+			#{EXP_TIME},
+			#{REMARK}
 		)
 	</insert>
 	
@@ -50,6 +56,9 @@
 				LOCATION = #{LOCATION},
 				STATUS = #{STATUS},
 				DEPARTMENT = #{DEPARTMENT},
+				SUMPRICE = #{SUMPRICE},
+				EXP_TIME = #{EXP_TIME},
+				REMARK = #{REMARK},
 			DETAIL_ID = DETAIL_ID
 			where 
 				DETAIL_ID = #{DETAIL_ID}
@@ -68,7 +77,10 @@
 			USER_ID,	
 			CREATE_TIME,	
 			DETAIL_ID,
-			DEPARTMENT
+			DEPARTMENT,
+			SUMPRICE,
+			EXP_TIME,
+			REMARK
 		from 
 			HX_DETAIL
 		where 
@@ -84,17 +96,29 @@
 				a.ENTRUST,	
 				a.PHONE,	
 				a.LOCATION,	
-				a.STATUS,	
-				a.USER_ID,	
+				a.STATUS,
 				a.CREATE_TIME,	
 				a.DETAIL_ID,
-				a.DEPARTMENT
+				a.DEPARTMENT,
+				a.SUMPRICE,
+				a.EXP_TIME,
+				a.REMARK,
+		(select NAME from sys_user where USER_ID=a.USER_ID) as USER_ID
 		from 
 				HX_DETAIL a
 		where
 			a.DEPARTMENT = #{pd.DEPARTMENT}
-		<if test="pd.keyword!=null and pd.keyword!=''">
-			and (a.DITCH LIKE '%${pd.keyword}%' or a.ENTRUST LIKE '%${pd.keyword}%' or a.LOCATION LIKE '%${pd.keyword}%')
+		<if test="pd.DITCH!=null and pd.DITCH!=''">
+			and a.DITCH LIKE '%${pd.DITCH}%'
+		</if>
+		<if test="pd.ENTRUST!=null and pd.ENTRUST!=''">
+			and a.ENTRUST LIKE '%${pd.ENTRUST}%'
+		</if>
+		<if test="pd.LOCATION!=null and pd.LOCATION!=''">
+			and a.LOCATION LIKE '%${pd.LOCATION}%'
+		</if>
+		<if test="pd.STATUS!=null and pd.STATUS!=''">
+			and a.STATUS LIKE '%${pd.STATUS}%'
 		</if>
 	</select>
 	
@@ -107,10 +131,13 @@
 				a.PHONE,	
 				a.LOCATION,	
 				a.STATUS,	
-				a.USER_ID,	
+				(select NAME from sys_user where USER_ID=a.USER_ID) as USER_ID,
 				a.CREATE_TIME,	
 				a.DETAIL_ID,
-				a.DEPARTMENT
+				a.DEPARTMENT,
+				a.SUMPRICE,
+				a.EXP_TIME,
+				a.REMARK
 		from 
 				HX_DETAIL a
 				where

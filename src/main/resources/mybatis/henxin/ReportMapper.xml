@@ -11,7 +11,8 @@
 		CLIENT,
 		CREATE_DATE,
 		USER_ID,
-		REPORT_ID
+		REPORT_ID,
+		EXP_TIME
 		) values (
 		#{TYPE},
 		#{ADDRESS},
@@ -19,7 +20,8 @@
 		#{CLIENT},
 		#{CREATE_DATE},
 		#{USER_ID},
-		#{REPORT_ID}
+		#{REPORT_ID},
+		#{EXP_TIME}
 		)
 	</insert>
 
@@ -40,7 +42,8 @@
 		ADDRESS = #{ADDRESS},
 		BANK = #{BANK},
 		CLIENT = #{CLIENT},
-		REPORT_ID = REPORT_ID
+		REPORT_ID = REPORT_ID,
+		EXP_TIME = #{EXP_TIME}
 		where
 		REPORT_ID = #{REPORT_ID}
 	</update>
@@ -55,7 +58,8 @@
 		CLIENT,
 		CREATE_DATE,
 		USER_ID,
-		REPORT_ID
+		REPORT_ID,
+		EXP_TIME
 		from
 		HX_REPORT
 		where
@@ -71,16 +75,26 @@
 		a.BANK,
 		a.CLIENT,
 		a.CREATE_DATE,
-		a.USER_ID,
-		a.REPORT_ID
+		a.REPORT_ID,
+		a.EXP_TIME,
+		(select NAME from sys_user where USER_ID=a.USER_ID) as USER_ID
 		from
 		HX_REPORT a
 		where 1=1
-		<if test="pd.keyword!=null">
-			and (a.ADDRESS LIKE '%${pd.keyword}%' or a.CLIENT LIKE '%${pd.keyword}%' or a.BANK LIKE '%${pd.keyword}%')
+		<if test="pd.ADDRESS!=null">
+			and a.ADDRESS LIKE '%${pd.ADDRESS}%'
+		</if>
+		<if test="pd.CLIENT!=null">
+			and a.CLIENT LIKE '%${pd.CLIENT}%'
+		</if>
+		<if test="pd.BANK!=null">
+			and a.BANK LIKE '%${pd.BANK}%'
 		</if>
 		<if test="pd.TYPE!=null and pd.TYPE!=''">
 			and a.TYPE = #{pd.TYPE}
+		</if>
+		<if test="pd.EXP_TIME!=null and pd.EXP_TIME!=''">
+			and a.EXP_TIME = #{pd.EXP_TIME}
 		</if>
 	</select>
 
@@ -93,7 +107,8 @@
 		a.CLIENT,
 		a.CREATE_DATE,
 		a.USER_ID,
-		a.REPORT_ID
+		a.REPORT_ID,
+		a.EXP_TIME
 		from
 		HX_REPORT a
 	</select>

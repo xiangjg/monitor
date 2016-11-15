@@ -14,7 +14,10 @@
 			BUILD_YEAR,	
 			USER_ID,	
 			CREATE_TIME,	
-			DATABASE_ID
+			DATABASE_ID,
+			REMARK,
+			PRICE,
+			ADCD
 		) values (
 			#{ADDRESS},	
 			#{PURPOSE},	
@@ -24,7 +27,10 @@
 			#{BUILD_YEAR},	
 			#{USER_ID},	
 			#{CREATE_TIME},	
-			#{DATABASE_ID}
+			#{DATABASE_ID},
+			#{REMARK},
+			#{PRICE},
+			#{ADCD}
 		)
 	</insert>
 	
@@ -47,6 +53,9 @@
 				HOUSE_TYPE = #{HOUSE_TYPE},
 				FLOOR = #{FLOOR},
 				BUILD_YEAR = #{BUILD_YEAR},
+				REMARK = #{REMARK},
+				PRICE = #{PRICE},
+				ADCD = #{ADCD},
 			DATABASE_ID = DATABASE_ID
 			where 
 				DATABASE_ID = #{DATABASE_ID}
@@ -64,7 +73,10 @@
 			BUILD_YEAR,	
 			USER_ID,	
 			CREATE_TIME,	
-			DATABASE_ID
+			DATABASE_ID,
+			REMARK,
+			PRICE,
+			ADCD
 		from 
 			HX_DATABASE
 		where 
@@ -80,21 +92,30 @@
 				a.AREA,	
 				a.HOUSE_TYPE,	
 				a.FLOOR,	
-				a.BUILD_YEAR,	
-				a.USER_ID,	
+				a.BUILD_YEAR,
 				a.CREATE_TIME,	
-				a.DATABASE_ID
+				a.DATABASE_ID,
+				a.REMARK,
+				a.PRICE,
+				a.ADCD,
+		(select NAME from sys_user where USER_ID=a.USER_ID) as USER_ID
 		from 
 				HX_DATABASE a
 		where 1=1
-		<if test="pd.keyword!=null and pd.keyword!=''">
-			and (a.ADDRESS LIKE '%${pd.keyword}%' or a.PURPOSE LIKE '%${pd.keyword}%')
+		<if test="pd.ADDRESS!=null and pd.ADDRESS!=''">
+			and a.ADDRESS LIKE '%${pd.ADDRESS}%'
+		</if>
+		<if test="pd.PURPOSE!=null and pd.PURPOSE!=''">
+			and a.PURPOSE LIKE '%${pd.PURPOSE}%'
 		</if>
 		<if test="pd.minArea!=null and pd.minArea!=''">
 			and a.AREA &gt;= #{pd.minArea}
 		</if>
 		<if test="pd.maxArea!=null and pd.maxArea!=''">
 			and a.AREA &lt;= #{pd.maxArea}
+		</if>
+		<if test="pd.ADCD!=null and pd.ADCD!=''">
+			and a.ADCD = #{pd.ADCD}
 		</if>
 	</select>
 	
@@ -107,8 +128,9 @@
 				a.HOUSE_TYPE,	
 				a.FLOOR,	
 				a.BUILD_YEAR,	
-				a.USER_ID,	
-				a.CREATE_TIME,	
+				(select NAME from sys_user where USER_ID=a.USER_ID) as USER_ID,
+				a.CREATE_TIME,
+				a.ADCD,
 				a.DATABASE_ID
 		from 
 				HX_DATABASE a

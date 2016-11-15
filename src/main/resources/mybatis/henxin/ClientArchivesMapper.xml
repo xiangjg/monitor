@@ -10,13 +10,19 @@
 			PHONE,	
 			ADDRESS,	
 			CLIENT,	
-			CLIENTARCHIVES_ID
+			CLIENTARCHIVES_ID,
+			CREATE_DATE,
+			USER_ID,
+			REMARK
 		) values (
 			#{CLIENTNAME},	
 			#{PHONE},	
 			#{ADDRESS},	
 			#{CLIENT},	
-			#{CLIENTARCHIVES_ID}
+			#{CLIENTARCHIVES_ID},
+			#{CREATE_DATE},
+			#{USER_ID},
+			#{REMARK}
 		)
 	</insert>
 	
@@ -37,6 +43,7 @@
 				PHONE = #{PHONE},
 				ADDRESS = #{ADDRESS},
 				CLIENT = #{CLIENT},
+				REMARK = #{REMARK},
 			CLIENTARCHIVES_ID = CLIENTARCHIVES_ID
 			where 
 				CLIENTARCHIVES_ID = #{CLIENTARCHIVES_ID}
@@ -50,7 +57,10 @@
 			PHONE,	
 			ADDRESS,	
 			CLIENT,	
-			CLIENTARCHIVES_ID
+			CLIENTARCHIVES_ID,
+			CREATE_DATE,
+			USER_ID,
+			REMARK
 		from 
 			HX_CLIENTARCHIVES
 		where 
@@ -65,12 +75,21 @@
 				a.PHONE,	
 				a.ADDRESS,	
 				a.CLIENT,	
-				a.CLIENTARCHIVES_ID
+				a.CLIENTARCHIVES_ID,
+				a.CREATE_DATE,
+				a.REMARK,
+				(select NAME from sys_user where USER_ID=a.USER_ID) as USER_ID
 		from 
 				HX_CLIENTARCHIVES a
 		where 1=1
-		<if test="pd.keyword!=null and pd.keyword!=''">
-			and (a.CLIENT LIKE '%${pd.keyword}%' or a.ADDRESS LIKE '%${pd.keyword}%' or a.CLIENTNAME LIKE '%${pd.keyword}%')
+		<if test="pd.CLIENT!=null and pd.CLIENT!=''">
+			and a.CLIENT LIKE '%${pd.CLIENT}%'
+		</if>
+		<if test="pd.ADDRESS!=null and pd.ADDRESS!=''">
+			and a.ADDRESS LIKE '%${pd.ADDRESS}%'
+		</if>
+		<if test="pd.CLIENTNAME!=null and pd.CLIENTNAME!=''">
+			and a.CLIENTNAME LIKE '%${pd.CLIENTNAME}%'
 		</if>
 	</select>
 	
@@ -81,7 +100,9 @@
 				a.PHONE,	
 				a.ADDRESS,	
 				a.CLIENT,	
-				a.CLIENTARCHIVES_ID
+				a.CLIENTARCHIVES_ID,
+				a.CREATE_DATE,
+				(select NAME from sys_user where USER_ID=a.USER_ID) as USER_ID
 		from 
 				HX_CLIENTARCHIVES a
 	</select>

@@ -11,6 +11,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.fh.service.system.user.UserService;
+import com.fh.util.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -25,11 +27,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fh.controller.base.BaseController;
 import com.fh.entity.Page;
-import com.fh.util.AppUtil;
-import com.fh.util.ObjectExcelView;
-import com.fh.util.Const;
-import com.fh.util.PageData;
-import com.fh.util.Jurisdiction;
 import com.fh.service.hengxin.detail.DetailService;
 
 /** 
@@ -44,6 +41,8 @@ public class DetailController extends BaseController {
 	String menuUrl = "detail/list.do"; //菜单地址(权限用)
 	@Resource(name="detailService")
 	private DetailService detailService;
+	@Resource(name = "userService")
+	private UserService userService;
 	
 	/**
 	 * 新增
@@ -55,9 +54,15 @@ public class DetailController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
+		Subject currentUser = SecurityUtils.getSubject(); // shiro管理的session
+		String userName = (String)currentUser.getPrincipal();
+		PageData pd1 = new PageData();
+		pd1.put("USERNAME",userName);
+		pd1 = userService.findByUId(pd1);
+		String userId = pd1.getString("USER_ID");
 		pd.put("DETAIL_ID", this.get32UUID());	//主键
-		pd.put("USER_ID", "");	//用户id
-		pd.put("CREATE_TIME", "");	//创建时间
+		pd.put("USER_ID", userId);	//用户id
+		pd.put("CREATE_TIME", Tools.date2Str(new Date()));	//创建时间
 		detailService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
@@ -211,9 +216,13 @@ public class DetailController extends BaseController {
 			titles.add("委托方");	//3
 			titles.add("客户联系方式");	//4
 			titles.add("估价对象位置");	//5
-			titles.add("状态(报价，预评估函，正式报告）");	//6
+			titles.add("状态");	//6
 			titles.add("用户id");	//7
 			titles.add("创建时间");	//8
+			titles.add("部门");
+			titles.add("评估总价");
+			titles.add("出报告时间");
+			titles.add("备注");
 			dataMap.put("titles", titles);
 			List<PageData> varOList = detailService.listAll(pd);
 			List<PageData> varList = new ArrayList<PageData>();
@@ -227,6 +236,10 @@ public class DetailController extends BaseController {
 				vpd.put("var6", varOList.get(i).getString("STATUS"));	//6
 				vpd.put("var7", varOList.get(i).get("USER_ID").toString());	//7
 				vpd.put("var8", varOList.get(i).getString("CREATE_TIME"));	//8
+				vpd.put("var9", varOList.get(i).getString("DEPARTMENT"));
+				vpd.put("var10", varOList.get(i).get("SUMPRICE").toString());
+				vpd.put("var11", varOList.get(i).getString("EXP_TIME"));
+				vpd.put("var12", varOList.get(i).getString("REMARK"));
 				varList.add(vpd);
 			}
 			dataMap.put("varList", varList);

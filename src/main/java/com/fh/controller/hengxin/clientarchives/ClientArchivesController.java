@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.fh.service.system.user.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -45,6 +46,8 @@ public class ClientArchivesController extends BaseController {
 	String menuUrl = "clientarchives/list.do"; //菜单地址(权限用)
 	@Resource(name="clientarchivesService")
 	private ClientArchivesService clientarchivesService;
+	@Resource(name = "userService")
+	private UserService userService;
 	
 	/**
 	 * 新增
@@ -54,9 +57,18 @@ public class ClientArchivesController extends BaseController {
 		logBefore(logger, "新增ClientArchives");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
+		Subject currentUser = SecurityUtils.getSubject(); // shiro管理的session
+		String userName = (String)currentUser.getPrincipal();
+		PageData pd1 = new PageData();
+		pd1.put("USERNAME",userName);
+		pd1 = userService.findByUId(pd1);
+		String userId = pd1.getString("USER_ID");
+
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		pd.put("CLIENTARCHIVES_ID", this.get32UUID());	//主键
+		pd.put("USER_ID", userId);	//用户ID
+		pd.put("CREATE_DATE", Tools.date2Str(new Date()));	//创建时间
 		clientarchivesService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
@@ -209,6 +221,8 @@ public class ClientArchivesController extends BaseController {
 			titles.add("联系电话");	//2
 			titles.add("估价对象地址");	//3
 			titles.add("委托方");	//4
+			titles.add("创建时间");
+			titles.add("备注");
 			dataMap.put("titles", titles);
 			List<PageData> varOList = clientarchivesService.listAll(pd);
 			List<PageData> varList = new ArrayList<PageData>();
@@ -218,6 +232,8 @@ public class ClientArchivesController extends BaseController {
 				vpd.put("var2", varOList.get(i).getString("PHONE"));	//2
 				vpd.put("var3", varOList.get(i).getString("ADDRESS"));	//3
 				vpd.put("var4", varOList.get(i).getString("CLIENT"));	//4
+				vpd.put("var5", varOList.get(i).getString("CREATE_DATE"));
+				vpd.put("var6", varOList.get(i).getString("REMARK"));
 				varList.add(vpd);
 			}
 			dataMap.put("varList", varList);

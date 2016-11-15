@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50546
 File Encoding         : 65001
 
-Date: 2016-10-16 00:41:35
+Date: 2016-11-13 17:59:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,23 +32,15 @@ CREATE TABLE `content` (
   `create_date` varchar(255) DEFAULT NULL,
   `USER_ID` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`content_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of content
 -- ----------------------------
-INSERT INTO `content` VALUES ('1', '子菜单.doc', 'application/msword', '1', 'd:\\content\\子菜单.doc', 'hx_report', 'id', '1', '72192', null, null);
-INSERT INTO `content` VALUES ('2', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011170201', 'hx_report', 'id', '2', '1218376', null, null);
-INSERT INTO `content` VALUES ('3', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011172110', 'hx_report', 'id', '4', '1218376', '2016-10-11 17:21:10', '0b28c0ef033647668635d10e87f3142f');
-INSERT INTO `content` VALUES ('4', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011172510', 'hx_report', 'id', '5', '1218376', '2016-10-11 17:25:10', '0b28c0ef033647668635d10e87f3142f');
-INSERT INTO `content` VALUES ('5', '推荐！手把手教你使用Git.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011172752', 'hx_report', 'id', '6', '3712944', '2016-10-11 17:27:52', '0b28c0ef033647668635d10e87f3142f');
-INSERT INTO `content` VALUES ('6', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011173215', 'hx_report', 'id', '7', '1218376', '2016-10-11 17:32:15', '0b28c0ef033647668635d10e87f3142f');
-INSERT INTO `content` VALUES ('7', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1', 'd:\\content\\1\\20161011173753', 'hx_report', 'id', '8', '1218376', '2016-10-11 17:37:53', '0b28c0ef033647668635d10e87f3142f');
-INSERT INTO `content` VALUES ('8', '子菜单.doc', 'application/msword', '1001', 'd:\\content\\1001\\20161015110641', 'HX_REPORT', 'REPORT_ID', '654dfdbf0ab248c3ac73e37046dec38a', '72192', '2016-10-15 11:06:41', '1');
-INSERT INTO `content` VALUES ('9', '', 'application/octet-stream', '1001', 'd:\\content\\1001\\20161015185456', 'HX_REPORT', 'REPORT_ID', 'd7bc3c777e3e41ac890a42e8fdb5f0b9', '0', '2016-10-15 18:54:56', '347b39bd1835435b9cbfdf08ba87060c');
-INSERT INTO `content` VALUES ('10', '房地产委托书.doc', 'application/msword', '1001', 'd:\\content\\1001\\20161015185530', 'HX_REPORT', 'REPORT_ID', 'abf4be73f17c4b9594b096fc91142b02', '33792', '2016-10-15 18:55:30', '347b39bd1835435b9cbfdf08ba87060c');
-INSERT INTO `content` VALUES ('11', '房地产委托书.doc', 'application/msword', '1001', 'd:\\content\\1001\\20161015185650', 'HX_REPORT', 'REPORT_ID', 'd29b31a6d3ad47d6b9e2312df8f91912', '33792', '2016-10-15 18:56:50', '347b39bd1835435b9cbfdf08ba87060c');
-INSERT INTO `content` VALUES ('12', '房地产委托书.doc', 'application/msword', '1002', 'd:\\content\\1002\\20161015185952', 'HX_REPORT', 'REPORT_ID', '192f55e849c3444e8e5fdce1da345a70', '33792', '2016-10-15 18:59:52', '347b39bd1835435b9cbfdf08ba87060c');
+INSERT INTO `content` VALUES ('1', '业主要求.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '1001', 'd:\\content\\1001\\20161112103115', 'HX_REPORT', 'REPORT_ID', '1e1de606d3da489fa5bf4c12e56b6b2c', '1218376', '2016-11-12 10:31:15', '347b39bd1835435b9cbfdf08ba87060c');
+INSERT INTO `content` VALUES ('2', '需要解决回复.doc', 'application/msword', '1002', 'd:\\content\\1002\\20161112103128', 'HX_REPORT', 'REPORT_ID', '1a13532e076249618fb1ebb1eb1cd0a4', '40960', '2016-11-12 10:31:28', '347b39bd1835435b9cbfdf08ba87060c');
+INSERT INTO `content` VALUES ('3', '子菜单.doc', 'application/msword', '1001', 'd:\\content\\1001\\20161113173518', 'HX_REPORT', 'REPORT_ID', 'e21088d41b134d18ab68895c6907fefb', '72192', '2016-11-13 17:35:18', '347b39bd1835435b9cbfdf08ba87060c');
+INSERT INTO `content` VALUES ('4', '子菜单.doc', 'application/msword', '1001', 'd:\\content\\1001\\20161113174052', 'HX_REPORT', 'REPORT_ID', '2a504aa2acdf4d0a84ca484c4ef8b58b', '72192', '2016-11-13 17:40:52', '347b39bd1835435b9cbfdf08ba87060c');
 
 -- ----------------------------
 -- Table structure for hx_clientarchives
@@ -60,6 +52,9 @@ CREATE TABLE `hx_clientarchives` (
   `PHONE` varchar(255) DEFAULT NULL COMMENT '联系电话',
   `ADDRESS` varchar(255) DEFAULT NULL COMMENT '估价对象地址',
   `CLIENT` varchar(255) DEFAULT NULL COMMENT '委托方',
+  `CREATE_DATE` varchar(255) DEFAULT NULL COMMENT '创建时间',
+  `USER_ID` varchar(255) DEFAULT NULL COMMENT '用户ID',
+  `REMARK` varchar(255) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`CLIENTARCHIVES_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -81,13 +76,15 @@ CREATE TABLE `hx_database` (
   `BUILD_YEAR` varchar(255) DEFAULT NULL COMMENT '建成年代',
   `USER_ID` varchar(255) DEFAULT NULL COMMENT '用户ID',
   `CREATE_TIME` varchar(255) DEFAULT NULL COMMENT '创建时间',
+  `REMARK` varchar(255) DEFAULT NULL COMMENT '备注',
+  `PRICE` decimal(10,0) DEFAULT NULL COMMENT '单价',
+  `ADCD` varchar(255) DEFAULT NULL COMMENT '行政区',
   PRIMARY KEY (`DATABASE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hx_database
 -- ----------------------------
-INSERT INTO `hx_database` VALUES ('33ef78ffa61d41e7b40f2372cdc27713', '花果园', '111', '135', '两室一厅', '35', '2016', '', '');
 
 -- ----------------------------
 -- Table structure for hx_detail
@@ -103,15 +100,16 @@ CREATE TABLE `hx_detail` (
   `STATUS` varchar(255) DEFAULT NULL COMMENT '状态(报价，预评估函，正式报告）',
   `USER_ID` varchar(100) NOT NULL COMMENT '用户id',
   `CREATE_TIME` varchar(255) DEFAULT NULL COMMENT '创建时间',
-  `DEPARTMENT` int(11) DEFAULT NULL,
+  `DEPARTMENT` int(11) DEFAULT NULL COMMENT '部门',
+  `SUMPRICE` decimal(10,0) DEFAULT NULL COMMENT '评估总价',
+  `EXP_TIME` varchar(255) DEFAULT NULL COMMENT '出报告时间',
+  `REMARK` varchar(255) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`DETAIL_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hx_detail
 -- ----------------------------
-INSERT INTO `hx_detail` VALUES ('6f78df1e8f5242239379092329a91cb4', '11111', '11', '11', '11', '11', '111', '', '', '1');
-INSERT INTO `hx_detail` VALUES ('eab6b2474ad845ebbfa45ec287d343c1', '2', '2', '2', '2', '2', '2', '', '', '2');
 
 -- ----------------------------
 -- Table structure for hx_report
@@ -125,17 +123,13 @@ CREATE TABLE `hx_report` (
   `CLIENT` varchar(255) DEFAULT NULL COMMENT '委托方',
   `CREATE_DATE` varchar(255) DEFAULT NULL COMMENT '创建时间',
   `USER_ID` varchar(255) DEFAULT NULL COMMENT '用户ID',
+  `EXP_TIME` varchar(255) DEFAULT NULL COMMENT '出报告时间',
   PRIMARY KEY (`REPORT_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hx_report
 -- ----------------------------
-INSERT INTO `hx_report` VALUES ('192f55e849c3444e8e5fdce1da345a70', '1002', 'DI', 'YIN', 'WEI', '2016-10-15 18:59:52', '347b39bd1835435b9cbfdf08ba87060c');
-INSERT INTO `hx_report` VALUES ('654dfdbf0ab248c3ac73e37046dec38a', '1001', '测试地址', '测试银行', '测试委托方', '2016-10-15 11:06:41', '1');
-INSERT INTO `hx_report` VALUES ('abf4be73f17c4b9594b096fc91142b02', '1001', '', '', '', '2016-10-15 18:55:30', '347b39bd1835435b9cbfdf08ba87060c');
-INSERT INTO `hx_report` VALUES ('d29b31a6d3ad47d6b9e2312df8f91912', '1001', '', '', '', '2016-10-15 18:56:50', '347b39bd1835435b9cbfdf08ba87060c');
-INSERT INTO `hx_report` VALUES ('d7bc3c777e3e41ac890a42e8fdb5f0b9', '1001', '', '', '', '2016-10-15 18:54:56', '347b39bd1835435b9cbfdf08ba87060c');
 
 -- ----------------------------
 -- Table structure for sys_app_user
@@ -268,8 +262,9 @@ INSERT INTO `sys_menu` VALUES ('28', '一部', 'detail/list.do?DEPARTMENT=1', '2
 INSERT INTO `sys_menu` VALUES ('29', '二部', 'detail/list.do?DEPARTMENT=2', '27', '2', null, '2');
 INSERT INTO `sys_menu` VALUES ('30', '三部', 'detail/list.do?DEPARTMENT=3', '27', '3', null, '2');
 INSERT INTO `sys_menu` VALUES ('31', '数据库', 'database/list.do', '26', '1', null, '2');
-INSERT INTO `sys_menu` VALUES ('32', '查询下载', 'report/list.do', '23', '3', null, '2');
-INSERT INTO `sys_menu` VALUES ('33', '客户档案', 'clientarchives/list.do', '6', '2', null, '2');
+INSERT INTO `sys_menu` VALUES ('32', '评估查询', 'report/list.do?TYPE=1001', '23', '3', null, '2');
+INSERT INTO `sys_menu` VALUES ('33', '预评估查询', 'report/list.do?TYPE=1002', '23', '4', '', '2');
+INSERT INTO `sys_menu` VALUES ('34', '客户档案', 'clientarchives/list.do', '6', '2', null, '2');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -292,7 +287,7 @@ CREATE TABLE `sys_role` (
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', '系统管理员', '4290772982', '0', '1', '1', '1', '1', '1');
-INSERT INTO `sys_role` VALUES ('2', '超级管理员', '8583659456', '1', '8583659456', '8583659456', '8583659456', '8584708086', '2');
+INSERT INTO `sys_role` VALUES ('2', '超级管理员', '17173594048', '1', '8583659456', '8583659456', '8583659456', '8584708086', '2');
 INSERT INTO `sys_role` VALUES ('4', '用户组', '118', '0', '0', '0', '0', '0', null);
 INSERT INTO `sys_role` VALUES ('55896f5ce3c0494fa6850775a4e29ff6', '特级会员', '498', '7', '0', '0', '0', '0', '55896f5ce3c0494fa6850775a4e29ff6');
 INSERT INTO `sys_role` VALUES ('6', '客户组', '18', '0', '1', '1', '1', '1', null);
@@ -301,7 +296,7 @@ INSERT INTO `sys_role` VALUES ('7', '会员组', '498', '0', '0', '0', '0', '1',
 INSERT INTO `sys_role` VALUES ('7dfd8d1f7b6245d283217b7e63eec9b2', '管理员B', '4290772982', '1', '246', '0', '0', '0', '7dfd8d1f7b6245d283217b7e63eec9b2');
 INSERT INTO `sys_role` VALUES ('ac66961adaa2426da4470c72ffeec117', '管理员A', '4290772982', '1', '54', '54', '0', '246', 'ac66961adaa2426da4470c72ffeec117');
 INSERT INTO `sys_role` VALUES ('b0c77c29dfa140dc9b14a29c056f824f', '高级会员', '498', '7', '0', '0', '0', '0', 'b0c77c29dfa140dc9b14a29c056f824f');
-INSERT INTO `sys_role` VALUES ('df14e12c0fbf4f82835ac600a72b4394', '操作员', '17173593920', '1', '17171480640', '17171480640', '0', '17171480640', 'df14e12c0fbf4f82835ac600a72b4394');
+INSERT INTO `sys_role` VALUES ('df14e12c0fbf4f82835ac600a72b4394', '操作员', '34353463104', '1', '34351349824', '34351349824', '34351349824', '34351349824', 'df14e12c0fbf4f82835ac600a72b4394');
 INSERT INTO `sys_role` VALUES ('e74f713314154c35bd7fc98897859fe3', '黄金客户', '18', '6', '1', '1', '1', '1', 'e74f713314154c35bd7fc98897859fe3');
 INSERT INTO `sys_role` VALUES ('f944a9df72634249bbcb8cb73b0c9b86', '初级会员', '498', '7', '1', '1', '1', '1', 'f944a9df72634249bbcb8cb73b0c9b86');
 
@@ -330,9 +325,9 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('0b28c0ef033647668635d10e87f3142f', 'xiangjg', '66de523df6272e5a56fd0d80c71ba65c6faf4902', '向敬光', '', '2', '2016-10-15 12:42:13', '127.0.0.1', '0', '', 'default', '1991887681@qq.com', '9', '18984898929');
-INSERT INTO `sys_user` VALUES ('1', 'admin', 'de41b7fb99201d8334c23c014db35ecd92df81bc', '系统管理员', '1133671055321055258374707980945218933803269864762743594642571294', '1', '2016-10-15 23:44:17', '127.0.0.1', '0', '最高统治者', 'default', 'admin@main.com', '001', '18788888888');
-INSERT INTO `sys_user` VALUES ('347b39bd1835435b9cbfdf08ba87060c', 'lxy', 'ed17fa39091630cd78635a0afacbc84ca01793ca', '李兴艳', '', 'df14e12c0fbf4f82835ac600a72b4394', '2016-10-15 18:54:16', '127.0.0.1', '0', '', 'default', '524232045@qq.com', '001', '13765081624');
+INSERT INTO `sys_user` VALUES ('0b28c0ef033647668635d10e87f3142f', 'xiangjg', '66de523df6272e5a56fd0d80c71ba65c6faf4902', '向敬光', '', '2', '2016-10-17 17:17:33', '127.0.0.1', '0', '', 'default', '1991887681@qq.com', '9', '18984898929');
+INSERT INTO `sys_user` VALUES ('1', 'admin', 'de41b7fb99201d8334c23c014db35ecd92df81bc', '系统管理员', '1133671055321055258374707980945218933803269864762743594642571294', '1', '2016-11-12 11:19:09', '127.0.0.1', '0', '最高统治者', 'default', 'admin@main.com', '001', '18788888888');
+INSERT INTO `sys_user` VALUES ('347b39bd1835435b9cbfdf08ba87060c', 'lxy', 'ed17fa39091630cd78635a0afacbc84ca01793ca', '李兴艳', '', 'df14e12c0fbf4f82835ac600a72b4394', '2016-11-13 17:57:11', '127.0.0.1', '0', '', 'default', '524232045@qq.com', '001', '13765081624');
 
 -- ----------------------------
 -- Table structure for sys_user_qx

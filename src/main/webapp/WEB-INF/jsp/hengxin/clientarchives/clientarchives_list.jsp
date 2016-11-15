@@ -28,13 +28,15 @@
 				<tr>
 					<td>
 						<span class="input-icon">
-							<input autocomplete="off" id="nav-search-input" type="text" name="keyword" value="${pd.keyword}"  placeholder="这里输入关键词" />
-							<i id="nav-search-icon" class="icon-search"></i>
+							<input autocomplete="off" type="text" name="CLIENT" value="${pd.CLIENT}"  placeholder="这里输入委托方" />
+							<input autocomplete="off" type="text" name="ADDRESS" value="${pd.ADDRESS}"  placeholder="这里输入估价对象地址" />
+							<input autocomplete="off" type="text" name="CLIENTNAME" value="${pd.CLIENTNAME}"  placeholder="这里输入客户名称" />
+							<i class="icon-search"></i>
 						</span>
 					</td>
-					<td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
+					<td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i class="icon-search"></i></button></td>
 					<c:if test="${QX.cha == 1 }">
-					<td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="icon-download-alt"></i></a></td>
+					<td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="toExcel();" title="导出到EXCEL"><i class="icon-download-alt"></i></a></td>
 					</c:if>
 				</tr>
 			</table>
@@ -53,6 +55,9 @@
 						<th class="center">联系电话</th>
 						<th class="center">估价对象地址</th>
 						<th class="center">委托方</th>
+						<th class="center">备注</th>
+						<th class="center">创建时间</th>
+						<th class="center">创建人</th>
 						<th class="center">操作</th>
 					</tr>
 				</thead>
@@ -73,6 +78,9 @@
 										<td>${var.PHONE}</td>
 										<td>${var.ADDRESS}</td>
 										<td>${var.CLIENT}</td>
+										<td>${var.REMARK}</td>
+										<td>${var.CREATE_DATE}</td>
+										<td>${var.USER_ID}</td>
 								<td style="width: 30px;" class="center">
 									<div class='hidden-phone visible-desktop btn-group'>
 									

@@ -71,7 +71,7 @@ public class DataBaseController extends BaseController {
 		pd = this.getPageData();
 		pd.put("DATABASE_ID", this.get32UUID());	//主键
 		pd.put("USER_ID", userId);	//用户ID
-		pd.put("CREATE_TIME", dateFormat.format(new Date()));	//创建时间
+		pd.put("CREATE_TIME", Tools.date2Str(new Date()));	//创建时间
 		databaseService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
@@ -243,6 +243,9 @@ public class DataBaseController extends BaseController {
 			titles.add("建成年代");	//6
 			titles.add("用户ID");	//7
 			titles.add("创建时间");	//8
+			titles.add("备注");
+			titles.add("单价");
+			titles.add("所属区");
 			dataMap.put("titles", titles);
 			List<PageData> varOList = databaseService.listAll(pd);
 			List<PageData> varList = new ArrayList<PageData>();
@@ -256,6 +259,9 @@ public class DataBaseController extends BaseController {
 				vpd.put("var6", varOList.get(i).getString("BUILD_YEAR"));	//6
 				vpd.put("var7", varOList.get(i).getString("USER_ID"));	//7
 				vpd.put("var8", varOList.get(i).getString("CREATE_TIME"));	//8
+				vpd.put("var9", varOList.get(i).getString("REMARK"));
+				vpd.put("var10", varOList.get(i).get("PRICE").toString());
+				vpd.put("var11", varOList.get(i).getString("ADCD"));
 				varList.add(vpd);
 			}
 			dataMap.put("varList", varList);

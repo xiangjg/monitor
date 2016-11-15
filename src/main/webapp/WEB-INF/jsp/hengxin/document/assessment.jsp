@@ -18,30 +18,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>评估报告</title>
     <base href="<%=basePath%>">
-    <meta name="description" content="overview & stats" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- basic styles -->
-    <link href="static/UI_new/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="static/UI_new/css/bootstrap-responsive.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="static/UI_new/css/font-awesome.min.css" />
-    <!--[if IE 7]>
-    <link rel="stylesheet" href="static/UI_new/css/font-awesome-ie7.min.css" />
-    <![endif]-->
-    <!-- page specific plugin styles -->
-
-    <link rel="stylesheet" href="static/UI_new/css/jquery-ui-1.10.2.custom.min.css" />
-    <link rel="stylesheet" href="static/UI_new/css/chosen.css" />
-    <link rel="stylesheet" href="static/UI_new/css/datepicker.css" />
-    <link rel="stylesheet" href="static/UI_new/css/bootstrap-timepicker.css" />
-    <link rel="stylesheet" href="static/UI_new/css/daterangepicker.css" />
-    <link rel="stylesheet" href="static/UI_new/css/colorpicker.css" />
-    <!-- ace styles -->
-    <link rel="stylesheet" href="static/UI_new/css/ace.min.css" />
-    <link rel="stylesheet" href="static/UI_new/css/ace-responsive.min.css" />
-    <link rel="stylesheet" href="static/UI_new/css/ace-skins.min.css" />
-    <!--[if lt IE 9]>
-    <link rel="stylesheet" href="static/UI_new/css/ace-ie.min.css" />
-    <![endif]-->
+    <%@ include file="../../system/admin/top.jsp"%>
 
 </head>
 <body>
@@ -62,6 +39,8 @@
                             <input type="text" name="bank" id="bank" placeholder="银行">
                             <label>委托方</label>
                             <input type="text" name="client" id="client" placeholder="委托方">
+                            <label>出报告时间</label>
+                            <input class="span10 date-picker" name="EXP_TIME" id="EXP_TIME" value="${pd.EXP_TIME}" type="text" width="10px" data-date-format="yyyy-mm-dd" placeholder="这里输入出报告时间" title="出报告时间"/>
                             <div class="widget-main">
                                 <input type="file" name="file" id="id-input-file-1" accept=".xls,.xlsx,.doc,.docx"/>
                             </div>
@@ -75,19 +54,21 @@
         </div>
     </div>
 </div>
-<!-- basic scripts -->
-<script src="static/UI_new/1.9.1/jquery.min.js"></script>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='static/UI_new/js/jquery-1.9.1.min.js'>\x3C/script>");
-</script>
-
-<script src="static/UI_new/js/bootstrap.min.js"></script>
-<!-- page specific plugin scripts -->
-<script src="static/UI_new/js/ace-elements.min.js"></script>
-<script src="static/UI_new/js/ace.min.js"></script>
+<script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/ace-elements.min.js"></script>
+<script src="static/js/ace.min.js"></script>
+<script type="text/javascript" src="static/js/chosen.jquery.min.js"></script><!-- 下拉框 -->
+<script type="text/javascript" src="static/js/bootstrap-datepicker.min.js"></script><!-- 日期框 -->
+<script type="text/javascript" src="static/js/bootbox.min.js"></script><!-- 确认窗口 -->
+<!-- 引入 -->
+<script type="text/javascript" src="static/js/jquery.tips.js"></script><!--提示框-->
 <script type="text/javascript" src="static/js/ajaxfileupload.js"></script>
 <script type="text/javascript">
     $(function(){
+        //日期框
+        $('.date-picker').datepicker();
+
         $('#id-input-file-1 , #id-input-file-2').ace_file_input({
             no_file:'未选择任何文件 ...',
             btn_choose:'选择',
@@ -108,7 +89,7 @@
             url: '/monitor/document/webUpload',
             fileElementId: 'id-input-file-1',
             dataType: 'json',
-            data: {address:$("#address").val(),bank:$("#bank").val(),client:$("#client").val(),type:"1001"},
+            data: {address:$("#address").val(),bank:$("#bank").val(),client:$("#client").val(),type:"1001",EXP_TIME:$("#EXP_TIME").val()},
             success: function(data, status) {
                 if("success"==data.status)
                     alert('上传成功!');

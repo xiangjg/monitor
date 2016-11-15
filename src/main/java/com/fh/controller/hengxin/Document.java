@@ -70,6 +70,7 @@ public class Document extends BaseController {
         String address = request.getParameter("address");
         String bank = request.getParameter("bank");
         String client = request.getParameter("client");
+        String EXP_TIME = request.getParameter("EXP_TIME");
 
         SimpleDateFormat mysdf = new SimpleDateFormat("yyyyMMddHHmmss");
         try {
@@ -106,6 +107,7 @@ public class Document extends BaseController {
             pd.put("ADDRESS", address);
             pd.put("BANK", bank);
             pd.put("CLIENT", client);
+            pd.put("EXP_TIME",EXP_TIME);
             reportService.save(pd);
 
 

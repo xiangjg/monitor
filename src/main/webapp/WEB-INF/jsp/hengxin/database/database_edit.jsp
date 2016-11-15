@@ -125,7 +125,15 @@
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">用途:</td>
-				<td><input type="text" name="PURPOSE" id="PURPOSE" value="${pd.PURPOSE}" maxlength="32" placeholder="这里输入用途" title="用途"/></td>
+				<td>
+					<select name="PURPOSE" id="PURPOSE" value="${pd.PURPOSE}">
+						<option value="商业">商业</option>
+						<option value="办公">办公</option>
+						<option value="住宅">住宅</option>
+						<option value="工业用房">工业用房</option>
+						<option value="其他">其他</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">面积:</td>
@@ -142,6 +150,36 @@
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">建成年代:</td>
 				<td><input type="text" name="BUILD_YEAR" id="BUILD_YEAR" value="${pd.BUILD_YEAR}" maxlength="32" placeholder="这里输入建成年代" title="建成年代"/></td>
+			</tr>
+			<tr>
+				<td style="width:70px;text-align: right;padding-top: 13px;">单价:</td>
+				<td><input type="text" name="PRICE" id="PRICE" value="${pd.PRICE}" maxlength="32" placeholder="这里输入单价" title="单价"/></td>
+			</tr>
+			<tr>
+				<td style="width:70px;text-align: right;padding-top: 13px;">备注:</td>
+				<td><input type="text" name="REMARK" id="REMARK" value="${pd.REMARK}" maxlength="32" placeholder="这里输入备注" title="备注"/></td>
+			</tr>
+			<tr>
+				<td style="width:70px;text-align: right;padding-top: 13px;">所属区:</td>
+				<td>
+					<select name="ADCD" id="ADCD" value="${pd.ADCD}">
+						<option value=""></option>
+						<option value="云岩区">云岩区</option>
+						<option value="南明区">南明区</option>
+						<option value="花溪区">花溪区</option>
+						<option value="乌当区">乌当区</option>
+						<option value="白云区">白云区</option>
+						<option value="贵安新区">贵安新区</option>
+						<option value="遵义市">遵义市</option>
+						<option value="安顺市">安顺市</option>
+						<option value="六盘水市">六盘水市</option>
+						<option value="铜仁市">铜仁市</option>
+						<option value="黔南州">黔南州</option>
+						<option value="黔东南州">黔东南州</option>
+						<option value="黔西南州">黔西南州</option>
+						<option value="外省">外省</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td style="text-align: center;" colspan="10">
