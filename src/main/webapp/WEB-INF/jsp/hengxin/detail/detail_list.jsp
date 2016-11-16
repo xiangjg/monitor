@@ -87,7 +87,7 @@
 						<th class="center">估价对象位置</th>
 						<th class="center">状态</th>
 						<th class="center">部门</th>
-						<th class="center">评估总价</th>
+						<th class="center">评估总价(万元)</th>
 						<th class="center">出报告时间</th>
 						<th class="center">备注</th>
 						<th class="center">创建时间</th>

@@ -86,11 +86,11 @@
 						<th class="center">序号</th>
 						<th class="center">地址</th>
 						<th class="center">用途</th>
-						<th class="center">面积</th>
+						<th class="center">面积(平方米)</th>
 						<th class="center">户型</th>
 						<th class="center">楼层</th>
 						<th class="center">建成年代</th>
-						<th class="center">单价</th>
+						<th class="center">单价(元)</th>
 						<th class="center">备注</th>
 						<th class="center">所属区</th>
 						<th class="center">创建时间</th>
@@ -119,8 +119,8 @@
 										<td>${var.HOUSE_TYPE}</td>
 										<td>${var.FLOOR}</td>
 										<td>${var.BUILD_YEAR}</td>
-										<td>${var.REAMRK}</td>
 										<td>${var.PRICE}</td>
+										<td>${var.REMARK}</td>
 										<td>${var.ADCD}</td>
 										<td>${var.CREATE_TIME}</td>
 										<td>${var.USER_ID}</td>
