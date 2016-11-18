@@ -119,8 +119,8 @@
 										<td>${var.HOUSE_TYPE}</td>
 										<td>${var.FLOOR}</td>
 										<td>${var.BUILD_YEAR}</td>
-										<td>${var.REAMRK}</td>
 										<td>${var.PRICE}</td>
+										<td>${var.REMARK}</td>
 										<td>${var.ADCD}</td>
 										<td>${var.CREATE_TIME}</td>
 										<td>${var.USER_ID}</td>
