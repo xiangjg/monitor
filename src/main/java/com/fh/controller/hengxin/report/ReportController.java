@@ -117,6 +117,10 @@ public class ReportController extends BaseController {
 			pd = this.getPageData();
 			if(pd.get("TYPE")!=null&&pd.get("TYPE").toString().length()>0)
 				pd.put("TYPE",Integer.parseInt(pd.get("TYPE").toString()));
+			if(pd.get("minDate")!=null&&pd.get("minDate").toString().length()>0)
+				pd.put("minDate",pd.get("minDate").toString());
+			if(pd.get("maxDate")!=null&&pd.get("maxDate").toString().length()>0)
+				pd.put("maxDate",pd.get("maxDate").toString());
 			page.setPd(pd);
 			List<PageData>	varList = reportService.list(page);	//列出Report列表
 			for (PageData pp:varList
