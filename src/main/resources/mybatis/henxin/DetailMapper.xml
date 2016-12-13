@@ -120,7 +120,7 @@
 		<if test="pd.STATUS!=null and pd.STATUS!=''">
 			and a.STATUS LIKE '%${pd.STATUS}%'
 		</if>
-		order by a.DITCH,a.QUERY_DATE
+		order by a.DITCH,a.QUERY_DATE desc
 	</select>
 	
 	<!-- 列表(全部) -->

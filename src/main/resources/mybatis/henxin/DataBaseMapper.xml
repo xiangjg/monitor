@@ -117,7 +117,7 @@
 		<if test="pd.ADCD!=null and pd.ADCD!=''">
 			and a.ADCD = #{pd.ADCD}
 		</if>
-		order by a.AREA,a.CREATE_TIME
+		order by a.AREA,a.CREATE_TIME desc
 	</select>
 	
 	<!-- 列表(全部) -->

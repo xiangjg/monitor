@@ -96,7 +96,13 @@
 		<if test="pd.EXP_TIME!=null and pd.EXP_TIME!=''">
 			and a.EXP_TIME = #{pd.EXP_TIME}
 		</if>
-		order by a.EXP_TIME
+		<if test="pd.minDate!=null and pd.minDate!=''">
+			and str_to_date(a.EXP_TIME,'%Y-%m-%d') &gt;= str_to_date(#{pd.minDate},'%Y-%m-%d')
+		</if>
+		<if test="pd.maxDate!=null and pd.maxDate!=''">
+			and str_to_date(a.EXP_TIME,'%Y-%m-%d') &lt;= str_to_date(#{pd.maxDate},'%Y-%m-%d')
+		</if>
+		order by a.EXP_TIME desc
 	</select>
 
 	<!-- 列表(全部) -->
