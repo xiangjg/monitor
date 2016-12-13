@@ -96,6 +96,7 @@
 		<if test="pd.EXP_TIME!=null and pd.EXP_TIME!=''">
 			and a.EXP_TIME = #{pd.EXP_TIME}
 		</if>
+		order by a.EXP_TIME
 	</select>
 
 	<!-- 列表(全部) -->
