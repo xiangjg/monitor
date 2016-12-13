@@ -47,11 +47,11 @@
 						<input class="span10 date-picker" name="EXP_TIME" id="EXP_TIME" value="${pd.EXP_TIME}" type="text" data-date-format="yyyy-mm-dd" placeholder="这里输入出报告时间" title="出报告时间"/>
 					</td>
 					<td>
-						<input class="span10 date-picker" name="EXP_TIME" id="minDate" value="${pd.minDate}" type="text" data-date-format="yyyy-mm-dd" placeholder="这里输入开始时间" title="开始时间"/>
+						<input class="span10 date-picker" name="minDate" id="minDate" value="${pd.minDate}" type="text" data-date-format="yyyy-mm-dd" placeholder="这里输入开始时间" title="开始时间"/>
 					</td>
 					<td>-</td>
 					<td>
-						<input class="span10 date-picker" name="EXP_TIME" id="maxDate" value="${pd.maxDate}" type="text" data-date-format="yyyy-mm-dd" placeholder="这里输入结束时间" title="结束时间"/>
+						<input class="span10 date-picker" name="maxDate" id="maxDate" value="${pd.maxDate}" type="text" data-date-format="yyyy-mm-dd" placeholder="这里输入结束时间" title="结束时间"/>
 					</td>
 					<td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
 <%--					<c:if test="${QX.cha == 1 }">
