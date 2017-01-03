@@ -32,44 +32,24 @@
 	
 	//保存
 	function save(){
-			if($("#CLIENTNAME").val()==""){
-			$("#CLIENTNAME").tips({
+			if($("#AREACODE").val()==""){
+			$("#AREACODE").tips({
 				side:3,
-	            msg:'请输入客户名称',
+	            msg:'请输入行政区编码',
 	            bg:'#AE81FF',
 	            time:2
 	        });
-			$("#CLIENTNAME").focus();
+			$("#AREACODE").focus();
 			return false;
 		}
-		if($("#PHONE").val()==""){
-			$("#PHONE").tips({
+		if($("#AREANAME").val()==""){
+			$("#AREANAME").tips({
 				side:3,
-	            msg:'请输入联系电话',
+	            msg:'请输入行政区名称',
 	            bg:'#AE81FF',
 	            time:2
 	        });
-			$("#PHONE").focus();
-			return false;
-		}
-		if($("#ADDRESS").val()==""){
-			$("#ADDRESS").tips({
-				side:3,
-	            msg:'请输入估价对象地址',
-	            bg:'#AE81FF',
-	            time:2
-	        });
-			$("#ADDRESS").focus();
-			return false;
-		}
-		if($("#CLIENT").val()==""){
-			$("#CLIENT").tips({
-				side:3,
-	            msg:'请输入委托方',
-	            bg:'#AE81FF',
-	            time:2
-	        });
-			$("#CLIENT").focus();
+			$("#AREANAME").focus();
 			return false;
 		}
 		$("#Form").submit();
@@ -80,33 +60,17 @@
 </script>
 	</head>
 <body>
-	<form action="clientarchives/${msg }.do" name="Form" id="Form" method="post">
-		<input type="hidden" name="CLIENTARCHIVES_ID" id="CLIENTARCHIVES_ID" value="${pd.CLIENTARCHIVES_ID}"/>
+	<form action="areacode/${msg }.do" name="Form" id="Form" method="post">
+		<input type="hidden" name="AREACODE_ID" id="AREACODE_ID" value="${pd.AREACODE_ID}"/>
 		<div id="zhongxin">
 		<table id="table_report" class="table table-striped table-bordered table-hover">
 			<tr>
-				<td style="width:70px;text-align: right;padding-top: 13px;">客户名称:</td>
-				<td><input type="text" name="CLIENTNAME" id="CLIENTNAME" value="${pd.CLIENTNAME}" maxlength="32" placeholder="这里输入客户名称" title="客户名称"/></td>
+				<td style="width:70px;text-align: right;padding-top: 13px;">行政区编码:</td>
+				<td><input type="number" name="AREACODE" id="AREACODE" value="${pd.AREACODE}" maxlength="32" placeholder="这里输入行政区编码" title="行政区编码"/></td>
 			</tr>
 			<tr>
-				<td style="width:70px;text-align: right;padding-top: 13px;">联系电话:</td>
-				<td><input type="text" name="PHONE" id="PHONE" value="${pd.PHONE}" maxlength="32" placeholder="这里输入联系电话" title="联系电话"/></td>
-			</tr>
-			<tr>
-				<td style="width:70px;text-align: right;padding-top: 13px;">估价对象地址:</td>
-				<td><input type="text" name="ADDRESS" id="ADDRESS" value="${pd.ADDRESS}" maxlength="32" placeholder="这里输入估价对象地址" title="估价对象地址"/></td>
-			</tr>
-			<tr>
-				<td style="width:70px;text-align: right;padding-top: 13px;">委托方:</td>
-				<td><input type="text" name="CLIENT" id="CLIENT" value="${pd.CLIENT}" maxlength="32" placeholder="这里输入委托方" title="委托方"/></td>
-			</tr>
-			<tr>
-				<td style="width:70px;text-align: right;padding-top: 13px;">客户信息介绍:</td>
-				<td><input type="text" name="MESSAGE" id="MESSAGE" value="${pd.MESSAGE}" maxlength="200" placeholder="这里输入客户信息" title="客户信息介绍"/></td>
-			</tr>
-			<tr>
-				<td style="width:70px;text-align: right;padding-top: 13px;">备注:</td>
-				<td><input type="text" name="REMARK" id="REMARK" value="${pd.REMARK}" maxlength="50" placeholder="这里输入备注" title="备注"/></td>
+				<td style="width:70px;text-align: right;padding-top: 13px;">行政区名称:</td>
+				<td><input type="text" name="AREANAME" id="AREANAME" value="${pd.AREANAME}" maxlength="32" placeholder="这里输入行政区名称" title="行政区名称"/></td>
 			</tr>
 			<tr>
 				<td style="text-align: center;" colspan="10">

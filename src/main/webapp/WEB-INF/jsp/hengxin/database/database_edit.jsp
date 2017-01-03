@@ -157,14 +157,17 @@
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">备注:</td>
-				<td><input type="text" name="REMARK" id="REMARK" value="${pd.REMARK}" maxlength="32" placeholder="这里输入备注" title="备注"/></td>
+				<td><input type="text" name="REMARK" id="REMARK" value="${pd.REMARK}" maxlength="50" placeholder="这里输入备注" title="备注"/></td>
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">所属区:</td>
 				<td>
 					<select name="ADCD" id="ADCD" value="${pd.ADCD}">
 						<option value=""></option>
-						<option value="云岩区">云岩区</option>
+						<c:forEach items="${areas}" var="area" varStatus="vs">
+							<option value="${area.AREANAME}">${area.AREANAME}</option>
+						</c:forEach>
+<%--						<option value="云岩区">云岩区</option>
 						<option value="南明区">南明区</option>
 						<option value="花溪区">花溪区</option>
 						<option value="乌当区">乌当区</option>
@@ -177,7 +180,7 @@
 						<option value="黔南州">黔南州</option>
 						<option value="黔东南州">黔东南州</option>
 						<option value="黔西南州">黔西南州</option>
-						<option value="外省">外省</option>
+						<option value="外省">外省</option>--%>
 					</select>
 				</td>
 			</tr>

@@ -48,7 +48,10 @@
 						<select class="chzn-select" name="ADCD" id="ADCD" data-values="${pd.ADCD}" data-placeholder="请选择区域" style="vertical-align:top;width: 120px;">
 							<option value=""></option>
 							<option value="">全部</option>
-							<option value="云岩区">云岩区</option>
+							<c:forEach items="${areas}" var="area" varStatus="vs">
+								<option value="${area.AREANAME}">${area.AREANAME}</option>
+							</c:forEach>
+							<%--<option value="云岩区">云岩区</option>
 							<option value="南明区">南明区</option>
 							<option value="花溪区">花溪区</option>
 							<option value="乌当区">乌当区</option>
@@ -61,7 +64,7 @@
 							<option value="黔南州">黔南州</option>
 							<option value="黔东南州">黔东南州</option>
 							<option value="黔西南州">黔西南州</option>
-							<option value="外省">外省</option>
+							<option value="外省">外省</option>--%>
 						</select>
 					</td>
 					<td><input name="minArea" id="minArea" value="${pd.minArea}" type="text"  style="width:55px;" placeholder="最小面积"/></td>

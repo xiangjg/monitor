@@ -92,6 +92,17 @@
 			$("#STATUS").focus();
 			return false;
 		}
+		var a = /^(\d{4})-(\d{2})-(\d{2})$/
+		if (!a.test($("#QUERY_DATE").val())) {
+			alert("查勘日期格式不正确!应为YYYY-MM-DD格式");
+			$("#QUERY_DATE").focus();
+			return false;
+		}
+		if (!a.test($("#EXP_TIME").val())) {
+			alert("出报告时间日期格式不正确!应为YYYY-MM-DD格式");
+			$("#EXP_TIME").focus();
+			return false;
+		}
 		$("#Form").submit();
 		$("#zhongxin").hide();
 		$("#zhongxin2").show();
@@ -164,7 +175,7 @@
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">备注:</td>
-				<td><input type="text" name="REMARK" id="REMARK" value="${pd.REMARK}" maxlength="32" placeholder="这里输入备注" title="备注"/></td>
+				<td><input type="text" name="REMARK" id="REMARK" value="${pd.REMARK}" maxlength="50" placeholder="这里输入备注" title="备注"/></td>
 			</tr>
 			<tr style="display: none">
 				<td style="width:70px;text-align: right;padding-top: 13px;">部门</td>

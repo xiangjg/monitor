@@ -69,7 +69,9 @@
                             </div>
                         </fieldset>
                         <div class="form-actions center">
-                            <input id="submit" type="button" value="上传" class="btn btn-small btn-success" onclick="fSubmit();"/>
+                            <c:if test="${QX.add == 1 }">
+                                <input id="submit" type="button" value="上传" class="btn btn-small btn-success" onclick="fSubmit();"/>
+                            </c:if>
                         </div>
                     </form>
                 </div>
@@ -108,6 +110,11 @@
     <!-- 关闭进度 -->
     $(top.hangge());
     function fSubmit(){
+        var a = /^(\d{4})-(\d{2})-(\d{2})$/
+        if (!a.test($("#EXP_TIME").val())) {
+            alert("日期格式不正确!应为YYYY-MM-DD格式");
+            return;
+        }
         $.ajaxFileUpload({
             url: '/monitor/document/webUpload',
             fileElementId: 'id-input-file-1',
