@@ -6,12 +6,17 @@ import com.fh.entity.Page;
 import com.fh.entity.henxin.Content;
 import com.fh.service.hengxin.ContentService;
 import com.fh.service.system.user.UserService;
+import com.fh.util.Const;
 import com.fh.util.PageData;
 import com.fh.util.Tools;
 import org.apache.commons.io.FileUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -48,14 +54,14 @@ public class Document extends BaseController {
     public ModelAndView assessment(Page page) throws Exception {
         ModelAndView mv = this.getModelAndView();
         mv.setViewName("hengxin/document/assessment");
-
+        mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
         return mv;
     }
 
     @RequestMapping(value = "/estimate")
     public ModelAndView estimate(Page page) throws Exception {
         ModelAndView mv = this.getModelAndView();
-
+        mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
         mv.setViewName("hengxin/document/estimate");
         return mv;
     }
@@ -147,5 +153,19 @@ public class Document extends BaseController {
             if (pw != null)
                 pw.close();
         }
+    }
+
+    /* ===============================权限================================== */
+    public Map<String, String> getHC(){
+        Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session
+        Session session = currentUser.getSession();
+        return (Map<String, String>)session.getAttribute(Const.SESSION_QX);
+    }
+	/* ===============================权限================================== */
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder){
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(format,true));
     }
 }

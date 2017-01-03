@@ -15,6 +15,7 @@ import javax.annotation.Resource;
 import com.fh.controller.hengxin.Constant;
 import com.fh.entity.henxin.Content;
 import com.fh.service.hengxin.ContentService;
+import com.fh.service.hengxin.areacode.AreaCodeService;
 import com.fh.service.system.user.UserService;
 import com.fh.util.*;
 import org.apache.shiro.SecurityUtils;
@@ -51,6 +52,8 @@ public class DataBaseController extends BaseController {
 	private UserService userService;
 	@Resource(name = "contentService")
 	private ContentService contentService;
+	@Resource(name="areacodeService")
+	private AreaCodeService areacodeService;
 	
 	/**
 	 * 新增
@@ -141,8 +144,10 @@ public class DataBaseController extends BaseController {
 				List<Content> locationImg = contentService.getContent(param);
 				pp.put("locationImg",locationImg);
 			}
+			List<PageData> areas = areacodeService.listAll(null);
 			mv.setViewName("hengxin/database/database_list");
 			mv.addObject("varList", varList);
+			mv.addObject("areas", areas);
 			mv.addObject("pd", pd);
 			mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
 		} catch(Exception e){
@@ -161,6 +166,8 @@ public class DataBaseController extends BaseController {
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		try {
+			List<PageData> areas = areacodeService.listAll(null);
+			mv.addObject("areas", areas);
 			mv.setViewName("hengxin/database/database_edit");
 			mv.addObject("msg", "save");
 			mv.addObject("pd", pd);

@@ -1,4 +1,4 @@
-package com.fh.controller.hengxin.clientarchives;
+package com.fh.controller.hengxin.areacode;
 
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -11,7 +11,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import com.fh.service.system.user.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -32,44 +31,33 @@ import com.fh.util.Const;
 import com.fh.util.PageData;
 import com.fh.util.Tools;
 import com.fh.util.Jurisdiction;
-import com.fh.service.hengxin.clientarchives.ClientArchivesService;
+import com.fh.service.hengxin.areacode.AreaCodeService;
 
 /** 
- * 类名称：ClientArchivesController
+ * 类名称：AreaCodeController
  * 创建人：FH 
- * 创建时间：2016-10-15
+ * 创建时间：2017-01-03
  */
 @Controller
-@RequestMapping(value="/clientarchives")
-public class ClientArchivesController extends BaseController {
+@RequestMapping(value="/areacode")
+public class AreaCodeController extends BaseController {
 	
-	String menuUrl = "clientarchives/list.do"; //菜单地址(权限用)
-	@Resource(name="clientarchivesService")
-	private ClientArchivesService clientarchivesService;
-	@Resource(name = "userService")
-	private UserService userService;
+	String menuUrl = "areacode/list.do"; //菜单地址(权限用)
+	@Resource(name="areacodeService")
+	private AreaCodeService areacodeService;
 	
 	/**
 	 * 新增
 	 */
 	@RequestMapping(value="/save")
 	public ModelAndView save() throws Exception{
-		logBefore(logger, "新增ClientArchives");
+		logBefore(logger, "新增AreaCode");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
-		Subject currentUser = SecurityUtils.getSubject(); // shiro管理的session
-		String userName = (String)currentUser.getPrincipal();
-		PageData pd1 = new PageData();
-		pd1.put("USERNAME",userName);
-		pd1 = userService.findByUId(pd1);
-		String userId = pd1.getString("USER_ID");
-
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("CLIENTARCHIVES_ID", this.get32UUID());	//主键
-		pd.put("USER_ID", userId);	//用户ID
-		pd.put("CREATE_DATE", Tools.date2Str(new Date()));	//创建时间
-		clientarchivesService.save(pd);
+		pd.put("AREACODE_ID", this.get32UUID());	//主键
+		areacodeService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -80,12 +68,12 @@ public class ClientArchivesController extends BaseController {
 	 */
 	@RequestMapping(value="/delete")
 	public void delete(PrintWriter out){
-		logBefore(logger, "删除ClientArchives");
+		logBefore(logger, "删除AreaCode");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
 		PageData pd = new PageData();
 		try{
 			pd = this.getPageData();
-			clientarchivesService.delete(pd);
+			areacodeService.delete(pd);
 			out.write("success");
 			out.close();
 		} catch(Exception e){
@@ -99,12 +87,12 @@ public class ClientArchivesController extends BaseController {
 	 */
 	@RequestMapping(value="/edit")
 	public ModelAndView edit() throws Exception{
-		logBefore(logger, "修改ClientArchives");
+		logBefore(logger, "修改AreaCode");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "edit")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		clientarchivesService.edit(pd);
+		areacodeService.edit(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -115,15 +103,15 @@ public class ClientArchivesController extends BaseController {
 	 */
 	@RequestMapping(value="/list")
 	public ModelAndView list(Page page){
-		logBefore(logger, "列表ClientArchives");
+		logBefore(logger, "列表AreaCode");
 		//if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		try{
 			pd = this.getPageData();
 			page.setPd(pd);
-			List<PageData>	varList = clientarchivesService.list(page);	//列出ClientArchives列表
-			mv.setViewName("hengxin/clientarchives/clientarchives_list");
+			List<PageData>	varList = areacodeService.list(page);	//列出AreaCode列表
+			mv.setViewName("hengxin/areacode/areacode_list");
 			mv.addObject("varList", varList);
 			mv.addObject("pd", pd);
 			mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
@@ -138,12 +126,12 @@ public class ClientArchivesController extends BaseController {
 	 */
 	@RequestMapping(value="/goAdd")
 	public ModelAndView goAdd(){
-		logBefore(logger, "去新增ClientArchives页面");
+		logBefore(logger, "去新增AreaCode页面");
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		try {
-			mv.setViewName("hengxin/clientarchives/clientarchives_edit");
+			mv.setViewName("hengxin/areacode/areacode_edit");
 			mv.addObject("msg", "save");
 			mv.addObject("pd", pd);
 		} catch (Exception e) {
@@ -157,13 +145,13 @@ public class ClientArchivesController extends BaseController {
 	 */
 	@RequestMapping(value="/goEdit")
 	public ModelAndView goEdit(){
-		logBefore(logger, "去修改ClientArchives页面");
+		logBefore(logger, "去修改AreaCode页面");
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		try {
-			pd = clientarchivesService.findById(pd);	//根据ID读取
-			mv.setViewName("hengxin/clientarchives/clientarchives_edit");
+			pd = areacodeService.findById(pd);	//根据ID读取
+			mv.setViewName("hengxin/areacode/areacode_edit");
 			mv.addObject("msg", "edit");
 			mv.addObject("pd", pd);
 		} catch (Exception e) {
@@ -178,7 +166,7 @@ public class ClientArchivesController extends BaseController {
 	@RequestMapping(value="/deleteAll")
 	@ResponseBody
 	public Object deleteAll() {
-		logBefore(logger, "批量删除ClientArchives");
+		logBefore(logger, "批量删除AreaCode");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "dell")){return null;} //校验权限
 		PageData pd = new PageData();		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -188,7 +176,7 @@ public class ClientArchivesController extends BaseController {
 			String DATA_IDS = pd.getString("DATA_IDS");
 			if(null != DATA_IDS && !"".equals(DATA_IDS)){
 				String ArrayDATA_IDS[] = DATA_IDS.split(",");
-				clientarchivesService.deleteAll(ArrayDATA_IDS);
+				areacodeService.deleteAll(ArrayDATA_IDS);
 				pd.put("msg", "ok");
 			}else{
 				pd.put("msg", "no");
@@ -209,7 +197,7 @@ public class ClientArchivesController extends BaseController {
 	 */
 	@RequestMapping(value="/excel")
 	public ModelAndView exportExcel(){
-		logBefore(logger, "导出ClientArchives到excel");
+		logBefore(logger, "导出AreaCode到excel");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;}
 		ModelAndView mv = new ModelAndView();
 		PageData pd = new PageData();
@@ -217,25 +205,15 @@ public class ClientArchivesController extends BaseController {
 		try{
 			Map<String,Object> dataMap = new HashMap<String,Object>();
 			List<String> titles = new ArrayList<String>();
-			titles.add("客户名称");	//1
-			titles.add("联系电话");	//2
-			titles.add("估价对象地址");	//3
-			titles.add("委托方");	//4
-			titles.add("创建时间");
-			titles.add("客户信息介绍");
-			titles.add("备注");
+			titles.add("行政区编码");	//1
+			titles.add("行政区名称");	//2
 			dataMap.put("titles", titles);
-			List<PageData> varOList = clientarchivesService.listAll(pd);
+			List<PageData> varOList = areacodeService.listAll(pd);
 			List<PageData> varList = new ArrayList<PageData>();
 			for(int i=0;i<varOList.size();i++){
 				PageData vpd = new PageData();
-				vpd.put("var1", varOList.get(i).getString("CLIENTNAME"));	//1
-				vpd.put("var2", varOList.get(i).getString("PHONE"));	//2
-				vpd.put("var3", varOList.get(i).getString("ADDRESS"));	//3
-				vpd.put("var4", varOList.get(i).getString("CLIENT"));	//4
-				vpd.put("var5", varOList.get(i).getString("CREATE_DATE"));
-				vpd.put("var6", varOList.get(i).getString("MESSAGE"));
-				vpd.put("var7", varOList.get(i).getString("REMARK"));
+				vpd.put("var1", varOList.get(i).get("AREACODE").toString());	//1
+				vpd.put("var2", varOList.get(i).getString("AREANAME"));	//2
 				varList.add(vpd);
 			}
 			dataMap.put("varList", varList);
