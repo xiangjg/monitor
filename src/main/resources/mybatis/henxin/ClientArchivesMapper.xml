@@ -13,6 +13,7 @@
 			CLIENTARCHIVES_ID,
 			CREATE_DATE,
 			USER_ID,
+			MESSAGE,
 			REMARK
 		) values (
 			#{CLIENTNAME},	
@@ -22,6 +23,7 @@
 			#{CLIENTARCHIVES_ID},
 			#{CREATE_DATE},
 			#{USER_ID},
+			#{MESSAGE},
 			#{REMARK}
 		)
 	</insert>
@@ -44,6 +46,7 @@
 				ADDRESS = #{ADDRESS},
 				CLIENT = #{CLIENT},
 				REMARK = #{REMARK},
+				MESSAGE = #{MESSAGE},
 			CLIENTARCHIVES_ID = CLIENTARCHIVES_ID
 			where 
 				CLIENTARCHIVES_ID = #{CLIENTARCHIVES_ID}
@@ -60,7 +63,8 @@
 			CLIENTARCHIVES_ID,
 			CREATE_DATE,
 			USER_ID,
-			REMARK
+			REMARK,
+			MESSAGE
 		from 
 			HX_CLIENTARCHIVES
 		where 
@@ -78,6 +82,7 @@
 				a.CLIENTARCHIVES_ID,
 				a.CREATE_DATE,
 				a.REMARK,
+				a.MESSAGE,
 				(select NAME from sys_user where USER_ID=a.USER_ID) as USER_ID
 		from 
 				HX_CLIENTARCHIVES a
@@ -102,6 +107,8 @@
 				a.CLIENT,	
 				a.CLIENTARCHIVES_ID,
 				a.CREATE_DATE,
+				a.REMARK,
+				a.MESSAGE,
 				(select NAME from sys_user where USER_ID=a.USER_ID) as USER_ID
 		from 
 				HX_CLIENTARCHIVES a
