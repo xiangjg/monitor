@@ -1,5 +1,6 @@
 package com.jone.test;
 
+import com.fh.util.MD5;
 import org.junit.Test;
 
 import java.math.BigInteger;
@@ -21,5 +22,10 @@ public class TestBit {
         System.out.println(num.testBit(3));
         num.clearBit(2);
         System.out.println(num.testBit(1));
+    }
+
+    @Test
+    public void testPassword(){
+        System.out.println(MD5.md5("1"));
     }
 }
