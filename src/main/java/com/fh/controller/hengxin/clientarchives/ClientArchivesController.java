@@ -1,5 +1,6 @@
 package com.fh.controller.hengxin.clientarchives;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -11,7 +12,10 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.fh.entity.henxin.Content;
+import com.fh.service.hengxin.ContentService;
 import com.fh.service.system.user.UserService;
+import com.fh.util.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -21,17 +25,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fh.controller.base.BaseController;
 import com.fh.entity.Page;
-import com.fh.util.AppUtil;
-import com.fh.util.ObjectExcelView;
-import com.fh.util.Const;
-import com.fh.util.PageData;
-import com.fh.util.Tools;
-import com.fh.util.Jurisdiction;
 import com.fh.service.hengxin.clientarchives.ClientArchivesService;
 
 /** 
@@ -48,6 +48,8 @@ public class ClientArchivesController extends BaseController {
 	private ClientArchivesService clientarchivesService;
 	@Resource(name = "userService")
 	private UserService userService;
+	@Resource(name = "contentService")
+	private ContentService contentService;
 	
 	/**
 	 * 新增
@@ -246,7 +248,66 @@ public class ClientArchivesController extends BaseController {
 		}
 		return mv;
 	}
-	
+	/**
+	 * 去新增页面
+	 */
+	@RequestMapping(value = "/goImgAdd")
+	public ModelAndView goImgAdd() {
+		logBefore(logger, "去新增DataBasePictures页面");
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		try {
+			mv.setViewName("hengxin/clientarchives/pictures_add");
+			mv.addObject("pd", pd);
+		} catch (Exception e) {
+			logger.error(e.toString(), e);
+		}
+		return mv;
+	}
+
+	@RequestMapping(value = "/saveImg")
+	@ResponseBody
+	public Object saveImg(@RequestParam(required = false) MultipartFile file) throws Exception {
+		logBefore(logger, "新增DataBasePictures");
+		Map<String, String> map = new HashMap<String, String>();
+		String ffile = DateUtil.getDays(), fileName = "";
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		SimpleDateFormat mysdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		if (Jurisdiction.buttonJurisdiction(menuUrl, "add")) {
+			if (null != file && !file.isEmpty()) {
+//				if(file.getBytes().length>500*1024){
+//					map.put("result", "ok");
+//					return AppUtil.returnObject(pd, map);
+//				}
+				Subject currentUser = SecurityUtils.getSubject(); // shiro管理的session
+				String userName =  (String)currentUser.getPrincipal();
+				PageData param = new PageData();
+				param.put("USERNAME",userName);
+				param = userService.findByUId(param);
+				String userId = param.getString("USER_ID");
+
+				String docType = pd.getString("docType");
+				Content content  = new Content();
+				content.setContentName(file.getOriginalFilename());
+				content.setContentType(file.getContentType());
+				content.setDocType(docType);
+				content.setFileSize(String.valueOf(file.getSize()));
+				content.setPath("d:\\content\\"+docType+ File.separator+ mysdf.format(new Date()));
+				content.setRefTable("HX_CLIENTARCHIVES");
+				content.setRefFiled("CLIENTARCHIVES_ID");
+				content.setRefValue(pd.getString("dbid"));
+				content.setCreateDate(Tools.date2Str(new Date()));
+				content.setUserId(userId);
+				contentService.saveFile(content,file.getBytes());
+			} else {
+				System.out.println("上传失败");
+			}
+		}
+		map.put("result", "ok");
+		return AppUtil.returnObject(pd, map);
+	}
 	/* ===============================权限================================== */
 	public Map<String, String> getHC(){
 		Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session
