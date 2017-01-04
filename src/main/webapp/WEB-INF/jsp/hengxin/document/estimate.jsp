@@ -111,7 +111,7 @@
     $(top.hangge());
     function fSubmit(){
         var a = /^(\d{4})-(\d{2})-(\d{2})$/
-        if (!a.test($("#EXP_TIME").val())) {
+        if ($("#EXP_TIME").val()!=""&&!a.test($("#EXP_TIME").val())) {
             alert("日期格式不正确!应为YYYY-MM-DD格式");
             return;
         }
