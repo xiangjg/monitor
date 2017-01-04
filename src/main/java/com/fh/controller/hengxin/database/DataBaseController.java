@@ -309,10 +309,10 @@ public class DataBaseController extends BaseController {
 		SimpleDateFormat mysdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		if (Jurisdiction.buttonJurisdiction(menuUrl, "add")) {
 			if (null != file && !file.isEmpty()) {
-				if(file.getBytes().length>500*1024){
-					map.put("result", "ok");
-					return AppUtil.returnObject(pd, map);
-				}
+//				if(file.getBytes().length>500*1024){
+//					map.put("result", "ok");
+//					return AppUtil.returnObject(pd, map);
+//				}
 				Subject currentUser = SecurityUtils.getSubject(); // shiro管理的session
 				String userName =  (String)currentUser.getPrincipal();
 				PageData param = new PageData();
