@@ -200,6 +200,13 @@
         //         return 0;
         //     });
         // });
+        uploader.on('beforeFileQueued', function(file) {console.info(this);
+            if(file.size>500*1024){
+                file.setStatus('invalid', 'exceed_size' );
+                this.trigger( 'error', 'F_EXCEED_SIZE', 500*1024, file );
+                return false;
+            }
+        });
 
         // 添加“添加文件”的按钮，
         uploader.addButton({
@@ -230,7 +237,7 @@
                 showError = function( code ) {
                     switch( code ) {
                         case 'exceed_size':
-                            text = '文件大小超出';
+                            text = '文件大小超出500KB';
                             break;
 
                         case 'interrupt':
@@ -544,6 +551,8 @@
         uploader.onError = function( code ) {
         	if(code == 'F_DUPLICATE'){
         		alert( '图片重复' );
+            }else if(code == 'F_EXCEED_SIZE'){
+                alert('文件大小超出500KB,不能加入上传');
             }else{
             	alert( 'Eroor: ' + code );
             }
