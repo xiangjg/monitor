@@ -187,6 +187,8 @@ public class DataBaseController extends BaseController {
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		try {
+			List<PageData> areas = areacodeService.listAll(null);
+			mv.addObject("areas", areas);
 			pd = databaseService.findById(pd);	//根据ID读取
 			mv.setViewName("hengxin/database/database_edit");
 			mv.addObject("msg", "edit");
