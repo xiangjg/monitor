@@ -98,7 +98,7 @@
 			$("#QUERY_DATE").focus();
 			return false;
 		}
-		if (!a.test($("#EXP_TIME").val())) {
+		if ($("#EXP_TIME").val()!=""&&!a.test($("#EXP_TIME").val())) {
 			alert("出报告时间日期格式不正确!应为YYYY-MM-DD格式");
 			$("#EXP_TIME").focus();
 			return false;
