@@ -20,4 +20,8 @@ public class Constant {
      * 位置图
      */
     public final static String doctype_locationimg = "1004";
+    /*
+     * 客户附件
+     */
+    public final static String doctype_attach = "1005";
 }
