@@ -1,6 +1,7 @@
 package com.fh.controller.hengxin.clientarchives;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -11,7 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
 import com.fh.entity.henxin.Content;
 import com.fh.service.hengxin.ContentService;
 import com.fh.service.system.user.UserService;
@@ -23,11 +27,9 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fh.controller.base.BaseController;
@@ -265,8 +267,68 @@ public class ClientArchivesController extends BaseController {
 		}
 		return mv;
 	}
+	@SuppressWarnings({ "unused" })
+	@RequestMapping(value = "/saveImg", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
+	public void AjaxUpload(HttpServletRequest request,
+						   HttpServletResponse response) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("status", "fail");
+		String dbid = request.getParameter("dbid");
+		String docType = request.getParameter("docType");
+		List<MultipartFile> files = ((MultipartHttpServletRequest) request)
+				.getFiles("file");
+		if (files.size() < 1 || files.get(0).getSize() <= 0) {
+			result.put("message", "上传文件不能为空!");
+		}
+		SimpleDateFormat mysdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		try {
+			MultipartFile file = files.get(0);
+			Subject currentUser = SecurityUtils.getSubject(); // shiro管理的session
+			String userName =  (String)currentUser.getPrincipal();
+			PageData param = new PageData();
+			param.put("USERNAME",userName);
+			param = userService.findByUId(param);
+			String userId = param.getString("USER_ID");
 
-	@RequestMapping(value = "/saveImg")
+			Content content  = new Content();
+			content.setContentName(file.getOriginalFilename());
+			content.setContentType(file.getContentType());
+			content.setDocType(docType);
+			content.setFileSize(String.valueOf(file.getSize()));
+			content.setPath("d:\\content\\"+docType+ File.separator+ mysdf.format(new Date()));
+			content.setRefTable("HX_CLIENTARCHIVES");
+			content.setRefFiled("CLIENTARCHIVES_ID");
+			content.setRefValue(dbid);
+			content.setCreateDate(Tools.date2Str(new Date()));
+			content.setUserId(userId);
+			contentService.saveFile(content,file.getBytes());
+			result.put("status", "success");
+			result.put("message", "上传成功!");
+		}catch (Exception e){
+			result.put("status", "fail");
+			if (result.get("message") == null)
+				result.put("message", e.getMessage());
+		}
+
+		response.setContentType("application/json" + ";charset=UTF-8");
+		response.setHeader("Pragma", "No-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setDateHeader("Expires", 0);
+		PrintWriter pw = null;
+		try {
+			pw = response.getWriter();
+			pw.write(JSON.toJSONString(result));
+			pw.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (pw != null)
+				pw.close();
+		}
+
+	}
+/*	@RequestMapping(value = "/saveImg")
 	@ResponseBody
 	public Object saveImg(@RequestParam(required = false) MultipartFile file) throws Exception {
 		logBefore(logger, "新增DataBasePictures");
@@ -307,7 +369,7 @@ public class ClientArchivesController extends BaseController {
 		}
 		map.put("result", "ok");
 		return AppUtil.returnObject(pd, map);
-	}
+	}*/
 	/* ===============================权限================================== */
 	public Map<String, String> getHC(){
 		Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session
