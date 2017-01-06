@@ -93,7 +93,7 @@
 						<th class="center">户型</th>
 						<th class="center">楼层</th>
 						<th class="center">建成年代</th>
-						<th class="center">单价(元)</th>
+						<th class="center">单价(元/平方米)</th>
 						<th class="center">备注</th>
 						<th class="center">所属区</th>
 						<th class="center">创建时间</th>
