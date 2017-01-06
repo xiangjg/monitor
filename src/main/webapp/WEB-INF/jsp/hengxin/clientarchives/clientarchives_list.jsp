@@ -93,6 +93,9 @@
 										<button class="btn btn-mini btn-info" data-toggle="dropdown"><i class="icon-cog icon-only"></i></button>
 										<ul class="dropdown-menu dropdown-icon-only dropdown-light pull-right dropdown-caret dropdown-close">
 											<c:if test="${QX.edit == 1 }">
+												<li><a style="cursor:pointer;" title="上传附件" onclick="uploadImg('${var.CLIENTARCHIVES_ID}','1005');" class="tooltip-success" data-rel="tooltip" title="" data-placement="left"><span class="green"><i class="icon-edit"></i></span></a></li>
+											</c:if>
+											<c:if test="${QX.edit == 1 }">
 											<li><a style="cursor:pointer;" title="编辑" onclick="edit('${var.CLIENTARCHIVES_ID}');" class="tooltip-success" data-rel="tooltip" title="" data-placement="left"><span class="green"><i class="icon-edit"></i></span></a></li>
 											</c:if>
 											<c:if test="${QX.del == 1 }">
@@ -228,6 +231,25 @@
 				diag.close();
 			 };
 			 diag.show();
+		}
+		function uploadImg(id,type){
+			top.jzts();
+			var diag = new top.Dialog();
+			diag.Drag=true;
+			diag.Title ="上传附件";
+			diag.URL = '<%=basePath%>clientarchives/goImgAdd.do?dbid='+id+"&docType="+type;
+			diag.Width = 800;
+			diag.Height = 490;
+			diag.CancelEvent = function(){ //关闭事件
+				if('${page.currentPage}' == '0'){
+					top.jzts();
+					setTimeout("self.location=self.location",100);
+				}else{
+					nextPage(${page.currentPage});
+				}
+				diag.close();
+			};
+			diag.show();
 		}
 		</script>
 		
