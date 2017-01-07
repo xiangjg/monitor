@@ -59,6 +59,7 @@
 						<th class="center">备注</th>
 						<th class="center">创建时间</th>
 						<th class="center">创建人</th>
+						<th class="center">文档附件</th>
 						<th class="center">操作</th>
 					</tr>
 				</thead>
@@ -83,6 +84,19 @@
 										<td>${var.REMARK}</td>
 										<td>${var.CREATE_DATE}</td>
 										<td>${var.USER_ID}</td>
+								<c:choose>
+									<c:when test="${not empty var.files}">
+										<td>
+											<c:forEach items="${var.files}" var="files" varStatus="vs">
+												<a href="<%=basePath%>download/file?cid=${files.contentId}" >${files.contentName}</a><br/>
+
+											</c:forEach>
+										</td>
+									</c:when>
+									<c:otherwise>
+										<td>没有附件</td>
+									</c:otherwise>
+								</c:choose>
 								<td style="width: 30px;" class="center">
 									<div class='hidden-phone visible-desktop btn-group'>
 									
