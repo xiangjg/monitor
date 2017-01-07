@@ -30,8 +30,10 @@
 					</h1>
 				</div>
 				<!--/page-header-->
-
-				<div class="row-fluid">
+				<div style="text-align: center">
+					<img src="<%=path%>/static/images/b2036b42cf1fdca41657c2f916c91ee7_.jpg">
+				</div>
+				<%--<div class="row-fluid">
 
 					<div class="space-6"></div>
 					<div class="row-fluid">
@@ -269,7 +271,7 @@
 
 
 					</div>
-				</div>
+				</div>--%>
 				<!--/row-->
 
 
