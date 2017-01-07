@@ -127,6 +127,16 @@ public class ClientArchivesController extends BaseController {
 			pd = this.getPageData();
 			page.setPd(pd);
 			List<PageData>	varList = clientarchivesService.list(page);	//列出ClientArchives列表
+			for (PageData pp:varList
+					) {
+				String reportId = pp.get("CLIENTARCHIVES_ID").toString();
+				Content param = new Content();
+				param.setRefTable("HX_CLIENTARCHIVES");
+				param.setRefFiled("CLIENTARCHIVES_ID");
+				param.setRefValue(reportId);
+				List<Content> files = contentService.getContent(param);
+				pp.put("files",files);
+			}
 			mv.setViewName("hengxin/clientarchives/clientarchives_list");
 			mv.addObject("varList", varList);
 			mv.addObject("pd", pd);
