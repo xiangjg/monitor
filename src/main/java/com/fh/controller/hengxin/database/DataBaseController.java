@@ -16,6 +16,7 @@ import com.fh.controller.hengxin.Constant;
 import com.fh.entity.henxin.Content;
 import com.fh.service.hengxin.ContentService;
 import com.fh.service.hengxin.areacode.AreaCodeService;
+import com.fh.service.hengxin.querymanager.QueryManagerService;
 import com.fh.service.system.user.UserService;
 import com.fh.util.*;
 import org.apache.shiro.SecurityUtils;
@@ -54,6 +55,8 @@ public class DataBaseController extends BaseController {
 	private ContentService contentService;
 	@Resource(name="areacodeService")
 	private AreaCodeService areacodeService;
+	@Resource(name="querymanagerService")
+	private QueryManagerService querymanagerService;
 	
 	/**
 	 * 新增
@@ -126,9 +129,39 @@ public class DataBaseController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		try{
+			List<PageData> qareas = getQArea();
+			List<PageData> areas = areacodeService.listAll(null);
+			List<PageData> userareas = new ArrayList<>();
+			boolean haveAll = false;
+			for (PageData qarea: qareas
+					) {
+				if("全部".equals(qarea.get("AREA_NAME").toString())){
+					haveAll = true;
+					break;
+				}
+				for (PageData area: areas
+						) {
+					if(area.get("AREANAME").equals(qarea.get("AREA_NAME")))
+						userareas.add(area);
+				}
+			}
+			if(haveAll)
+				mv.addObject("areas", areas);
+			else
+				mv.addObject("areas", userareas);
+
+
 			pd = this.getPageData();
 			page.setPd(pd);
-			List<PageData>	varList = databaseService.list(page);	//列出DataBase列表
+			List<PageData>	varList = new ArrayList<>();	//列出DataBase列表
+			if(haveAll)
+				varList = databaseService.list(page);
+			else{
+				PageData user = getUser();
+				String userId = user.getString("USER_ID");
+				page.getPd().put("USER_ID",userId);
+				varList = databaseService.list(page);
+			}
 			for (PageData pp:varList
 					) {
 				String reportId = pp.get("DATABASE_ID").toString();
@@ -144,10 +177,10 @@ public class DataBaseController extends BaseController {
 				List<Content> locationImg = contentService.getContent(param);
 				pp.put("locationImg",locationImg);
 			}
-			List<PageData> areas = areacodeService.listAll(null);
+
+
 			mv.setViewName("hengxin/database/database_list");
 			mv.addObject("varList", varList);
-			mv.addObject("areas", areas);
 			mv.addObject("pd", pd);
 			mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
 		} catch(Exception e){
@@ -355,5 +388,30 @@ public class DataBaseController extends BaseController {
 	public void initBinder(WebDataBinder binder){
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format,true));
+	}
+
+	private List<PageData> getQArea(){
+		try {
+			PageData user = getUser();
+			if(user!=null)
+				return querymanagerService.listAll(user);
+		}catch (Exception e){
+			return new ArrayList<>();
+		}
+		return new ArrayList<>();
+	}
+
+	private PageData getUser(){
+		try {
+			Subject currentUser = SecurityUtils.getSubject(); // shiro管理的session
+			String userName = (String)currentUser.getPrincipal();
+			PageData param = new PageData();
+			param.put("USERNAME",userName);
+			return userService.findByUId(param);
+		}catch (Exception e){
+			return null;
+		}
+
+
 	}
 }
