@@ -42,4 +42,11 @@ public class ContentService {
         FileUtils.writeByteArrayToFile(new File(pd.getPath()), file);
         dao.save("ContentMapper.save", pd);
     }
+    /*
+        * 删除
+        */
+    public void delete(PageData pd)throws Exception{
+        dao.delete("ContentMapper.deleteByPrimaryKey", pd);
+    }
+
 }
