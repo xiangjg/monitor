@@ -3,6 +3,7 @@ package com.fh.controller.hengxin;
 import com.fh.controller.base.BaseController;
 import com.fh.entity.henxin.Content;
 import com.fh.service.hengxin.ContentService;
+import com.fh.util.PageData;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -56,6 +57,20 @@ public class DownLoadController extends BaseController{
         }finally {
             if(out!=null)
                 out.close();
+        }
+
+    }
+
+    @RequestMapping("/file/del")
+    public void deleteFile(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String contentId = request.getParameter("cid");
+            PageData param = new PageData();
+            param.put("contentId",contentId);
+            contentService.delete(param);
+        }catch (Exception e){
+            logger.error(e.getMessage());
+
         }
 
     }
