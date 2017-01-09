@@ -120,6 +120,8 @@ public class QueryManagerController extends BaseController {
 			for (PageData qpd:
 					varList) {
 				PageData user = userService.findByUiId(qpd);
+				if(user==null)//用户被删除的情况下
+					continue;
 				qpd.put("NAME",user.get("NAME"));
 			}
 			mv.setViewName("hengxin/querymanager/querymanager_list");
