@@ -88,7 +88,7 @@
 									<c:when test="${not empty var.files}">
 										<td>
 											<c:forEach items="${var.files}" var="files" varStatus="vs">
-												<a href="<%=basePath%>download/file?cid=${files.contentId}" >${files.contentName}</a><br/>
+												<a href="<%=basePath%>download/file?cid=${files.contentId}" >${files.contentName}</a>&nbsp;&nbsp;<a href="<%=basePath%>download/file?cid=${files.contentId}">删除</a><br/>
 
 											</c:forEach>
 										</td>
