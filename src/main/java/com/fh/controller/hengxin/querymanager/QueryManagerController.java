@@ -117,12 +117,20 @@ public class QueryManagerController extends BaseController {
 			pd = this.getPageData();
 			page.setPd(pd);
 			List<PageData>	varList = querymanagerService.list(page);	//列出QueryManager列表
+			List<PageData> delList = new ArrayList<>();
 			for (PageData qpd:
 					varList) {
 				PageData user = userService.findByUiId(qpd);
-				if(user==null)//用户被删除的情况下
+				if(user==null){//用户被删除的情况下
+					delList.add(qpd);
+					querymanagerService.delete(qpd);
 					continue;
+				}
 				qpd.put("NAME",user.get("NAME"));
+			}
+			for(PageData dpd:
+					delList){
+				varList.remove(dpd);
 			}
 			mv.setViewName("hengxin/querymanager/querymanager_list");
 			mv.addObject("varList", varList);
