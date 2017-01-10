@@ -2,7 +2,9 @@ package com.fh.controller.base;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
 import com.fh.service.system.user.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -17,6 +19,8 @@ import com.fh.util.PageData;
 import com.fh.util.Tools;
 import com.fh.util.UuidUtil;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 
 public class BaseController {
@@ -81,5 +85,24 @@ public class BaseController {
 		Subject currentUser = SecurityUtils.getSubject(); // shiro管理的session
 		return (String)currentUser.getPrincipal();
 
+	}
+
+	public void write(HttpServletResponse response,Object result){
+		response.setContentType("application/json" + ";charset=UTF-8");
+		response.setHeader("Pragma", "No-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setDateHeader("Expires", 0);
+		PrintWriter pw = null;
+		try {
+			pw = response.getWriter();
+			pw.write(JSON.toJSONString(result));
+			pw.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (pw != null)
+				pw.close();
+		}
 	}
 }
