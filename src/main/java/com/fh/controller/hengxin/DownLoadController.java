@@ -1,5 +1,6 @@
 package com.fh.controller.hengxin;
 
+import com.alibaba.fastjson.JSON;
 import com.fh.controller.base.BaseController;
 import com.fh.entity.henxin.Content;
 import com.fh.service.hengxin.ContentService;
@@ -9,6 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
@@ -16,8 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jone on 2016/10/15.
@@ -60,19 +65,37 @@ public class DownLoadController extends BaseController{
         }
 
     }
-
-    @RequestMapping("/file/del")
+    @SuppressWarnings({ "unused" })
+    @RequestMapping(value = "/file/del", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
     public void deleteFile(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", false);
         try {
             String contentId = request.getParameter("cid");
             PageData param = new PageData();
             param.put("contentId",contentId);
             contentService.delete(param);
+            result.put("status", true);
         }catch (Exception e){
             logger.error(e.getMessage());
-
+            result.put("msg", e.getMessage());
         }
-
+        response.setContentType("application/json;charset=UTF-8");
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        PrintWriter pw = null;
+        try {
+            pw = response.getWriter();
+            pw.write(JSON.toJSONString(result));
+            pw.flush();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            if (pw != null)
+                pw.close();
+        }
     }
 
     public String getFileName(HttpServletRequest request,
