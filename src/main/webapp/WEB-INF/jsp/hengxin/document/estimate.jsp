@@ -122,14 +122,14 @@
             data: {address:$("#address").val(),bank:$("#bank").val(),client:$("#client").val(),type:"1002",EXP_TIME:$("#EXP_TIME").val()},
             success: function(data, status) {
                 if("success"==data.status)
-                    alert('上传成功!');
+                    bootbox.alert('上传成功!');
                 else{
-                    alert(data.message);
+                    bootbox.alert(data.message);
                     location.reload();
                 }
             },
             error: function(data, status, e) {
-                alert("上传错误："+e);
+                bootbox.alert("上传错误："+e);
                 location.reload();
             }
         })

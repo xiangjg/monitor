@@ -65,15 +65,13 @@
 				data: {dbid:$("#dbid").val(),docType:$("#docType").val()},
 				success: function(data, status) {
 					if("success"==data.status)
-						alert('上传成功!');
+						bootbox.alert('上传成功!');
 					else{
-						alert(data.message);
-						location.reload();
+						bootbox.alert(data.message);
 					}
 				},
 				error: function(data, status, e) {
-					alert("上传错误："+e);
-					location.reload();
+					bootbox.alert("上传错误："+e);
 				}
 			})
 			return false;

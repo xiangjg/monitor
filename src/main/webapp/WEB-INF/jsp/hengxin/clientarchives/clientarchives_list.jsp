@@ -275,10 +275,10 @@
 							dataType : 'json',
 							success : function(_data){
 								if(_data.status){
-									alert("删除附件成功");
-									search();
+									bootbox.alert("删除附件成功");
+									setTimeout(search(),1500);
 								}else{
-									alert("删除附件失败:"+_data.msg);
+									bootbox.alert("删除附件失败:"+_data.msg);
 								}
 							}
 						});
