@@ -95,6 +95,12 @@ public class DataBaseController extends BaseController {
 		try{
 			pd = this.getPageData();
 			databaseService.delete(pd);
+			String dbid = pd.get("DATABASE_ID").toString();
+			Content param = new Content();
+			param.setRefTable("HX_DATABASE");
+			param.setRefFiled("DATABASE_ID");
+			param.setRefValue(dbid);
+			contentService.deleteForRef(param);
 			out.write("success");
 			out.close();
 		} catch(Exception e){
@@ -249,6 +255,13 @@ public class DataBaseController extends BaseController {
 			if(null != DATA_IDS && !"".equals(DATA_IDS)){
 				String ArrayDATA_IDS[] = DATA_IDS.split(",");
 				databaseService.deleteAll(ArrayDATA_IDS);
+				for(String dbid:ArrayDATA_IDS){
+					Content param = new Content();
+					param.setRefTable("HX_DATABASE");
+					param.setRefFiled("DATABASE_ID");
+					param.setRefValue(dbid);
+					contentService.deleteForRef(param);
+				}
 				pd.put("msg", "ok");
 			}else{
 				pd.put("msg", "no");
