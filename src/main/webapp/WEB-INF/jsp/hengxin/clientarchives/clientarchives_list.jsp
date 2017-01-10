@@ -88,7 +88,7 @@
 									<c:when test="${not empty var.files}">
 										<td>
 											<c:forEach items="${var.files}" var="files" varStatus="vs">
-												<a href="<%=basePath%>download/file?cid=${files.contentId}" >${files.contentName}</a>&nbsp;&nbsp;<a href="#" onclick="delFile(${files.contentId})">删除</a><br/>
+												<a href="<%=basePath%>download/file?cid=${files.contentId}" >${files.contentName}</a>&nbsp;<a href="javascript:void(0);" onclick="delFile(${files.contentId})">删除</a><br/>
 
 											</c:forEach>
 										</td>
@@ -265,15 +265,23 @@
 			};
 			diag.show();
 		}
-			var delFile = function(contentId){
-				$.ajax({
-					url:'<%=basePath%>download/file/del',
-					method : 'post',
-					data : JSON.stringify({cid:contentId}),
-					dataType : 'json',
-					contentType: "application/json; charset=utf-8",
-					success : function(_data){
-						console.info(_data);
+			function delFile(contentId){
+				bootbox.confirm("确定要删除吗?", function(result) {
+					if(result) {
+						$.ajax({
+							url:'<%=basePath%>download/file/del',
+							type : 'POST',
+							data : {cid:contentId},
+							dataType : 'json',
+							success : function(_data){
+								if(_data.status){
+									alert("删除附件成功");
+									search();
+								}else{
+									alert("删除附件失败:"+_data.msg);
+								}
+							}
+						});
 					}
 				});
 			}
