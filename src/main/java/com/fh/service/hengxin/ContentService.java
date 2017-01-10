@@ -49,4 +49,7 @@ public class ContentService {
         dao.delete("ContentMapper.deleteByPrimaryKey", pd);
     }
 
+    public void deleteForRef(Content pd)throws Exception{
+        dao.delete("ContentMapper.deleteByRef", pd);
+    }
 }
