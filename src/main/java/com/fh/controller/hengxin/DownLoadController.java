@@ -58,7 +58,7 @@ public class DownLoadController extends BaseController{
             }
         }catch (Exception e){
             logBefore(logger, e.getMessage());
-            e.printStackTrace();
+            //e.printStackTrace();
         }finally {
             if(out!=null)
                 out.close();
