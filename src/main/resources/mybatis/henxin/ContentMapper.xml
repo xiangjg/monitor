@@ -91,6 +91,19 @@
 		delete from content
 		where content_id = #{contentId,jdbcType=INTEGER}
 	</delete>
+	<delete id="deleteByRef" parameterType="Content">
+		delete from content
+		where 1 = 1
+		<if test="refTable != null" >
+			and ref_table = #{refTable,jdbcType=VARCHAR}
+		</if>
+		<if test="refFiled != null" >
+			and ref_filed = #{refFiled,jdbcType=VARCHAR}
+		</if>
+		<if test="refValue != null" >
+			and ref_value = #{refValue,jdbcType=VARCHAR}
+		</if>
+	</delete>
 	<insert id="insertSelective" parameterType="com.fh.entity.henxin.Content" >
 		insert into content
 		<trim prefix="(" suffix=")" suffixOverrides="," >
