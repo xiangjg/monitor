@@ -88,7 +88,7 @@
 									<c:when test="${not empty var.files}">
 										<td>
 											<c:forEach items="${var.files}" var="files" varStatus="vs">
-												<a href="<%=basePath%>download/file?cid=${files.contentId}" >${files.contentName}</a>&nbsp;&nbsp;<a href="<%=basePath%>download/file?cid=${files.contentId}">删除</a><br/>
+												<a href="<%=basePath%>download/file?cid=${files.contentId}" >${files.contentName}</a>&nbsp;&nbsp;<a href="#" onclick="delFile(${files.contentId})">删除</a><br/>
 
 											</c:forEach>
 										</td>
@@ -265,6 +265,18 @@
 			};
 			diag.show();
 		}
+			var delFile = function(contentId){
+				$.ajax({
+					url:'<%=basePath%>download/file/del',
+					method : 'post',
+					data : JSON.stringify({cid:contentId}),
+					dataType : 'json',
+					contentType: "application/json; charset=utf-8",
+					success : function(_data){
+						console.info(_data);
+					}
+				});
+			}
 		</script>
 		
 		<script type="text/javascript">
