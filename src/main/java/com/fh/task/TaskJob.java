@@ -72,8 +72,10 @@ public class TaskJob {
     private void writeBacklog(String msg){
         try{
             String backLogFile = getBackupPath() + File.separator + "backlog"+File.separator+sdfDay.format(new Date())+".log";
+            File file = new File(backLogFile);
+
             msg = sdf.format(new Date())+" : " + msg;
-            FileUtils.writeByteArrayToFile(new File(backLogFile),msg.getBytes());
+            FileUtils.writeByteArrayToFile(file,msg.getBytes());
         }catch (IOException ioe){
             System.out.println("写备份日志失败");
         }
