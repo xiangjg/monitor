@@ -13,7 +13,7 @@
 						http://www.springframework.org/schema/tx 
 						http://www.springframework.org/schema/tx/spring-tx.xsd
 	">
-	
+	<import resource="ApplicationContext-task.xml"/>
 	<!-- 启用注解 -->
 	<context:annotation-config />
 	
