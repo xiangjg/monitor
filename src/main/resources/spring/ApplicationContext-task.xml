@@ -14,8 +14,8 @@
     <task:scheduler id="taskScheduler" pool-size="100" />
 
     <task:scheduled-tasks scheduler="taskScheduler">
-        <!-- 每半分钟触发任务 -->
-        <task:scheduled ref="taskJob" method="job1" cron="30 * * * * ?"/>
+        <!-- 每半分钟触发任务
+        <task:scheduled ref="taskJob" method="job1" cron="30 * * * * ?"/>-->
         <!-- 每小时的10分30秒触发任务
         <task:scheduled ref="taskJob" method="job2" cron="30 10 * * * ?"/>-->
         <!-- 每天1点10分30秒触发任务
