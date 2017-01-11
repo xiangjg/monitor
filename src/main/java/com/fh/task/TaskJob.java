@@ -1,5 +1,6 @@
 package com.fh.task;
 import com.fh.util.PropertiesUtil;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -32,6 +33,13 @@ public class TaskJob {
         File backFilePath = new File(backupPath);
         if(!backFilePath.exists()  && !backFilePath.isDirectory())
             backFilePath.mkdir();
+        backFilePath = new File(backupPath+File.separator + "backlog");
+        if(!backFilePath.exists()  && !backFilePath.isDirectory())
+            backFilePath.mkdir();
+
+        String backLogFile = backupPath+File.separator + "backlog"+File.separator+sdfDay.format(new Date())+".log";
+        File logFile = new File(backLogFile);
+        setLogFile(logFile);
 
         backupPath = backupPath+ File.separator+database+"_"+sdfDay.format(new Date())+".sql";
 
@@ -40,30 +48,49 @@ public class TaskJob {
             try{
                 file.createNewFile();
             }catch (Exception e){
-                System.out.println("创建备份文件失败");
+                writeBacklog("创建备份文件失败");
             }
         }
 
         //备份mysql数据库
         Runtime runtime = Runtime.getRuntime();
-        System.out.println("备份数据库任务开始了......");
+        writeBacklog("备份数据库任务开始");
 
         String cmd = "cmd /c "+mysqkBin+"\\mysqldump -h "+serverIp+" -u"+username+" -p"+password+" --default-character-set=utf8 --single-transaction --databases "+database+" >"+backupPath;//一定要加-h localhost(或是服务器IP地址)
         try {
-            System.out.println("excute cmd:"+cmd);
+            writeBacklog("excute cmd:"+cmd);
             Process process = runtime.exec(cmd);
 
             InputStreamReader inputStreamReader = new InputStreamReader(process.getErrorStream());
             LineNumberReader lineNumberReader = new LineNumberReader(inputStreamReader);
             String line;
             while((line = lineNumberReader.readLine()) != null){
-                System.out.println("excute error message : "+line);
+                writeBacklog("excute error message : "+line);
             }
-            System.out.println("备份成功");
+            writeBacklog("备份成功");
         } catch (IOException e) {
-            System.out.println("备份失败");
+            writeBacklog("备份失败");
             e.printStackTrace();
         }
-        System.out.println("备份数据库任务结束了......");
+        writeBacklog("备份数据库任务结束");
+    }
+
+    private void writeBacklog(String msg){
+        try{
+            msg = sdf.format(new Date())+" : " + msg;
+            FileUtils.writeByteArrayToFile(getLogFile(),msg.getBytes());
+        }catch (IOException ioe){
+            System.out.println("写备份日志失败");
+        }
+    }
+
+    private File logFile;
+
+    public File getLogFile() {
+        return logFile;
+    }
+
+    public void setLogFile(File logFile) {
+        this.logFile = logFile;
     }
 }
