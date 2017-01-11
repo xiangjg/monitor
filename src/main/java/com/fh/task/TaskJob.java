@@ -28,18 +28,12 @@ public class TaskJob {
         String backupPath = pr.readProperty("jdbc.backupPath");
         String serverIp = pr.readProperty("server.ip");
         String mysqkBin = pr.readProperty("mysql.bin");
+        setBackupPath(backupPath);
 
         //验证备份文件路径
         File backFilePath = new File(backupPath);
         if(!backFilePath.exists()  && !backFilePath.isDirectory())
             backFilePath.mkdir();
-        backFilePath = new File(backupPath+File.separator + "backlog");
-        if(!backFilePath.exists()  && !backFilePath.isDirectory())
-            backFilePath.mkdir();
-
-        String backLogFile = backupPath+File.separator + "backlog"+File.separator+sdfDay.format(new Date())+".log";
-        File logFile = new File(backLogFile);
-        setLogFile(logFile);
 
         backupPath = backupPath+ File.separator+database+"_"+sdfDay.format(new Date())+".sql";
 
@@ -77,20 +71,21 @@ public class TaskJob {
 
     private void writeBacklog(String msg){
         try{
+            String backLogFile = getBackupPath() + File.separator + "backlog"+File.separator+sdfDay.format(new Date())+".log";
             msg = sdf.format(new Date())+" : " + msg;
-            FileUtils.writeByteArrayToFile(getLogFile(),msg.getBytes());
+            FileUtils.writeByteArrayToFile(new File(backLogFile),msg.getBytes());
         }catch (IOException ioe){
             System.out.println("写备份日志失败");
         }
     }
 
-    private File logFile;
+    private String backupPath;
 
-    public File getLogFile() {
-        return logFile;
+    public String getBackupPath() {
+        return backupPath;
     }
 
-    public void setLogFile(File logFile) {
-        this.logFile = logFile;
+    public void setBackupPath(String backupPath) {
+        this.backupPath = backupPath;
     }
 }
