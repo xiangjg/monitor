@@ -149,7 +149,7 @@
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">估价对象位置:</td>
-				<td><input type="text" name="LOCATION" id="LOCATION" value="${pd.LOCATION}" maxlength="32" placeholder="这里输入估价对象位置" title="估价对象位置"/></td>
+				<td><input type="text" name="LOCATION" id="LOCATION" value="${pd.LOCATION}" maxlength="150" placeholder="这里输入估价对象位置" title="估价对象位置"/></td>
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">状态:</td>
@@ -175,7 +175,7 @@
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">备注:</td>
-				<td><input type="text" name="REMARK" id="REMARK" value="${pd.REMARK}" maxlength="50" placeholder="这里输入备注" title="备注"/></td>
+				<td><input type="text" name="REMARK" id="REMARK" value="${pd.REMARK}" maxlength="150" placeholder="这里输入备注" title="备注"/></td>
 			</tr>
 			<tr style="display: none">
 				<td style="width:70px;text-align: right;padding-top: 13px;">部门</td>
