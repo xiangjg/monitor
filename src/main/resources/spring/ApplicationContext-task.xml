@@ -15,7 +15,7 @@
 
     <task:scheduled-tasks scheduler="taskScheduler">
         <!-- 每半分钟触发任务
-        <task:scheduled ref="taskJob" method="job1" cron="30 * * * * ?"/>-->
+        <task:scheduled ref="taskJob" method="job1" cron="* * * * * ?"/>-->
         <!-- 每小时的10分30秒触发任务
         <task:scheduled ref="taskJob" method="job2" cron="30 10 * * * ?"/>-->
         <!-- 每天1点10分30秒触发任务
@@ -38,6 +38,6 @@
         <task:scheduled ref="taskJob" method="job11" cron="0 15 10 ? * MON-FRI"/>-->
 
         <!-- 每小时的12:00触发任务  0 0 12 * * ?-->
-        <task:scheduled ref="taskJob" method="jobBackupData" cron="0 0 12 * * ?"/>
+        <task:scheduled ref="taskJob" method="jobBackupData" cron="0 0 * * * ?"/>
     </task:scheduled-tasks>
 </beans>
