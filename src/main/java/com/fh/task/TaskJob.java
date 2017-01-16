@@ -44,6 +44,9 @@ public class TaskJob {
             }catch (Exception e){
                 writeBacklog("创建备份文件失败");
             }
+        }else{
+            writeBacklog("文件已备份");
+            return;
         }
 
         //备份mysql数据库
