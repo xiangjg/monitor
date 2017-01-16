@@ -38,15 +38,12 @@ public class TaskJob {
         backupPath = backupPath+ File.separator+database+"_"+sdfDay.format(new Date())+".sql";
 
         File file = new File(backupPath);
-        if(!file.exists()){
-            try{
-                file.createNewFile();
-            }catch (Exception e){
-                writeBacklog("创建备份文件失败");
-            }
-        }else{
-            writeBacklog("文件已备份");
-            return;
+        if(file.exists())
+            file.delete();
+        try{
+            file.createNewFile();
+        }catch (Exception e){
+            writeBacklog("创建备份文件失败");
         }
 
         //备份mysql数据库
