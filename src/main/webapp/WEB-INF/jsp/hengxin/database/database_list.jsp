@@ -297,6 +297,7 @@
 
 		$("#QUSER_ID").val("${pd.QUSER_ID}");
 		$("#ADCD").val("${pd.ADCD}");
+		$("#PURPOSE").val("${pd.PURPOSE}");
 		//检索
 		function search(){
 			top.jzts();
