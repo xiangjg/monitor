@@ -214,7 +214,9 @@
 		<script type="text/javascript">
 		
 		$(top.hangge());
-		
+
+		$("#DITCH").val("${pd.DITCH}");
+
 		//检索
 		function search(){
 			top.jzts();
