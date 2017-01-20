@@ -138,9 +138,16 @@
 										<c:choose>
 											<c:when test="${not empty var.faceImg}">
 												<td>
+													<table style="border: 0">
 													<c:forEach items="${var.faceImg}" var="files" varStatus="vs">
-														<img class="pimg" src="<%=basePath%>download/file?cid=${files.contentId}" width="100" height="100"/>
+														<tr>
+															<td><img class="pimg" src="<%=basePath%>download/file?cid=${files.contentId}" width="100" height="100"/></td>
+														</tr>
+														<tr>
+															<td><a href="javascript:void(0);" onclick="delFile(${files.contentId})">删除</a></td>
+														</tr>
 													</c:forEach>
+													</table>
 												</td>
 											</c:when>
 											<c:otherwise>
@@ -150,9 +157,16 @@
 										<c:choose>
 											<c:when test="${not empty var.locationImg}">
 												<td>
+													<table style="border: 0">
 													<c:forEach items="${var.locationImg}" var="files" varStatus="vs">
-														<img class="pimg" src="<%=basePath%>download/file?cid=${files.contentId}" width="100" height="100"/>
+														<tr>
+															<td><img class="pimg" src="<%=basePath%>download/file?cid=${files.contentId}" width="100" height="100"/></td>
+														</tr>
+														<tr>
+															<td><a href="javascript:void(0);" onclick="delFile(${files.contentId})">删除</a></td>
+														</tr>
 													</c:forEach>
+													</table>
 												</td>
 											</c:when>
 											<c:otherwise>
@@ -375,6 +389,26 @@
 				diag.close();
 			};
 			diag.show();
+		}
+		function delFile(contentId){
+			bootbox.confirm("确定要删除吗?", function(result) {
+				if(result) {
+					$.ajax({
+						url:'<%=basePath%>download/file/del',
+						type : 'POST',
+						data : {cid:contentId},
+						dataType : 'json',
+						success : function(_data){
+							if(_data.status){
+								bootbox.alert("删除附件成功");
+								setTimeout(search(),1500);
+							}else{
+								bootbox.alert("删除附件失败:"+_data.msg);
+							}
+						}
+					});
+				}
+			});
 		}
 		</script>
 		
