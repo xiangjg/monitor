@@ -67,6 +67,14 @@
 							<option value="外省">外省</option>--%>
 						</select>
 					</td>
+					<td style="vertical-align:top;">
+						<select class="chzn-select" name="QUSER_ID" id="QUSER_ID" value="${pd.QUSER_ID}" data-placeholder="请选择录入人员">
+							<option value=""></option>
+							<c:forEach items="${userList}" var="user" varStatus="vs">
+								<option value="${user.USER_ID}">${user.NAME}</option>
+							</c:forEach>
+						</select>
+					</td>
 					<td><input name="minArea" id="minArea" value="${pd.minArea}" type="text"  style="width:55px;" placeholder="最小面积"/></td>
 					<td>-</td>
 					<td><input name="maxArea" id="maxArea" value="${pd.maxArea}" type="text" style="width:55px;" placeholder="最大面积"/></td>
@@ -287,6 +295,8 @@
 			});
 		}
 
+		$("#QUSER_ID").val("${pd.QUSER_ID}");
+		$("#ADCD").val("${pd.ADCD}");
 		//检索
 		function search(){
 			top.jzts();
