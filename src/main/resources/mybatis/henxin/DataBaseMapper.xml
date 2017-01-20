@@ -120,6 +120,9 @@
 		<if test="pd.USER_ID!=null and pd.USER_ID!=''">
 			and a.ADCD in (select AREA_NAME from TB_USERAREAQUERYMANAGER where USER_ID = #{pd.USER_ID})
 		</if>
+		<if test="pd.QUSER_ID!=null and pd.QUSER_ID!=''">
+			and a.USER_ID = #{pd.QUSER_ID}
+		</if>
 		order by a.ADCD,a.CREATE_TIME desc
 	</select>
 	
