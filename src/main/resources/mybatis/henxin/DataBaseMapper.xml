@@ -120,7 +120,7 @@
 		<if test="pd.USER_ID!=null and pd.USER_ID!=''">
 			and a.ADCD in (select AREA_NAME from TB_USERAREAQUERYMANAGER where USER_ID = #{pd.USER_ID})
 		</if>
-		order by a.AREA,a.CREATE_TIME desc
+		order by a.ADCD,a.CREATE_TIME desc
 	</select>
 	
 	<!-- 列表(全部) -->
