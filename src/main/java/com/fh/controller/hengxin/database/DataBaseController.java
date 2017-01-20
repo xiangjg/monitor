@@ -158,6 +158,10 @@ public class DataBaseController extends BaseController {
 
 
 			pd = this.getPageData();
+
+			//返回页面保持用户填写的查询参数
+
+
 			page.setPd(pd);
 			List<PageData>	varList = new ArrayList<>();	//列出DataBase列表
 			if(haveAll)
@@ -184,6 +188,8 @@ public class DataBaseController extends BaseController {
 				pp.put("locationImg",locationImg);
 			}
 
+			List<PageData> userList = userService.listAllUser(null);
+			mv.addObject("userList", userList);
 
 			mv.setViewName("hengxin/database/database_list");
 			mv.addObject("varList", varList);
