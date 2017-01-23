@@ -63,6 +63,8 @@ public class DetailController extends BaseController {
 		pd.put("DETAIL_ID", this.get32UUID());	//主键
 		pd.put("USER_ID", userId);	//用户id
 		pd.put("CREATE_TIME", Tools.date2Str(new Date()));	//创建时间
+		if("".equals(pd.get("SUMPRICE")))
+			pd.put("SUMPRICE",null);
 		detailService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
