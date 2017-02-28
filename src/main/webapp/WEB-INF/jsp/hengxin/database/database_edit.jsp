@@ -157,7 +157,7 @@
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">备注:</td>
-				<td><input type="text" name="REMARK" id="REMARK" value="${pd.REMARK}" maxlength="50" placeholder="这里输入备注" title="备注"/></td>
+				<td><input type="text" name="REMARK" id="REMARK" value="${pd.REMARK}" maxlength="120" placeholder="这里输入备注" title="备注"/></td>
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">所属区:</td>
