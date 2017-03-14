@@ -236,10 +236,13 @@ public class DetailController extends BaseController {
 				vpd.put("var4", varOList.get(i).getString("PHONE"));	//4
 				vpd.put("var5", varOList.get(i).getString("LOCATION"));	//5
 				vpd.put("var6", varOList.get(i).getString("STATUS"));	//6
-				vpd.put("var7", varOList.get(i).get("USER_ID").toString());	//7
+				vpd.put("var7", varOList.get(i).getString("USER_ID"));	//7
 				vpd.put("var8", varOList.get(i).getString("CREATE_TIME"));	//8
 				vpd.put("var9", varOList.get(i).getString("DEPARTMENT"));
-				vpd.put("var10", varOList.get(i).get("SUMPRICE").toString());
+				if(varOList.get(i).get("SUMPRICE")!=null)
+					vpd.put("var10", varOList.get(i).get("SUMPRICE").toString());
+				else
+					vpd.put("var10", "");
 				vpd.put("var11", varOList.get(i).getString("EXP_TIME"));
 				vpd.put("var12", varOList.get(i).getString("REMARK"));
 				varList.add(vpd);
