@@ -135,7 +135,11 @@
 				(select NAME from sys_user where USER_ID=a.USER_ID) as USER_ID,
 				a.CREATE_TIME,	
 				a.DETAIL_ID,
-				a.DEPARTMENT,
+				CASE a.DEPARTMENT
+				WHEN 1 THEN '一部'
+				WHEN 2 THEN '二部 '
+				WHEN 3 THEN '三部'
+				ELSE '' END  as DEPARTMENT,
 				a.SUMPRICE,
 				a.EXP_TIME,
 				a.REMARK
