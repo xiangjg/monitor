@@ -219,7 +219,7 @@ public class DetailController extends BaseController {
 			titles.add("客户联系方式");	//4
 			titles.add("估价对象位置");	//5
 			titles.add("状态");	//6
-			titles.add("用户id");	//7
+			titles.add("录入用户");	//7
 			titles.add("创建时间");	//8
 			titles.add("部门");
 			titles.add("评估总价");
