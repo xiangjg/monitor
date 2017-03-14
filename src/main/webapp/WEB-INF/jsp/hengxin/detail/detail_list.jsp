@@ -359,8 +359,8 @@
 		}
 		
 		//导出excel
-		function toExcel(){
-			window.location.href='<%=basePath%>detail/excel.do';
+		function toExcel(){console.info($("#DEPARTMENT").val());
+			window.location.href='<%=basePath%>detail/excel.do?DEPARTMENT='+$("#DEPARTMENT").val();
 		}
 		</script>
 		
