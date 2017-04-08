@@ -278,7 +278,7 @@
             contentType: "application/json; charset=gb2312",
             success: function (data, status) {
 
-                console.info(data);
+                //console.info(data);
                 var legends = new Array();
                 for (var i = 0; i < data.length; i++) {
                     legends.push(data[i].name);
