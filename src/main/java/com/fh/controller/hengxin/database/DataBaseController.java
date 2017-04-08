@@ -2,6 +2,7 @@ package com.fh.controller.hengxin.database;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,7 +12,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
 import com.fh.controller.hengxin.Constant;
 import com.fh.entity.henxin.Content;
 import com.fh.service.hengxin.ContentService;
@@ -393,6 +398,60 @@ public class DataBaseController extends BaseController {
 		}
 		map.put("result", "ok");
 		return AppUtil.returnObject(pd, map);
+	}
+
+	@RequestMapping(value="/getCountData")
+	public void getCountData(HttpServletRequest request, HttpServletResponse response){
+		logBefore(logger, "统计DataBase");
+		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
+		PageData pd = new PageData();
+		response.setCharacterEncoding("UTF-8");
+		try{
+			ServletOutputStream out = response.getOutputStream();
+			pd = this.getPageData();
+			List<PageData> list = databaseService.getCountData(pd);
+			Map<String,List<Map<String,Object>>> data = new HashMap<>();
+			for (PageData pp:list
+				 ) {
+				Map<String,Object> map = new HashMap<>();
+				map.put("MONTH",pp.get("MONTH"));
+				map.put("NUM",pp.get("NUM"));
+
+				String name = pp.getString("NAME");
+
+				if(data.keySet().contains(name))
+					data.get(name).add(map);
+				else{
+					List<Map<String,Object>> temp = new ArrayList<>();
+					temp.add(map);
+					data.put(name,temp);
+				}
+			}
+			List<Map<String,Object>> arr = new ArrayList<>();
+			for (String key : data.keySet()) {
+				Map<String,Object> mm = new HashMap<>();
+				Integer[] nums = new Integer[12];
+				for(int i=0;i<12;i++)
+					nums[i] = null;
+				for (Map<String,Object> counts:data.get(key)
+					 ) {
+					if(counts.get("NUM")!=null){
+						int index = Integer.parseInt(counts.get("MONTH").toString())-1;
+						nums[index] = Integer.parseInt(counts.get("NUM").toString());
+					}
+				}
+
+				mm.put("name",key);
+				mm.put("type","bar");
+				mm.put("data",nums);
+				arr.add(mm);
+			}
+			out.write(JSON.toJSONString(arr).getBytes("utf-8"));
+			out.close();
+		} catch(Exception e){
+			logger.error(e.toString(), e);
+		}
+
 	}
 	
 	/* ===============================权限================================== */
