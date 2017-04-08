@@ -152,5 +152,16 @@
                  #{item}
 		</foreach>
 	</delete>
-	
+
+	<select id="getCountData" parameterType="pd" resultType="pd">
+		select
+		b.NAME as NAME,
+		DATE_FORMAT(str_to_date(a.CREATE_TIME, '%Y-%m-%d %H:%i:%s'),'%m') as MONTH,
+		COUNT(1) as NUM
+		from
+		HX_DATABASE a,
+		sys_user b
+		where a.USER_ID = b.USER_ID and DATE_FORMAT(str_to_date(a.CREATE_TIME, '%Y-%m-%d %H:%i:%s'),'%Y') = DATE_FORMAT(now(),'%Y')
+		group by b.NAME,MONTH
+	</select>
 </mapper>
