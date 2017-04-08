@@ -65,6 +65,10 @@ public class DataBaseService {
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("DataBaseMapper.deleteAll", ArrayDATA_IDS);
 	}
+
+	public List<PageData> getCountData(PageData pd)throws Exception{
+		return (List<PageData>)dao.findForList("DataBaseMapper.getCountData", pd);
+	}
 	
 }
 
