@@ -400,10 +400,18 @@ public class DataBaseController extends BaseController {
 		return AppUtil.returnObject(pd, map);
 	}
 
+	@RequestMapping(value="/getCountDataView")
+	public ModelAndView getCountDataView() throws Exception{
+		logBefore(logger, "统计页面DataBase");
+		if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;}
+		ModelAndView mv = this.getModelAndView();
+		mv.setViewName("hengxin/database/database_count");
+		return mv;
+	}
+
 	@RequestMapping(value="/getCountData")
 	public void getCountData(HttpServletRequest request, HttpServletResponse response){
 		logBefore(logger, "统计DataBase");
-		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
 		PageData pd = new PageData();
 		response.setCharacterEncoding("UTF-8");
 		try{
