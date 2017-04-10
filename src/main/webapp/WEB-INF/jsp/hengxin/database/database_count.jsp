@@ -18,7 +18,7 @@
     <%@ include file="../../system/admin/top.jsp"%>
 </head>
 <body>
-    <div id="dataCount" style="position: absolute;top: 100px;left: 20px;width: 1200px;height: 800px;"></div>
+    <div id="dataCount" style="position: absolute;top: 100px;left: 20px;width: 100%;height: 800px;"></div>
 </body>
 <script src="static/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
