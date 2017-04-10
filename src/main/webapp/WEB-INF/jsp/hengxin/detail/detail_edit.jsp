@@ -149,7 +149,7 @@
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">估价对象位置:</td>
-				<td><input type="text" name="LOCATION" id="LOCATION" value="${pd.LOCATION}" maxlength="150" placeholder="这里输入估价对象位置" title="估价对象位置"/></td>
+				<td><input type="text" name="LOCATION" id="LOCATION" value="${pd.LOCATION}" maxlength="500" placeholder="这里输入估价对象位置" title="估价对象位置"/></td>
 			</tr>
 			<tr>
 				<td style="width:70px;text-align: right;padding-top: 13px;">状态:</td>
