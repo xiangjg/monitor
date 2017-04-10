@@ -293,6 +293,13 @@
                             type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                         }
                     },
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            dataView : {show: true, readOnly: false},
+                            saveAsImage : {show: true}
+                        }
+                    },
                     xAxis: [
                         {
                             name: '月份',
