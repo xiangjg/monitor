@@ -30,7 +30,7 @@
         <div style="text-align: center">
             <img src="<%=path%>/static/images/b2036b42cf1fdca41657c2f916c91ee7_.jpg">
         </div>
-        <div id="dataCount" style="position: absolute;top: 100px;left: 20px;width: 600px;height: 400px;"></div>
+        <%--<div id="dataCount" style="position: absolute;bottom: 10px;left: 20px;width: 1200px;height: 800px;"></div>--%>
         <%--<div class="row-fluid">
 
             <div class="space-6"></div>
@@ -271,57 +271,57 @@
     $(top.hangge());
 
     $(function () {
-        $.ajax({
-            url: 'database/getCountData',
-            type: 'post',
-            dataType: 'json',
-            contentType: "application/json; charset=gb2312",
-            success: function (data, status) {
-
-                //console.info(data);
-                var legends = new Array();
-                for (var i = 0; i < data.length; i++) {
-                    legends.push(data[i].name);
-                }
-                var myChart = echarts.init(document.getElementById('dataCount'));
-                var option = {
-                    title: {text: "2017年数据录入统计", x: 'center'},
-                    legend: {data: legends,bottom:0},
-                    tooltip: {
-                        trigger: 'axis',
-                        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                        }
-                    },
-                    toolbox: {
-                        show : true,
-                        feature : {
-                            dataView : {show: true, readOnly: false},
-                            saveAsImage : {show: true}
-                        }
-                    },
-                    xAxis: [
-                        {
-                            name: '月份',
-                            type: 'category',
-                            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                            axisTick: {
-                                alignWithLabel: true
-                            }
-                        }
-                    ],
-                    yAxis: [
-                        {
-                            name: '录入量',
-                            type: 'value'
-                        }
-                    ],
-                    series: data
-                };
-                myChart.setOption(option);
-
-            }
-        });
+//        $.ajax({
+//            url: 'database/getCountData',
+//            type: 'post',
+//            dataType: 'json',
+//            contentType: "application/json; charset=gb2312",
+//            success: function (data, status) {
+//
+//                //console.info(data);
+//                var legends = new Array();
+//                for (var i = 0; i < data.length; i++) {
+//                    legends.push(data[i].name);
+//                }
+//                var myChart = echarts.init(document.getElementById('dataCount'));
+//                var option = {
+//                    title: {text: "2017年数据录入统计", x: 'center'},
+//                    legend: {data: legends,bottom:0},
+//                    tooltip: {
+//                        trigger: 'axis',
+//                        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+//                            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+//                        }
+//                    },
+//                    toolbox: {
+//                        show : true,
+//                        feature : {
+//                            dataView : {show: true, readOnly: false},
+//                            saveAsImage : {show: true}
+//                        }
+//                    },
+//                    xAxis: [
+//                        {
+//                            name: '月份',
+//                            type: 'category',
+//                            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+//                            axisTick: {
+//                                alignWithLabel: true
+//                            }
+//                        }
+//                    ],
+//                    yAxis: [
+//                        {
+//                            name: '录入量',
+//                            type: 'value'
+//                        }
+//                    ],
+//                    series: data
+//                };
+//                myChart.setOption(option);
+//
+//            }
+//        });
 
 
         $('.dialogs,.comments').slimScroll({
