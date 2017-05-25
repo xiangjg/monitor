@@ -200,7 +200,7 @@
         //         return 0;
         //     });
         // });
-        uploader.on('beforeFileQueued', function(file) {console.info(this);
+        uploader.on('beforeFileQueued', function(file) {
             if(file.size>500*1024){
                 file.setStatus('invalid', 'exceed_size' );
                 this.trigger( 'error', 'F_EXCEED_SIZE', 500*1024, file );
