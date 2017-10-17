@@ -79,7 +79,7 @@ public class TaskJob {
                     if(name.indexOf("numysql_")>-1){
                         name = name.replaceAll("numysql_","").replaceAll(".sql","");
                         c.setTime(sdf.parse(name));
-                        if(c.get(Calendar.MONTH)!=now.get(Calendar.MONTH)){
+                        if(logDir.length()>0&&c.get(Calendar.MONTH)!=now.get(Calendar.MONTH)){
                             writeBacklog("清理历史备份文件："+bFile.getPath());
                             //bFile.delete();
                             File bLogFile = new File(logDir+File.separator+bFile.getName().replaceAll("numysql_","").replaceAll("sql","log"));
