@@ -5,7 +5,10 @@ import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 向敬光 on 2017-01-11.
@@ -62,20 +65,48 @@ public class TaskJob {
                 writeBacklog("excute error message : "+line);
             }
             writeBacklog("备份成功");
-        } catch (IOException e) {
+
+            //为了避免备份文件过多，删除前一个月以前的数据，前提：存在最新数据
+            if(file.exists()&&file.isFile()&&file.length()>0){
+                File[] allBackFile = backFilePath.listFiles();
+                Calendar c = Calendar.getInstance();
+                Calendar now = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String logDir = "";
+                for(int i=0;i<allBackFile.length;i++){
+                    File bFile = allBackFile[i];
+                    String name = bFile.getName();
+                    if(name.indexOf("numysql_")>-1){
+                        name = name.replaceAll("numysql_","").replaceAll(".sql","");
+                        c.setTime(sdf.parse(name));
+                        if(c.get(Calendar.MONTH)!=now.get(Calendar.MONTH)){
+                            writeBacklog("清理历史备份文件："+bFile.getPath());
+                            //bFile.delete();
+                            File bLogFile = new File(logDir+File.separator+bFile.getName().replaceAll("numysql_","").replaceAll("sql","log"));
+                            writeBacklog("清理历史备份日志文件："+bLogFile.getPath());
+                            //bLogFile.delete();
+                        }
+                    }else{
+                        logDir = bFile.getPath();
+                    }
+                }
+            }
+        } catch (Exception e) {
             writeBacklog("备份失败");
             e.printStackTrace();
         }
         writeBacklog("备份数据库任务结束");
+        writeBacklog("------------------");
     }
 
     private void writeBacklog(String msg){
         try{
             String backLogFile = getBackupPath() + File.separator + "backlog"+File.separator+sdfDay.format(new Date())+".log";
             File file = new File(backLogFile);
-
+            List<String> lines=new ArrayList<>();
             msg = sdf.format(new Date())+" : " + msg;
-            FileUtils.writeByteArrayToFile(file,msg.getBytes());
+            lines.add(msg);
+            FileUtils.writeLines(file,null,lines,true);
         }catch (IOException ioe){
             System.out.println("写备份日志失败");
         }

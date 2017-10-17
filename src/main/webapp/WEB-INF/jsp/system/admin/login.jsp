@@ -75,9 +75,9 @@
 						</div>
 
 						<span class="pull-right" style="padding-right:3%;"><a
-							href="javascript:quxiao();" class="btn btn-success">取消</a></span> <span
+							href="javascript:quxiao();" class="btn btn-success" style="width: 34px;height: 20px">取消</a></span> <span
 							class="pull-right"><a onclick="severCheck();"
-							class="flip-link btn btn-info" id="to-recover">登录</a></span>
+							class="flip-link btn btn-info" id="to-recover" style="width: 34px;height: 20px">登录</a></span>
 
 					</div>
 				</div>
