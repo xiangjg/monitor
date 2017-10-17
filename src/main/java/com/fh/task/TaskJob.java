@@ -81,10 +81,10 @@ public class TaskJob {
                         c.setTime(sdf.parse(name));
                         if(logDir.length()>0&&c.get(Calendar.MONTH)!=now.get(Calendar.MONTH)){
                             writeBacklog("清理历史备份文件："+bFile.getPath());
-                            //bFile.delete();
+                            bFile.delete();
                             File bLogFile = new File(logDir+File.separator+bFile.getName().replaceAll("numysql_","").replaceAll("sql","log"));
                             writeBacklog("清理历史备份日志文件："+bLogFile.getPath());
-                            //bLogFile.delete();
+                            bLogFile.delete();
                         }
                     }else{
                         logDir = bFile.getPath();
